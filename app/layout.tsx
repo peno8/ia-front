@@ -1,6 +1,45 @@
 import './globals.css'
 import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
+import Header from './component/header/header'
+import Footer from './footer'
+import localFont from 'next/font/local'
+import OptionBar from './component/option'
+import Sidebar from './component/sidebar'
+import '@mantine/core/styles.css';
+import { MantineProvider, ColorSchemeScript } from '@mantine/core';
+
+export const dynamic = 'force-dynamic'
+
+const localFonts = localFont({
+  src: [
+    {
+      path: './fonts/selawkl.ttf',
+      weight: '100',
+      style: 'light',
+    },
+    {
+      path: './fonts/selawksl.ttf',
+      weight: '300',
+      style: 'semi-light',
+    },
+    {
+      path: './fonts/selawk.ttf',
+      weight: '400',
+      style: 'normal',
+    },
+    {
+      path: './fonts/selawksb.ttf',
+      weight: '600',
+      style: 'semi-bold',
+    },
+    {
+      path: './fonts/selawkb.ttf',
+      weight: '700',
+      style: 'bold',
+    },
+  ],
+})
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -14,9 +53,28 @@ export default function RootLayout({
 }: {
   children: React.ReactNode
 }) {
+
+
   return (
+
     <html lang="en">
-      <body className={inter.className}>{children}</body>
+      <head>
+        <ColorSchemeScript />
+      </head>
+      <body className={`${localFonts.className} font-light text-sm flex w-full flex-col justify-stretch p-0 m-0 min-h-screen`}>
+        <MantineProvider>
+          <Header />
+          <OptionBar></OptionBar>
+          <main className="wrap">
+            <Sidebar></Sidebar>
+            <div className="flex flex-col w-full">
+              {children}
+              <div className="grow border"></div>
+              <Footer />
+            </div>
+          </main>
+        </MantineProvider>
+      </body>
     </html>
   )
 }

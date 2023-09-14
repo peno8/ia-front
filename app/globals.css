@@ -3,20 +3,23 @@
 @tailwind utilities;
 
 :root {
-  --foreground-rgb: 0, 0, 0;
+  /* --foreground-rgb: 0, 0, 0;
   --background-start-rgb: 214, 219, 220;
-  --background-end-rgb: 255, 255, 255;
+  --background-end-rgb: 255, 255, 255; */
+  --sidebar-width: 260px;
+  --side-padding: 32px;
+  --colorNeutralBackground10: #edebe9;
 }
 
-@media (prefers-color-scheme: dark) {
+/* @media (prefers-color-scheme: dark) {
   :root {
     --foreground-rgb: 255, 255, 255;
     --background-start-rgb: 0, 0, 0;
     --background-end-rgb: 0, 0, 0;
   }
-}
+} */
 
-body {
+/* body {
   color: rgb(var(--foreground-rgb));
   background: linear-gradient(
       to bottom,
@@ -24,4 +27,30 @@ body {
       rgb(var(--background-end-rgb))
     )
     rgb(var(--background-start-rgb));
+} */
+
+.wrap {
+  display: flex;
+  justify-content: flex-start;
+  align-items: stretch;
+  /* padding: 20px var(--side-padding, 32px); */
+  flex: 1 0 auto;
+  /* column-gap: 30px; */
 }
+
+.sidebar {
+  /* background: none; */
+  overflow-y: unset;
+  position: static;
+  padding: 0;
+  flex: none;
+  /* max-width: var(--sidebar-width); */
+  /* width: 100%; */
+  border: 0;
+  min-height: 0;
+  height: auto;
+  -webkit-backdrop-filter: none;
+  backdrop-filter: none;
+  border: 1px solid rgb(224,224,224)
+}
+
