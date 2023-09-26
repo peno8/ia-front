@@ -4,7 +4,7 @@ import { Menu, Transition } from '@headlessui/react'
 import { Fragment } from 'react'
 
 interface Props {
-  dropdownName: String, items: Array<String>
+  dropdownName: String, items: Array<{ key: number, value: string }>
 }
 
 export default function DisplayDropdown(props: Props) {
@@ -30,14 +30,14 @@ export default function DisplayDropdown(props: Props) {
             {
               props.items.map(item =>
 
-                <div className="px-1 py-1 ">
+                <div className="px-1 py-1" key={item.key}>
                   <Menu.Item>
                     {({ active }) => (
                       <button
                         className={`${active ? 'bg-violet-500 text-white' : 'text-gray-900'
                           } group flex w-full items-center rounded-md px-2 py-2 text-sm`}
                       >
-                        {item}
+                        {item.value}
                       </button>
                     )}
                   </Menu.Item>

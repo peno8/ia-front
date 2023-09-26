@@ -1,7 +1,7 @@
 'use client'
 
 import { Button } from '@mantine/core';
-import { getScreenerParam } from '../api/screener-store';
+import { getScreenerParam } from '../screener-store';
 
 export default function ScreenerButton(props: { action : Function }) {
 
