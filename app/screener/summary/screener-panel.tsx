@@ -1,7 +1,7 @@
 import { ReactNode, useState } from 'react';
 import { FeatureDef, SelectedFeaturesForm, selectedFeaturesFormStore, selectedVariableText } from '../screener-store';
 import { Button } from '@mantine/core';
-import { NaicsDef } from '@/app/app.store';
+import { ScreenerDef } from '@/app/app.store';
 
 function LabelColumn(text: string) {
   return <div className='text-sm font-semibold w-32'>{text}: </div>;
@@ -25,10 +25,10 @@ function SummaryRow2({ name, label, valueFunc }: { name: string, label: string, 
 }
 
 
-function sectorDesc(naicsDefs: NaicsDef[], code: string) {
-  const def = naicsDefs.find(e => e.code == code);
-  return def ? def.desc : "N/A";
-}
+// function sectorDesc(naicsDefs: NaicsDef[], code: string) {
+//   const def = naicsDefs.find(e => e.code == code);
+//   return def ? def.desc : "N/A";
+// }
 
 function Variables({ featureDefs, variationCodeMap }: { featureDefs: FeatureDef[], variationCodeMap: Map<string, string> }) {
   return (
@@ -38,10 +38,10 @@ function Variables({ featureDefs, variationCodeMap }: { featureDefs: FeatureDef[
   )
 }
 
-interface SelectedVariablesProps { featureDefs: FeatureDef[], fetch: Function, naicsDefs: NaicsDef[], variationCodeMap: Map<string, string> }
+interface SelectedVariablesProps { featureDefs: FeatureDef[], fetch: Function, screenerDefs: ScreenerDef[], variationCodeMap: Map<string, string> }
 
-function sectorCodeToDesc(naicsDefs: NaicsDef[]) {
-  return (code: string) => naicsDefs.find(e => e.code == code)?.desc;
+function sectorCodeToDesc(screenerDefs: ScreenerDef[]) {
+  return (code: string) => screenerDefs.find(e => e.value == code)?.desc;
 }
 
 function CallButton(fetch: Function) {
@@ -72,7 +72,7 @@ function ResetButton() {
   )
 }
 
-export default function ScreenerPanel({ featureDefs, fetch, naicsDefs, variationCodeMap }: SelectedVariablesProps) {
+export default function ScreenerPanel({ featureDefs, fetch, screenerDefs, variationCodeMap }: SelectedVariablesProps) {
 
   console.log('SelectedVariables');
 
@@ -84,7 +84,7 @@ export default function ScreenerPanel({ featureDefs, fetch, naicsDefs, variation
         
         <SummaryRow2 name={'exchange'} label={'Exchange'}></SummaryRow2>
         
-        <SummaryRow2 name={'naics'} label={'Sector'} valueFunc={sectorCodeToDesc(naicsDefs)}></SummaryRow2>
+        <SummaryRow2 name={'naics'} label={'Sector'} valueFunc={sectorCodeToDesc(screenerDefs)}></SummaryRow2>
         <SummaryRow label={'Variables'}>
           <div>
             <Variables featureDefs={featureDefs} variationCodeMap={variationCodeMap}></Variables>

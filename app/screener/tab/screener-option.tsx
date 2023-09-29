@@ -28,20 +28,11 @@ function ScreenerSwitch(props: { code: string }) {
 
   const isTriggered = selectedFeaturesFormStore((state) => state.features[props.code])
   const addOrRemoveByFeature = selectedFeaturesFormStore((state) => state.addOrRemoveByFeature)
-  // const count = selectedFeaturesFormStore((state) => state.count)
-  // const reachedMax = selectedFeaturesFormStore((state) => state.reachedMax)
-  // const openDialog = toggleDialog((state) => state.openDialog)
 
-  console.log('ScreenerSwitch!!');
+  // console.log('ScreenerSwitch!!');
 
   function toggleSwitch() {
     addOrRemoveByFeature(props.code);
-    // if(!reachedMax || isTriggered) {
-    //   addOrRemoveByFeature(props.code);
-    // } else {
-    //   // openDialog();
-    //   addOrRemoveByFeature(props.code);
-    // }
   }
 
   return (
@@ -58,7 +49,7 @@ interface ScreenerOptionProp {
 }
 
 export default function ScreenerOption(props: ScreenerOptionProp) {
-  // console.log('ScreenerOption')
+  
   return (
     <div className='flex flex-row ml-4 items-center hover:bg-slate-100 text-sm p-0.5' key={props.name}>
 

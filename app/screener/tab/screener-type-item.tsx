@@ -9,7 +9,7 @@ interface ScreenerTypeItemProp {
 }
 
 export default function ScreenerTypeItem(props: ScreenerTypeItemProp) {
-  // console.log(props.featureDefs)
+  
   //rgb(100 116 139); 64748b
   return (
     <Accordion.Item key={props.name} value={props.name} className='dark:!border-b-[--border-color-dark-rgb]'> 
@@ -20,8 +20,6 @@ export default function ScreenerTypeItem(props: ScreenerTypeItemProp) {
       </Accordion.Control>
       <Accordion.Panel>
         {props.featureDefs.map(fd => <ScreenerFeature key={fd.code} featureDef={fd}></ScreenerFeature>)}
-        
-        {/* <ScreenerFeature name={'Revenues'}></ScreenerFeature> */}
       </Accordion.Panel>
     </Accordion.Item>
   )

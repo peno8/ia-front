@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { Checkbox } from '@mantine/core';
-import { NaicsDef } from '@/app/app.store';
+import { ScreenerDef } from '@/app/app.store';
 import { selectedFeaturesFormStore } from '../screener-store'
 
 function checkbox(value: string, label: string) {
@@ -8,28 +8,29 @@ function checkbox(value: string, label: string) {
 }
 
 
-export function SectorCheckboxes({ naicsDefs }: { naicsDefs: NaicsDef[] }) {
+export function SectorCheckboxes({ screenerDefs }: { screenerDefs: ScreenerDef[] }) {
   
   function sectorCheckboxes() {
-    return naicsDefs.map(e => checkbox(e.code, e.desc));
+    screenerDefs.sort((a, b) => a.order - b.order)
+    return screenerDefs.map(e => checkbox(e.key, e.desc));
   }
 
   const checked = selectedFeaturesFormStore((state) => state)
 
-  const resetExchange = selectedFeaturesFormStore((state) => state.resetExchange)
-
-  const resetNaics = selectedFeaturesFormStore((state) => state.resetNaics)
+  // const resetExchange = selectedFeaturesFormStore((state) => state.resetExchange)
+  // const resetSector = selectedFeaturesFormStore((state) => state.resetSector)
+  const resetScreenerKey = selectedFeaturesFormStore((state) => state.resetScreenerKey)
 
   return (
     <>
-      <Checkbox.Group value={checked.exchange? [checked.exchange] : []} onChange={(arr) => resetExchange(arr.slice(-1)[0])}>
+      {/* <Checkbox.Group value={checked.exchange? [checked.exchange] : []} onChange={(arr) => resetExchange(arr.slice(-1)[0])}>
         {checkbox('ALL', 'All')}
         {checkbox('NYSE', 'NYSE')}
         {checkbox('Nasdaq', 'Nasdaq')}
-      </Checkbox.Group>
-      <Checkbox.Group value={checked.naics? [checked.naics] : []} onChange={(arr) => {
+      </Checkbox.Group> */}
+      <Checkbox.Group value={checked.key? [checked.key] : []} onChange={(arr) => {
         console.log(arr);
-        resetNaics(arr.slice(-1)[0]);
+        resetScreenerKey(arr.slice(-1)[0]);
         console.log(checked);
         }}>
         {sectorCheckboxes()}
@@ -47,7 +48,6 @@ export function CalendarQuarterCheckboxes() {
       <Checkbox.Group value={[cq]} onChange={(arr) => resetCq(arr.slice(-1)[0])}>
         {checkbox('2023-Q2', '2023-Q2')}
         {checkbox('2023-Q1', '2023-Q1')}
-        
       </Checkbox.Group>
     </>
   );

@@ -15,6 +15,7 @@ import { readFileFromSharedDist } from './utils'
 import { Button } from '@mantine/core';
 import { ThemeProviders } from './theme-provider'
 import DarkModeButton from './component/dark-mode-button'
+import { loadCompanyDef } from './app.store'
 
 function DarkMode() {
   return <Button variant="filled">Dark</Button>;
@@ -63,6 +64,10 @@ const featureDefsStr = readFileFromSharedDist(process.env.FEATURE_DEFS_FILE);
 
 featureDefsStringStore.setState(featureDefsStr);
 
+// loadCompanyDef();
+const companyDefStr = readFileFromSharedDist(process.env.COMPANY_DEF_CODES_FILE);
+
+
 // featureDefsStringStore.setState(featureDefsStr);
 
 export default function RootLayout({
@@ -81,7 +86,7 @@ export default function RootLayout({
       <body className={`${localFonts.className} font-medium text-sm flex w-full flex-col justify-stretch p-0 m-0 min-h-screen dark:bg-slate-800`}>
         <ThemeProviders>
         <MantineProvider>
-          <Header />
+          <Header companyDefStr={companyDefStr} />
           <OptionBar></OptionBar>
           
           <main className="wrap flex-none text-black dark:text-slate-50">

@@ -1,10 +1,9 @@
-
-export default function SreenerLayout({
+export default function AnalysisLayout({
     children, // will be a page or nested layout
   }: {
     children: React.ReactNode
   }) {
-    console.log('SreenerLayout')
+    console.log('AnalysisLayout')
     return (
       <section className="flex grow">   
         {children}

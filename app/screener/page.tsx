@@ -3,13 +3,13 @@ import { featureDefsStringStore } from "./screener-store";
 import { readFileFromSharedDist } from "../utils";
 
 const featureDefsJson = featureDefsStringStore.getState();
-// console.log(featureDefsJson);
-const naicsStr = readFileFromSharedDist(process.env.NAICS_CODES_FILE);
+
+const screenerDefStr = readFileFromSharedDist(process.env.SCREENER_DEF_FILE);
 
 
 export default function SreenerPage() {
-
+  console.log('SreenerPage')
   return (
-    <ScreenerContent featureDefsJson={featureDefsJson} naicsStr={naicsStr}></ScreenerContent>
+    <ScreenerContent featureDefsJson={featureDefsJson} screenerDefStr={screenerDefStr}></ScreenerContent>
   )
 }

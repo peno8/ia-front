@@ -1,4 +1,5 @@
 import { readFileSync } from "fs";
+import { CompanyDef } from "./app.store";
 
 export function readFileFromSharedDist(filename: string | undefined) {
   const buffer = readFileSync(process.env.DATA_ROOT +  '/' + filename);

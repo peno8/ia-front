@@ -1,8 +1,8 @@
 import Image from "next/image"
 import HeaderSearchBox from './searchbox'
-import AutocompleteSearch from "./autocomplete"
+import AutocompleteSearch from "./autocompleteSearch"
 
-export default function Header() {
+export default function Header({companyDefStr}: {companyDefStr: string}) {
   return (
     <header className=" flex-none flex items-center justify-between align-center flex-nowrap w-full h-[80px]">
       <div className="flex flex-row align-center">
@@ -14,7 +14,7 @@ export default function Header() {
       </div>
 
       <div className="flex flex-row">
-        <AutocompleteSearch></AutocompleteSearch>
+        <AutocompleteSearch companyDefStr={companyDefStr}></AutocompleteSearch>
         {/* <HeaderSearchBox></HeaderSearchBox> */}
         {/* <div><input type="search" className="border"></input></div>
         <div>
