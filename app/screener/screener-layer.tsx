@@ -5,7 +5,7 @@ import { AgGridReact } from 'ag-grid-react';
 import 'ag-grid-community/styles/ag-grid.css'; // Core grid CSS, always needed
 import 'ag-grid-community/styles/ag-theme-alpine.css'; // Optional theme CSS
 import { POST, ScreenerApiResult } from './api/route';
-import { FeatureDef, selectedFeaturesFormStore, selectedVariableText, SelectedFeaturesForm, toggleDialog, fetchScreenerData, tableDataStore } from './screener-store';
+import { FeatureDef, selectedFeaturesFormStore, getVariationLabel, SelectedFeaturesForm, toggleDialog, fetchScreenerData, tableDataStore } from './screener-store';
 import CornerDialog from '../component/util/dialog';
 import ScreenerTable from './screener-table';
 

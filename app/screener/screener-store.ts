@@ -4,7 +4,7 @@ import { POST, ScreenerApiParam, ScreenerApiResult } from './api/route';
 
 import { readFileSync } from 'fs';
 import { produce } from 'immer';
-import { maxScreenerVariableNum } from '../utils';
+import { getRequest, maxScreenerVariableNum } from '../utils';
 import { dialogStore } from '../app.store';
 
 export interface FeatureVariation {
@@ -19,6 +19,7 @@ export interface FeatureDef {
     category: string
     variations: FeatureVariation[]
     lowerIsBetter: boolean
+    displayRank: number
 }
 
 export const toggleDialog = create<{ opened: boolean, openDialog: () => void, closeDialog: () => void }>((set) => ({
@@ -27,34 +28,67 @@ export const toggleDialog = create<{ opened: boolean, openDialog: () => void, cl
     closeDialog: () => set({ opened: false })
 }));
 
+//
 export const featureDefsStringStore = create<string>(() => (''));
 
 export const featureDefsStore = create<Array<FeatureDef> | null>(() => (null));
 
-let featureDefsMap: Map<string, FeatureDef> | null = null;
+export let featureDefs: FeatureDef[] | null = null;
+
+export let featureDefsMapByCategory: Map<string, FeatureDef[]> | null = null;
+
+export let featureDefsMap: Map<string, FeatureDef> | null = null;
 
 export const variationCodeMapStore = create<Map<string, string> | null>(() => (null));
 
-let variationCodeMap: Map<string, string> | null = null;
+export let variationCodeMap: Map<string, string> | null = null;
 
-export function setFeatureDefsStore(featureDefs: FeatureDef[]) {
-    featureDefsStore.setState(featureDefs);
-    featureDefsMap = new Map(featureDefs.map(e => [e.code, e]));
+// const categories = ['STABILITY', 'EFFICIENTY', 'GROWTH', 'PROFITABILITY', 'SIZE'];
+export const categories = ['SIZE', 'PROFITABILITY', 'GROWTH', 'STABILITY', 'EFFICIENCY'];
+
+export function setFeatureDefsStore(json: string) {
+    if(!featureDefs && featureDefs == null) {
+        const defs: FeatureDef[] = JSON.parse(json);
+        const map = new Map(defs.flatMap(e => e.variations.map(v => [v.code, e.code])));
+        featureDefsStore.setState(featureDefs);
+        variationCodeMapStore.setState(map);
+        featureDefs = defs;
+        variationCodeMap = map;
+        featureDefsMap = new Map(featureDefs.map(e => [e.code, e]));
+
+        const mapByCategory = new Map();
+        for (const featureType of categories) {
+            const filtered = featureDefs.filter(e => e.category === featureType);
+            mapByCategory.set(featureType, filtered);
+        }
+        featureDefsMapByCategory = mapByCategory;
+    }
 }
 
-export function setVariationCodeMapStore(map: Map<string, string>) {
-    variationCodeMapStore.setState(map);
-    variationCodeMap = map;
-}
+// export function setVariationCodeMapStore(map: Map<string, string>) {
+//     variationCodeMapStore.setState(map);
+//     variationCodeMap = map;
+// }
 
 function getVariationSortingScheme(code: string) {
     const res = featureDefsMap!.get(variationCodeMap!.get(code)!)?.lowerIsBetter;
     return res === undefined ? true : res;
 }
 
-export function selectedVariableText(featureDefs: FeatureDef[], variationCodeMap: Map<string, string>, code: string) {
-    const featureDef = featureDefs.find(e => e.code == variationCodeMap.get(code))
-    const variationDef = featureDef?.variations.find(v => v.code == code)
+export function getFeatureDef(featureCode: string) {
+    const featureDef = featureDefs!.find(e => e.code == featureCode);
+    // const variationDef = featureDef?.variations.find(v => v.code == code);
+    return featureDef;
+}
+
+export const getFeatureDefByVariationCode = (code: string) => getFeatureDef(variationCodeMap!.get(code)!);
+
+export function getVariationLabel(code: string) {
+    // console.log(code);
+    // console.log(featureDefs);
+    // console.log(variationCodeMap);
+    const featureDef = getFeatureDef(variationCodeMap!.get(code)!);
+    const variationDef = featureDef?.variations.find(v => v.code == code);
 
     return `${featureDef?.desc} (${variationDef?.variations.join(', ')})`;
 }
@@ -114,7 +148,7 @@ export const selectedFeaturesFormStore = create<SelectedFeaturesForm>((set, get)
 ({
     features: { 'NI_T|R_T': { lowerIsBetter: false } },
     cq: '2023-Q2',
-    key: 'ALL',
+    key: 'ALL|X',
     exchange: 'ALL',
     count: 1,
     reachedMax: false,
@@ -182,7 +216,7 @@ export const selectedFeaturesFormStore = create<SelectedFeaturesForm>((set, get)
         set(produce((state) => {
             state.features = { 'NI_T|R_T': { lowerIsBetter: false } };
             state.cq = '2023-Q2';
-            state.key = 'ALL';
+            state.key = 'ALL|X';
             state.count = 1;
             state.reachedMax = false;
             state.valueChanged = false;
@@ -203,25 +237,13 @@ function getSelectedScreenerParam() {
 
     return to;
 }
-function getRequest(jsonStr: string) {
-    return new Request('http://127.0.0.1:8080/api/percentile/ranks',
-        {
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: jsonStr,
-            method: 'POST',
-            cache: 'no-store'
 
-        }
-    )
-}
 export const tableDataStore = create<{ response: ScreenerApiResult[], request: SelectedFeaturesForm }>(() => ({}));
 
 export function fetchScreenerData() {
     const get = async () => {
         const request = getSelectedScreenerParam();
-        let data = await POST(getRequest(JSON.stringify(request)));
+        let data = await POST(getRequest(JSON.stringify(request), 'http://127.0.0.1:8080/api/percentile/ranks'));
         console.log(data)
         tableDataStore.setState({ response: data, request: request });
     }

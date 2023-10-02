@@ -29,7 +29,7 @@ function aaa() {
 export default function ScreenerTab(props: ScreenerTabProps) {
     const iconStyle = { width: rem(12), height: rem(12) };
 
-    const categories = ['STABILITY', 'EFFICIENTY', 'GROWTH', 'PROFITABILITY', 'SIZE'];
+    const categories = ['STABILITY', 'EFFICIENCY', 'GROWTH', 'PROFITABILITY', 'SIZE'];
     const featureDefMap = new Map();
     for (const featureType of categories) {
         const filtered = props.featureDefs.filter(e => e.category === featureType);

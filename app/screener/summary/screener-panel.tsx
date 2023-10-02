@@ -1,5 +1,5 @@
 import { ReactNode, useState } from 'react';
-import { FeatureDef, SelectedFeaturesForm, selectedFeaturesFormStore, selectedVariableText } from '../screener-store';
+import { FeatureDef, SelectedFeaturesForm, selectedFeaturesFormStore, getVariationLabel } from '../screener-store';
 import { Button } from '@mantine/core';
 import { ScreenerDef } from '@/app/app.store';
 
@@ -33,7 +33,7 @@ function SummaryRow2({ name, label, valueFunc }: { name: string, label: string, 
 function Variables({ featureDefs, variationCodeMap }: { featureDefs: FeatureDef[], variationCodeMap: Map<string, string> }) {
   return (
     <>
-      {Object.entries(selectedFeaturesFormStore((state) => state.features)).map(e => <div key={e[0]}>{selectedVariableText(featureDefs, variationCodeMap, e[0])}</div>)}
+      {Object.entries(selectedFeaturesFormStore((state) => state.features)).map(e => <div key={e[0]}>{getVariationLabel(e[0])}</div>)}
     </>
   )
 }

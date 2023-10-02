@@ -13,13 +13,15 @@ function DirectionChip(props: { code: string }) {
   const resetLessIsBetter = selectedFeaturesFormStore((state) => state.resetLessIsBetter)
 
 
-  return (fieldsStore ? fieldsStore.lowerIsBetter ? <Chip checked={true} size={'xs'} radius="xs" onClick={() => { resetLessIsBetter(props.code) }}
-    icon={<IconArrowUp style={{ width: rem(16), height: rem(16) }} className='text-blue-500' />}
-  >Ascending</Chip> :
-    <Chip color="red" checked={true} defaultChecked size={'xs'} radius="xs" onClick={() => { resetLessIsBetter(props.code) }}
-
-      icon={<IconArrowDown style={{ width: rem(16), height: rem(16) }} className='text-red-500' />}
-    >Descending</Chip> : <div></div>);
+  return (fieldsStore ? !fieldsStore.lowerIsBetter ?
+    <Chip defaultChecked size={'xs'} radius="xs" onClick={() => { resetLessIsBetter(props.code) }} variant='outline'
+      icon={<IconArrowUp style={{ width: rem(16), height: rem(16) }} className='text-blue-500' />}>
+      Ascending
+    </Chip> :
+    <Chip color="red" checked={true} defaultChecked size={'xs'} radius="xs" onClick={() => { resetLessIsBetter(props.code) }} variant='outline'
+      icon={<IconArrowDown style={{ width: rem(16), height: rem(16) }} className='text-red-500' />}>
+      Descending
+    </Chip> : <div></div>);
 }
 
 
@@ -49,7 +51,7 @@ interface ScreenerOptionProp {
 }
 
 export default function ScreenerOption(props: ScreenerOptionProp) {
-  
+
   return (
     <div className='flex flex-row ml-4 items-center hover:bg-slate-100 text-sm p-0.5' key={props.name}>
 

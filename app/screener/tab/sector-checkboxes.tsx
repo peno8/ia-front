@@ -11,7 +11,7 @@ function checkbox(value: string, label: string) {
 export function SectorCheckboxes({ screenerDefs }: { screenerDefs: ScreenerDef[] }) {
   
   function sectorCheckboxes() {
-    screenerDefs.sort((a, b) => a.order - b.order)
+    screenerDefs.sort((a, b) => a.order - b.order);
     return screenerDefs.map(e => checkbox(e.key, e.desc));
   }
 

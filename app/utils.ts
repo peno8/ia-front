@@ -17,4 +17,27 @@ function getMaxScreenerVariableNum(): number {
   }
 }
 
+export function formatPercent(v: number) {
+  return (v * 100).toFixed(1);
+}
+
+export function formatNumber(category: string, v: number) {
+  if(category === 'SIZE') return `${(v / 10000).toFixed(0)}`
+  else return `${formatPercent(v)}%`
+}
+
 export const maxScreenerVariableNum = getMaxScreenerVariableNum();
+
+export function getRequest(jsonStr: string, url: string) {
+  return new Request(url,
+      {
+          headers: {
+              'Content-Type': 'application/json'
+          },
+          body: jsonStr,
+          method: 'POST',
+          cache: 'no-store'
+
+      }
+  )
+}

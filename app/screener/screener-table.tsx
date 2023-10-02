@@ -5,8 +5,9 @@ import { AgGridReact } from 'ag-grid-react';
 import 'ag-grid-community/styles/ag-grid.css'; // Core grid CSS, always needed
 import 'ag-grid-community/styles/ag-theme-alpine.css'; // Optional theme CSS
 import { POST, ScreenerApiResult } from './api/route';
-import { FeatureDef, selectedFeaturesFormStore, selectedVariableText, SelectedFeaturesForm, toggleDialog, tableDataStore, fetchScreenerData } from './screener-store';
+import { FeatureDef, selectedFeaturesFormStore, getVariationLabel, SelectedFeaturesForm, toggleDialog, tableDataStore, fetchScreenerData, getFeatureDefByVariationCode } from './screener-store';
 import CornerDialog from '../component/util/dialog';
+import { formatNumber } from '../utils';
 
 interface ScreenerTableProp {
   // tableData: ScreenerApiResult[]
@@ -16,7 +17,7 @@ interface ScreenerTableProp {
 
 function getColDefs(featureDefs: FeatureDef[], variationCodeMap: Map<string, string>, requestObj: SelectedFeaturesForm) {
   
-
+  console.log(requestObj)
   if (!requestObj) {
     return [];
   }
@@ -36,18 +37,24 @@ function getColDefs(featureDefs: FeatureDef[], variationCodeMap: Map<string, str
 
   const valueColDefs = requestObj.features.flatMap((e: { feature: string, lowerIsBetter: boolean }) => {
     
-    const name = selectedVariableText(featureDefs, variationCodeMap, e.feature);
+    const name = getVariationLabel(e.feature);
+    const featureDef = getFeatureDefByVariationCode(e.feature);
     return [{
       field: name,
       valueGetter: (params: any) => {
-        return params.data.percentile.percentiles[e.feature] ? params.data.percentile.percentiles[e.feature]['v'] : 0;
+        const value = params.data.percentile.percentiles[e.feature] ? params.data.percentile.percentiles[e.feature]['v'] : 0;
+        return formatNumber(featureDef!.category, value);
       },
       headerTooltip: name
     }, {
       field: 'Percentile',
       valueGetter: (params: any) => {
         const obj = params.data.percentile.percentiles[e.feature]
-        return obj ? e.lowerIsBetter ? obj['p'] : 1 - obj['p'] : undefined;
+        console.log(e.feature);
+        const value = obj ? e.lowerIsBetter ? obj['p'] : 1 - obj['p'] : undefined;
+        console.log(value)
+        // const value = e.lowerIsBetter ? obj['p'] : 1 - obj['p'];
+        return value === 0 || value ? formatNumber("", value) : undefined;
       },
       headerTooltip: 'Percentile',
     }]
@@ -55,7 +62,7 @@ function getColDefs(featureDefs: FeatureDef[], variationCodeMap: Map<string, str
 
   const scoreColDef = [{
     field: 'Score',
-    valueGetter: (params: any) => params.data.score,
+    valueGetter: (params: any) => formatNumber("", params.data.score),
     headerTooltip: 'Overall Percentile'
   }]
 
