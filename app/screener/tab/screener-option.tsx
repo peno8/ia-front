@@ -28,10 +28,8 @@ function DirectionChip(props: { code: string }) {
 
 function ScreenerSwitch(props: { code: string }) {
 
-  const isTriggered = selectedFeaturesFormStore((state) => state.features[props.code])
-  const addOrRemoveByFeature = selectedFeaturesFormStore((state) => state.addOrRemoveByFeature)
-
-  // console.log('ScreenerSwitch!!');
+  const isTriggered = selectedFeaturesFormStore((state) => state.features[props.code]);
+  const addOrRemoveByFeature = selectedFeaturesFormStore((state) => state.addOrRemoveByFeature);
 
   function toggleSwitch() {
     addOrRemoveByFeature(props.code);

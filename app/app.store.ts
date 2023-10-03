@@ -8,11 +8,11 @@ import { readFileFromSharedDist } from "./utils";
 // }
 
 export interface ScreenerDef {
-  key: string
-  keyType: string
-  value: string,
-  desc: string,
-  order: number
+    key: string
+    keyType: string
+    value: string,
+    desc: string,
+    order: number
 }
 
 export const screenerDefsStore = create<Array<ScreenerDef>>(() => ([]));
@@ -20,35 +20,38 @@ export const screenerDefsStore = create<Array<ScreenerDef>>(() => ([]));
 
 
 export const dialogStore = create<{ opened: boolean, closeDialog: Function, openDialog: Function }>((set) => ({
-  opened: false,
-  closeDialog: () => {
-      set({ opened: false})
-  },
-  openDialog: () => {
-      set({ opened: true})
-  },
-}));    
+    opened: false,
+    closeDialog: () => {
+        set({ opened: false })
+    },
+    openDialog: () => {
+        set({ opened: true })
+    },
+}));
 
 export interface CompanyDef {
-  sb: string
-  name: string
-  cik: string
-  exg: string
-  sic: string
-  desc: string
-  div: string
-  nai: number
-  nd: string
+    sb: string
+    name: string
+    cik: string
+    exg: string
+    sic: string
+    desc: string
+    div: string
+    nai: number
+    nd: string
 }
 
-let companyDefList = [];
+export let companyDefList: CompanyDef[] = [];
 
-export const companyDefStore = create<{ data: CompanyDef[] } | null>(() => ({data: []}));
+export const getCompanyDef = (symbol: string) => companyDefList.find(e => e.sb == symbol);
 
-export function saveCompanyDef(str: string) {
-  const json: CompanyDef[] = JSON.parse(str);
-  console.log(json[0])
-  companyDefStore.setState({ data: json });
-  companyDefList = json;
+export const companyDefStore = create<{ data: CompanyDef[] } | null>(() => ({ data: [] }));
+
+export function setCompanyDefs(str: string) {
+    if (companyDefList.length === 0) {
+        const json: CompanyDef[] = JSON.parse(str);
+        // companyDefStore.setState({ data: json });
+        companyDefList = json;
+    }
 }
 

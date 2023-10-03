@@ -10,7 +10,7 @@ export default function Sidebar() {
         {<IconSortDescending style={{ width: 18, height: 18 }} className='dark:text-blue-500'/>}
         <div className='ml-[10px]'>Screener</div>
       </Link>
-      <Link href='/analysis' className="mx-[10px] flex flex-row px-[30px] py-[20px] border-b dark:border-b-[--border-color-dark-rgb] hover:bg-opacity-10 hover:bg-black ">
+      <Link href='/analysis/AAPL' className="mx-[10px] flex flex-row px-[30px] py-[20px] border-b dark:border-b-[--border-color-dark-rgb] hover:bg-opacity-10 hover:bg-black ">
         {<IconEyeSearch style={{ width: 18, height: 18 }} className='dark:text-blue-500'/>}
         <div className='ml-[10px]'>Analyse Company</div>
       </Link>

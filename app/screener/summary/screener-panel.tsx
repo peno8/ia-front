@@ -74,8 +74,6 @@ function ResetButton() {
 
 export default function ScreenerPanel({ featureDefs, fetch, screenerDefs, variationCodeMap }: SelectedVariablesProps) {
 
-  console.log('SelectedVariables');
-
   return (
     <div className='flex flex-row justify-between m-2 h-[160px]'>
       <div className="flex flex-col text-sm">

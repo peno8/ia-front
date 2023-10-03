@@ -1,13 +1,12 @@
 'use client'
 
-import React, { useState, useRef, useEffect, useCallback, Children } from 'react';
+import React, { useRef, useCallback } from 'react';
 import { AgGridReact } from 'ag-grid-react';
 import 'ag-grid-community/styles/ag-grid.css'; // Core grid CSS, always needed
 import 'ag-grid-community/styles/ag-theme-alpine.css'; // Optional theme CSS
-import { POST, ScreenerApiResult } from './api/route';
-import { FeatureDef, selectedFeaturesFormStore, getVariationLabel, SelectedFeaturesForm, toggleDialog, tableDataStore, fetchScreenerData, getFeatureDefByVariationCode } from './screener-store';
-import CornerDialog from '../component/util/dialog';
+import { FeatureDef, getVariationLabel, SelectedFeaturesForm, tableDataStore, fetchScreenerData, getFeatureDefByVariationCode } from './screener-store';
 import { formatNumber } from '../utils';
+import Link from 'next/link';
 
 interface ScreenerTableProp {
   // tableData: ScreenerApiResult[]
@@ -15,9 +14,12 @@ interface ScreenerTableProp {
   variationCodeMap: Map<string, string>
 }
 
-function getColDefs(featureDefs: FeatureDef[], variationCodeMap: Map<string, string>, requestObj: SelectedFeaturesForm) {
+const linkCellRenderer = ({ value }) => (
+  <Link href={`/analysis/${value}`} target="_blank">{value}</Link>
+);
+
+function getColDefs(requestObj: SelectedFeaturesForm) {
   
-  console.log(requestObj)
   if (!requestObj) {
     return [];
   }
@@ -27,7 +29,8 @@ function getColDefs(featureDefs: FeatureDef[], variationCodeMap: Map<string, str
     {
       field: 'symbol',
       valueGetter: (params: any) => params.data.percentile.symbol,
-      headerTooltip: 'Symbol'
+      cellRenderer: linkCellRenderer,
+      headerTooltip: 'Symbol',
     },
     {
       field: 'cq',
@@ -50,10 +53,7 @@ function getColDefs(featureDefs: FeatureDef[], variationCodeMap: Map<string, str
       field: 'Percentile',
       valueGetter: (params: any) => {
         const obj = params.data.percentile.percentiles[e.feature]
-        console.log(e.feature);
         const value = obj ? e.lowerIsBetter ? obj['p'] : 1 - obj['p'] : undefined;
-        console.log(value)
-        // const value = e.lowerIsBetter ? obj['p'] : 1 - obj['p'];
         return value === 0 || value ? formatNumber("", value) : undefined;
       },
       headerTooltip: 'Percentile',
@@ -79,8 +79,6 @@ export default function ScreenerTable(props: ScreenerTableProp) {
     gridRef.current?.api.sizeColumnsToFit();
   }, []);
 
-  console.log(store);
-
   return (
     <>
       {
@@ -90,7 +88,7 @@ export default function ScreenerTable(props: ScreenerTableProp) {
             rowData={store.response} // Row Data for Rows
 
             // @ts-ignore
-            columnDefs={store.request ? getColDefs(props.featureDefs, props.variationCodeMap, store.request) : []} // Column Defs for Columns
+            columnDefs={store.request ? getColDefs(store.request) : []} // Column Defs for Columns
             defaultColDef={{
               sortable: true,
             }}

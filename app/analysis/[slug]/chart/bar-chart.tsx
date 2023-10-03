@@ -1,20 +1,19 @@
 import { useEffect, useRef, useState } from "react";
 import * as d3 from "d3";
 import { Select } from "@mantine/core";
-import { getFeatureDef } from "@/app/screener/screener-store";
+import { FeatureDef, getFeatureDef } from "@/app/screener/screener-store";
 import { formatNumber, formatPercent } from "@/app/utils";
+import { FeatureObj } from "../../api/route";
 
-export default function BarChartContainer({ featureDef, data, variationLabels, category }) {
+export default function BarChartContainer({ featureDef, data, variationLabels, category }:
+    { featureDef: FeatureDef, data: FeatureObj[], variationLabels: { value: string, label: string }[], category: string }) {
     const [key, setKey] = useState(variationLabels[0].value);
 
-    const chartData = data.find(e => e.key === key).features;
+    const chartData = data.find(e => e.key === key)!.features;
 
     function changeChartData(key: string) {
-        console.log(key);
         setKey(key);
     }
-
-    console.log(chartData);
 
     return (
         <div className="mb-2 flex flex-row">
@@ -38,9 +37,13 @@ export default function BarChartContainer({ featureDef, data, variationLabels, c
 
 }
 
-export function BarChart({ chartData, category }) {
-
-    console.log(chartData);
+export function BarChart({ chartData, category }: {
+    chartData: {
+        value: number;
+        cq: string;
+        end: string;
+    }[], category: string
+}) {
 
     const width = 300;
     const height = 200;
@@ -55,8 +58,9 @@ export function BarChart({ chartData, category }) {
     const tooltip = useRef(null);
     const rects = useRef(null);
 
-    let minYaxisValue = d3.min(chartData, (d) => d.value);
-    if (category === 'SIZE' && minYaxisValue! > '0') minYaxisValue = '0';
+    let maybeMinYaxisValue = d3.min(chartData, (d) => d.value);
+    let minYaxisValue = maybeMinYaxisValue ? maybeMinYaxisValue : 0;
+    if (minYaxisValue! > 0) minYaxisValue = 0;
 
     // Declare the x (horizontal position) scale.
     const x = d3.scaleBand()
@@ -66,7 +70,7 @@ export function BarChart({ chartData, category }) {
 
     // Declare the y (vertical position) scale.
     const y = d3.scaleLinear()
-        .domain([minYaxisValue, d3.max(chartData, (d) => d.value)])
+        .domain([minYaxisValue!, d3.max(chartData, (d) => d.value)!])
         .range([height - marginBottom, marginTop]);
 
     // Create the SVG container.
@@ -90,14 +94,16 @@ export function BarChart({ chartData, category }) {
 
     useEffect(() => {
         if (category === 'SIZE') {
+            // @ts-ignore
             d3.select(gy.current).call(d3.axisLeft(y).ticks(5).tickFormat((v,) => `${formatNumber(category, v)}B`))
         } else {
+            // @ts-ignore
             d3.select(gy.current).call(d3.axisLeft(y).ticks(5, '%'))
         }
     }, [gy, y, chartData]);
 
     useEffect(() => {
-        console.log("effect")
+        
         d3.select(rects.current)
             .selectAll("*").remove();
 
@@ -105,11 +111,14 @@ export function BarChart({ chartData, category }) {
             .selectAll()
             .data(chartData)
             .join("rect")
+            // @ts-ignore
             .attr("x", d => { return x(d.cq) })
-            .attr("y", d => { return y(d.value) })
-            .attr("height", d => { return y(minYaxisValue) - y(d.value) })
+            // .attr("y", d => { return y(d.value) })
+            // .attr("height", d => { return y(minYaxisValue) - y(d.value) })
+            .attr("y", d => { return d.value > 0 ? y(d.value) : y(0)})
+            .attr("height", d => { return d.value > 0 ? y(0) - y(d.value) : y(d.value) - y(0)})
             .attr("width", () => { return x.bandwidth() })
-            .attr("fill", d => d.value <= 0 ? "#F78C6C" : "steelblue")
+            .attr("fill", d => d.value < 0 ? "#F78C6C" : "steelblue")
             .on("pointerenter", (e, d) => {
                 d3.select(e.target).style("opacity", 0.5);
                 d3.select(tooltip.current)

@@ -4,7 +4,6 @@ export default function SreenerLayout({
   }: {
     children: React.ReactNode
   }) {
-    console.log('SreenerLayout')
     return (
       <section className="flex grow">   
         {children}

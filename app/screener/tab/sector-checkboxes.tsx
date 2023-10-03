@@ -29,9 +29,7 @@ export function SectorCheckboxes({ screenerDefs }: { screenerDefs: ScreenerDef[]
         {checkbox('Nasdaq', 'Nasdaq')}
       </Checkbox.Group> */}
       <Checkbox.Group value={checked.key? [checked.key] : []} onChange={(arr) => {
-        console.log(arr);
         resetScreenerKey(arr.slice(-1)[0]);
-        console.log(checked);
         }}>
         {sectorCheckboxes()}
       </Checkbox.Group>

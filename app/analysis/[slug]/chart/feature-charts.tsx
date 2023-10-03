@@ -1,17 +1,21 @@
-import { featureDefsMapByCategory, getFeatureDef } from "@/app/screener/screener-store";
+import { FeatureDef, featureDefsMapByCategory, getFeatureDef } from "@/app/screener/screener-store";
 import BarChart from "./bar-chart";
 import PercentileChart from "./percentile-chart";
 import BarChartContainer from "./bar-chart";
+import { FeatureData, FeatureObj, PercentileObj } from "../../api/route";
 
-export default function FeatureCharts({ symbol, category, featureDef, featureData, stockPercentile, sectorPercentile }) {
-    // console.log(featureDef);
+export type PercentileEntry = 
+     [string, {
+        v: number
+        p: number
+    }][]
 
-    console.log('FeatureCharts')
-
-    // const variationLabelMap = new Map(featureDef.variations.map(e => [e.code, e.variations.join(', ')]));
+export default function FeatureCharts({ symbol, category, featureDef, featureData, stockPercentile, sectorPercentile }:
+    { symbol: string, category: string, featureDef: FeatureDef, featureData: FeatureObj[], 
+        stockPercentile: PercentileEntry, 
+        sectorPercentile: PercentileEntry }) {
     featureDef.variations.sort((a, b) => a.displayRank - b.displayRank);
     const variationLabels = featureDef.variations.map(e => { return { value: e.code, label: e.variations.join(', ') } });
-    // console.log(variationLabels);
     
     return (
         <div>
@@ -24,8 +28,7 @@ export default function FeatureCharts({ symbol, category, featureDef, featureDat
     )
 }
 
-export function CategoryCharts({category, featureData}) {
-    console.log(category);
+export function CategoryCharts({category, featureData}: {category: string, featureData: FeatureData}) {
 
     const categoryFeatureDefs =  featureDefsMapByCategory!.get(category)!
     categoryFeatureDefs.sort((a, b) => a.displayRank - b.displayRank);

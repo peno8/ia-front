@@ -44,7 +44,8 @@ export const variationCodeMapStore = create<Map<string, string> | null>(() => (n
 export let variationCodeMap: Map<string, string> | null = null;
 
 // const categories = ['STABILITY', 'EFFICIENTY', 'GROWTH', 'PROFITABILITY', 'SIZE'];
-export const categories = ['SIZE', 'PROFITABILITY', 'GROWTH', 'STABILITY', 'EFFICIENCY'];
+// export const categories = ['SIZE', 'PROFITABILITY', 'GROWTH', 'STABILITY', 'EFFICIENCY'];
+export const categories = ['PROFITABILITY', 'GROWTH', 'STABILITY', 'EFFICIENCY', 'SIZE'];
 
 export function setFeatureDefsStore(json: string) {
     if(!featureDefs && featureDefs == null) {
@@ -84,9 +85,6 @@ export function getFeatureDef(featureCode: string) {
 export const getFeatureDefByVariationCode = (code: string) => getFeatureDef(variationCodeMap!.get(code)!);
 
 export function getVariationLabel(code: string) {
-    // console.log(code);
-    // console.log(featureDefs);
-    // console.log(variationCodeMap);
     const featureDef = getFeatureDef(variationCodeMap!.get(code)!);
     const variationDef = featureDef?.variations.find(v => v.code == code);
 
@@ -226,15 +224,10 @@ export const selectedFeaturesFormStore = create<SelectedFeaturesForm>((set, get)
 
 function getSelectedScreenerParam() {
     const from = selectedFeaturesFormStore.getState();
-    console.log(from);
     const to: SelectedFeaturesForm = JSON.parse(JSON.stringify(from));
-    console.log(to);
     const entries: [string, { lowerIsBetter: boolean }][] = Object.entries(to.features);
     const updatedFeatureObj = entries.map((e) => ({ feature: e[0], lowerIsBetter: e[1].lowerIsBetter }))
     to.features = updatedFeatureObj;
-
-    console.log(to);
-
     return to;
 }
 
@@ -244,7 +237,6 @@ export function fetchScreenerData() {
     const get = async () => {
         const request = getSelectedScreenerParam();
         let data = await POST(getRequest(JSON.stringify(request), 'http://127.0.0.1:8080/api/percentile/ranks'));
-        console.log(data)
         tableDataStore.setState({ response: data, request: request });
     }
     get();

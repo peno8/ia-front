@@ -4,10 +4,7 @@ import { Dialog, Text } from '@mantine/core';
 import { useState } from 'react';
 
 export default function CornerDialog({ message }: { message: string }) {
-  // const [opened, setOpened] = useState(false);
   const dialog = dialogStore((state) => state);
-  // const count = selectedFeaturesFormStore((state) => state.count)
-  console.log(dialog);
 
   return (
     <>

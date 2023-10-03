@@ -12,19 +12,12 @@ import ScreenerPanel from '../summary/screener-panel';
 import { ScreenerDef } from '@/app/app.store';
 import { CalendarQuarterCheckboxes, SectorCheckboxes } from './sector-checkboxes'
 
-// const featureDefs = useFeatureDefs.getState();
-
 interface ScreenerTabProps {
     featureDefs: Array<FeatureDef>
     fetch: Function
     screenerDefs: ScreenerDef[]
     variationCodeMap: Map<string, string>
 }
-
-function aaa() {
-    console.log('aaaaaa');
-}
-
 
 export default function ScreenerTab(props: ScreenerTabProps) {
     const iconStyle = { width: rem(12), height: rem(12) };
@@ -35,10 +28,6 @@ export default function ScreenerTab(props: ScreenerTabProps) {
         const filtered = props.featureDefs.filter(e => e.category === featureType);
         featureDefMap.set(featureType, filtered);
     }
-
-    console.log('ScreenerTab');
-
-
 
     return (
         <div className=''>

@@ -20,8 +20,6 @@ const getText =  (theme: string | undefined) => {
 export default function DarkModeButton() {
   const { theme, setTheme } = useTheme();
   const [mounted, setMounted] = useState(false);
-  // const currentTheme = theme === 'system' ? systemTheme : theme;
-  console.log('DarkModeButton' + theme);
 
   useEffect(() => {
     setMounted(true);
