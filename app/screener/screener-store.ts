@@ -231,7 +231,7 @@ function getSelectedScreenerParam() {
     return to;
 }
 
-export const tableDataStore = create<{ response: ScreenerApiResult[], request: SelectedFeaturesForm }>(() => ({}));
+export const tableDataStore = create<{ response: ScreenerApiResult[], request: SelectedFeaturesForm } | null>(() => (null));
 
 export function fetchScreenerData() {
     const get = async () => {

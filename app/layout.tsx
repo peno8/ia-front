@@ -8,18 +8,10 @@ import OptionBar from './component/option'
 import Sidebar from './component/sidebar'
 import '@mantine/core/styles.css';
 import { MantineProvider, ColorSchemeScript } from '@mantine/core';
-// import { readFeatureDefs } from './screener/screener-store'
 import { featureDefsStringStore } from './screener/screener-store'
-import { readFileSync } from 'fs'
 import { readFileFromSharedDist } from './utils'
 import { Button } from '@mantine/core';
 import { ThemeProviders } from './theme-provider'
-import DarkModeButton from './component/dark-mode-button'
-import { loadCompanyDef } from './app.store'
-
-function DarkMode() {
-  return <Button variant="filled">Dark</Button>;
-}
 
 export const dynamic = 'force-dynamic'
 

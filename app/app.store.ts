@@ -43,15 +43,19 @@ export interface CompanyDef {
 
 export let companyDefList: CompanyDef[] = [];
 
+export let companyDefMap: Map<string, CompanyDef> = new Map();
+
 export const getCompanyDef = (symbol: string) => companyDefList.find(e => e.sb == symbol);
 
-export const companyDefStore = create<{ data: CompanyDef[] } | null>(() => ({ data: [] }));
+// export const companyDefStore = create<{ data: CompanyDef[] } | null>(() => ({ data: [] }));
 
 export function setCompanyDefs(str: string) {
     if (companyDefList.length === 0) {
-        const json: CompanyDef[] = JSON.parse(str);
+        const list: CompanyDef[] = JSON.parse(str);
+        const map = new Map(list.map(e => [e.sb, e]));
         // companyDefStore.setState({ data: json });
-        companyDefList = json;
+        companyDefList = list;
+        companyDefMap = map;
     }
 }
 

@@ -9,6 +9,7 @@ import { IconArrowDown, IconArrowUp } from '@tabler/icons-react';
 
 function DirectionChip(props: { code: string }) {
 
+  // @ts-ignore
   const fieldsStore = selectedFeaturesFormStore((state) => state.features[props.code])
   const resetLessIsBetter = selectedFeaturesFormStore((state) => state.resetLessIsBetter)
 
@@ -27,7 +28,7 @@ function DirectionChip(props: { code: string }) {
 
 
 function ScreenerSwitch(props: { code: string }) {
-
+  // @ts-ignore
   const isTriggered = selectedFeaturesFormStore((state) => state.features[props.code]);
   const addOrRemoveByFeature = selectedFeaturesFormStore((state) => state.addOrRemoveByFeature);
 
