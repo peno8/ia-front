@@ -34,13 +34,13 @@ export default function ScreenerTab(props: ScreenerTabProps) {
             <ScreenerPanel featureDefs={props.featureDefs} screenerDefs={props.screenerDefs} fetch={props.fetch} variationCodeMap={props.variationCodeMap}></ScreenerPanel>
             <Tabs defaultValue="sorting">
                 <Tabs.List className='dark:text-sky-300'>
-                    <Tabs.Tab value="sorting" >
+                    <Tabs.Tab value="sorting" className='dark:hover:bg-[--bg-dark-hover]'>
                         Sorting Variables
                     </Tabs.Tab>
-                    <Tabs.Tab value="exchange">
-                        Exchange
+                    <Tabs.Tab value="exchange" className='dark:hover:bg-[--bg-dark-hover]'>
+                        Exchange & Industry
                     </Tabs.Tab>
-                    <Tabs.Tab value="cq">
+                    <Tabs.Tab value="cq" className='dark:hover:bg-[--bg-dark-hover]'>
                         Quarter
                     </Tabs.Tab>
                 </Tabs.List>
@@ -49,7 +49,6 @@ export default function ScreenerTab(props: ScreenerTabProps) {
                     <div className='flex flex-col'>
                         <Accordion multiple defaultValue={categories}>
                             {categories.map((category) =>
-
                                 <ScreenerTypeItem name={category} key={category} featureDefs={featureDefMap.get(category)}></ScreenerTypeItem>)}
                         </Accordion>
                     </div>

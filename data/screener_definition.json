@@ -1,0 +1,86 @@
+[
+  {
+    "key" : "SIC|E",
+    "keyType" : "SIC",
+    "value" : "E",
+    "desc" : "Transportation, Communications, Electric, Gas, Sanitary Services",
+    "order" : 4
+  },
+  {
+    "key" : "SIC|F",
+    "keyType" : "SIC",
+    "value" : "F",
+    "desc" : "Wholesale Trade",
+    "order" : 4
+  },
+  {
+    "key" : "SIC|A",
+    "keyType" : "SIC",
+    "value" : "A",
+    "desc" : "Agriculture, Forestry, and Fishing",
+    "order" : 4
+  },
+  {
+    "key" : "SIC|I",
+    "keyType" : "SIC",
+    "value" : "I",
+    "desc" : "Services",
+    "order" : 4
+  },
+  {
+    "key" : "SIC|G",
+    "keyType" : "SIC",
+    "value" : "G",
+    "desc" : "Retail Trade",
+    "order" : 4
+  },
+  {
+    "key" : "SIC|B",
+    "keyType" : "SIC",
+    "value" : "B",
+    "desc" : "Mining",
+    "order" : 4
+  },
+  {
+    "key" : "SIC|C",
+    "keyType" : "SIC",
+    "value" : "C",
+    "desc" : "Construction",
+    "order" : 4
+  },
+  {
+    "key" : "SIC|H",
+    "keyType" : "SIC",
+    "value" : "H",
+    "desc" : "Finance, Insurance, Real Estate",
+    "order" : 4
+  },
+  {
+    "key" : "SIC|D",
+    "keyType" : "SIC",
+    "value" : "D",
+    "desc" : "Manufacturing",
+    "order" : 4
+  },
+  {
+    "key" : "EXG|N",
+    "keyType" : "EXG",
+    "value" : "N",
+    "desc" : "Nasdaq",
+    "order" : 1
+  },
+  {
+    "key" : "EXG|Y",
+    "keyType" : "EXG",
+    "value" : "Y",
+    "desc" : "NYSE",
+    "order" : 2
+  },
+  {
+    "key" : "ALL|X",
+    "keyType" : "ALL",
+    "value" : "X",
+    "desc" : "ALL",
+    "order" : 0
+  }
+]

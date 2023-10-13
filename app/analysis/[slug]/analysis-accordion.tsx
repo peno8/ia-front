@@ -20,8 +20,8 @@ export default function AnalysisAccordion({ featureData }: { featureData: Featur
     return (
         <Accordion multiple value={value} className="w-[1000px]" onChange={updateAccordionValue}>
             {categories.map(c => (
-                <Accordion.Item key={c} value={c}>
-                    <Accordion.Control >{c}</Accordion.Control>
+                <Accordion.Item key={c} value={c} >
+                    <Accordion.Control className='dark:text-sky-300 dark:hover:bg-[--bg-dark-hover]'>{c}</Accordion.Control>
                     <Accordion.Panel>
                         {panelOpened.includes(c) ? <CategoryCharts category={c} featureData={featureData} /> : null}
                     </Accordion.Panel>

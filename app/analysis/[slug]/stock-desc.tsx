@@ -22,11 +22,12 @@ const item = (label: string, value: string) =>
 const textItem = (label: string, value: string, width?: number, grow?: boolean) =>
 <div className={`flex flex-row items-center ${grow? 'grow' : ''}`}>
     <Input.Label className='w-32'>{label}</Input.Label>
-    <TextInput
+    <Input.Label className={width ? `!w-${width} ${grow? 'grow' : ''}` : 'w-32'}>{value}</Input.Label>
+    {/* <TextInput
         variant="unstyled"
         className={width ? `!w-${width} ${grow? 'grow' : ''}` : 'w-32'}
         value={value}
-    />
+    /> */}
 </div>
 
 function MultipleCalculator({featureData} : {featureData: FeatureData}) {
@@ -41,12 +42,22 @@ function MultipleCalculator({featureData} : {featureData: FeatureData}) {
 
     return(
         <div>
-            <Divider my="sm" label="Multiple Calculator" labelPosition="left" />
+            <Divider my="sm" label="Multiple Calculator" labelPosition="left" className="!dark:!text-[--text-dark]" />
             <div className="flex flex-row gap-x-5 items-end">
-                <TextInput label={'Marketcap'} placeholder={'In Billion dollars'} className="w-40 mr-10" value={mc} onChange={e => changeMc(e.currentTarget.value)}/>    
-                <TextInput label={'Marketcap / NetIncome(TTM)'} value={netIncome && mc ? (parseFloat(mc) / (netIncome! / 1000)).toFixed(1) : 0} className="w40" variant="unstyled"/>    
-                <TextInput label={'Marketcap / Revenues(TTM)'} value={revenues && mc ? (parseFloat(mc) / (revenues! / 1000)).toFixed(1) : 0} className="w-44" variant="unstyled"/>    
-                {/* <TextInput label={'Marketcap / OperatingCash(P/C)'} value={21.1} className="w-52" variant="unstyled"/>     */}
+                <TextInput label={'Marketcap'} placeholder={'In Billion dollars'} className="w-40 mr-10" value={mc} onChange={e => changeMc(e.currentTarget.value)}/> 
+                <div className="flex flex-col">
+                    <div className="mb-3">
+                    <Input.Label className='w-60'>{'Marketcap / NetIncome(TTM)'}</Input.Label>
+                    <Input.Label className={'w-32'}>{netIncome && mc ? (parseFloat(mc) / (netIncome! / 1000)).toFixed(1) : 0}</Input.Label>
+                    </div>
+                    <div>
+                    <Input.Label className='w-60'>{'Marketcap / Revenues(TTM)'}</Input.Label>
+                    <Input.Label className={'w-32'}>{revenues && mc ? (parseFloat(mc) / (revenues! / 1000)).toFixed(1) : 0}</Input.Label>
+                    </div>
+                </div>
+                {/* <TextInput label={'Marketcap / NetIncome(TTM)'} value={netIncome && mc ? (parseFloat(mc) / (netIncome! / 1000)).toFixed(1) : 0} className="w40" disabled/>    
+                <TextInput label={'Marketcap / Revenues(TTM)'} value={revenues && mc ? (parseFloat(mc) / (revenues! / 1000)).toFixed(1) : 0} className="w-44" />     */}
+                
             </div>
             
         </div>

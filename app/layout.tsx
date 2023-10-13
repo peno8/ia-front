@@ -12,6 +12,10 @@ import { featureDefsStringStore } from './screener/screener-store'
 import { readFileFromSharedDist } from './utils'
 import { Button } from '@mantine/core';
 import { ThemeProviders } from './theme-provider'
+import 'ag-grid-community/styles/ag-grid.css'; // Core grid CSS, always needed
+import 'ag-grid-community/styles/ag-theme-alpine.css'; // Optional theme CSS
+import GoogleAnalytics from './component/util/ga'
+// import 'ag-grid-community/styles/ag-theme-aline-dark.css'; // Optional theme CSS
 
 export const dynamic = 'force-dynamic'
 
@@ -49,7 +53,8 @@ const inter = Inter({ subsets: ['latin'] })
 
 export const metadata: Metadata = {
   title: 'Interactive-alpha',
-  description: 'Best financial statement visualization. Period.',
+  description: 'Best financial statement visualization.',
+  viewport: 'width=device-width, initial-scale=0.1'
 }
 
 const featureDefsStr = readFileFromSharedDist(process.env.FEATURE_DEFS_FILE);
@@ -74,7 +79,7 @@ export default function RootLayout({
       <head>
         <ColorSchemeScript />
       </head>
-      
+      <GoogleAnalytics />
       <body className={`${localFonts.className} font-medium text-sm flex w-full flex-col justify-stretch p-0 m-0 min-h-screen dark:bg-slate-800`}>
         <ThemeProviders>
         <MantineProvider>

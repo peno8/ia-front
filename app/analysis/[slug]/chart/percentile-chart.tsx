@@ -13,7 +13,6 @@ export default function PercentileChart({ symbol, featureDef, category, stockPer
     stockPercentile: PercentileEntry, 
     sectorPercentile: PercentileEntry, 
     variationLabels: { value: string, label: string}[] }) {
-  // console.log(stockPercentile);
 
   const width = 300;
   const height = 200;

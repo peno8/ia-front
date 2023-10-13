@@ -35,6 +35,7 @@ export interface FeatureData {
 
 
 export async function POST(req: Request): Promise<FeatureData> {
+  // console.log(req);
   const res = await fetch(req);
   const data = await res.json()
 

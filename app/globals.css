@@ -10,7 +10,9 @@
   --side-padding: 32px;
   --colorNeutralBackground10: #edebe9;
   --border-color-dark-rgb: #64748b; /* slate-500 */
-  --bg-dark: #475569;
+  --bg-dark: #475569; /* slate-600 */
+  /* --bg-dark-hover: #94a3b8; slate-400 */
+  --bg-dark-hover: #64748b; /* slate-500 */
   --bg-gray: #e5e7eb;
   --text-dark: #f8fafc; /* text-slate-50 */
   --label-text-dark: #7dd3fc; /* text-sky-300 */
@@ -59,3 +61,32 @@
   /* border: 1px solid rgb(224,224,224) */
 }
 
+.call-button-color {
+  /* background-color: '#228be6 !important' */
+  background-color: #228be6 !important
+}
+
+.call-button-color:disabled {
+  background-color: #f1f3f5 !important
+}
+
+.reset-button-color {
+  /* background-color: '#228be6 !important' */
+  background-color: #fd7e14 !important
+}
+
+.reset-button-color:disabled {
+  background-color: #f1f3f5 !important
+}
+
+.dark-hover {
+  color: red !important;
+  background-color: var(--bg-dark-hover) !important;
+}
+  
+.overlay {
+  background: rgba(255, 255, 255, 0.75);
+  backdrop-filter: blur(calc(0.125rem * var(--mantine-scale)));
+  /* --overlay-radius: var(--mantine-radius-sm); */
+  /* --overlay-z-index: 200; */
+}

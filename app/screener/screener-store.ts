@@ -5,7 +5,7 @@ import { POST, ScreenerApiParam, ScreenerApiResult } from './api/route';
 import { readFileSync } from 'fs';
 import { produce } from 'immer';
 import { getRequest, maxScreenerVariableNum } from '../utils';
-import { dialogStore } from '../app.store';
+import { dialogStore, fetchStatusStore } from '../app.store';
 
 export interface FeatureVariation {
     code: string
@@ -48,7 +48,7 @@ export let variationCodeMap: Map<string, string> | null = null;
 export const categories = ['PROFITABILITY', 'GROWTH', 'STABILITY', 'EFFICIENCY', 'SIZE'];
 
 export function setFeatureDefsStore(json: string) {
-    if(!featureDefs && featureDefs == null) {
+    if (!featureDefs && featureDefs == null) {
         const defs: FeatureDef[] = JSON.parse(json);
         const map = new Map(defs.flatMap(e => e.variations.map(v => [v.code, e.code])));
         featureDefsStore.setState(featureDefs);
@@ -125,8 +125,8 @@ export interface SelectedFeaturesForm {
     [key: string]: any
     features: { [keys: string]: { lowerIsBetter: boolean } } | { feature: string, lowerIsBetter: boolean }[]
     cq: string;
-    exchange?: string;
-    sector?: string;
+    // exchange?: string;
+    // sector?: string;
     key: string;
     addOrRemoveByFeature: Function;
     resetLessIsBetter: Function;
@@ -147,7 +147,7 @@ export const selectedFeaturesFormStore = create<SelectedFeaturesForm>((set, get)
     features: { 'NI_T|R_T': { lowerIsBetter: false } },
     cq: '2023-Q2',
     key: 'ALL|X',
-    exchange: 'ALL',
+    // exchange: 'ALL',
     count: 1,
     reachedMax: false,
     valueChanged: false,
@@ -176,6 +176,7 @@ export const selectedFeaturesFormStore = create<SelectedFeaturesForm>((set, get)
     resetLessIsBetter: (code: string) => {
         set(produce((state) => {
             state.features[code].lowerIsBetter = !state.features[code].lowerIsBetter;
+            state.valueChanged = true;
         }))
     },
     // resetExchange: (exchange: string) => {
@@ -194,7 +195,7 @@ export const selectedFeaturesFormStore = create<SelectedFeaturesForm>((set, get)
     // },
     resetScreenerKey: (key: string) => {
         set(produce((state) => {
-            state.exchange = null;
+            // state.exchange = null;
             state.valueChanged = true;
             state.key = key;
         }))
@@ -231,13 +232,19 @@ function getSelectedScreenerParam() {
     return to;
 }
 
-export const tableDataStore = create<{ response: ScreenerApiResult[], request: SelectedFeaturesForm } | null>(() => (null));
+export const tableDataStore = create<{ response: ScreenerApiResult[] | null, request: SelectedFeaturesForm | null, removeResponse: Function }>((set) => ({
+    response: [],
+    request: null,
+    removeResponse: () => set({ response: null, request: null })
+}));
 
 export function fetchScreenerData() {
     const get = async () => {
+        fetchStatusStore.setState({ isLoading: true });
         const request = getSelectedScreenerParam();
-        let data = await POST(getRequest(JSON.stringify(request), 'http://127.0.0.1:8080/api/percentile/ranks'));
+        let data = await POST(getRequest(JSON.stringify(request), `${process.env.NEXT_PUBLIC_BACKEND_URL}/api/percentile/ranks`));
         tableDataStore.setState({ response: data, request: request });
+        fetchStatusStore.setState({ isLoading: false });
     }
     get();
 }

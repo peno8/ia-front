@@ -17,7 +17,17 @@ export interface ScreenerDef {
 
 export const screenerDefsStore = create<Array<ScreenerDef>>(() => ([]));
 
+export interface Fetchstatus {
+    isLoading: boolean,
+    setLoading: Function,
+    setFinished: Function
+}
 
+export const fetchStatusStore = create<Fetchstatus>((set) => ({
+    isLoading: false,
+    setLoading: () => set(() => ({ isLoading: true})),
+    setFinished: () => set({ isLoading: false }),
+  }))
 
 export const dialogStore = create<{ opened: boolean, closeDialog: Function, openDialog: Function }>((set) => ({
     opened: false,

@@ -1,7 +1,7 @@
 import { ReactNode, useState } from 'react';
-import { FeatureDef, SelectedFeaturesForm, selectedFeaturesFormStore, getVariationLabel } from '../screener-store';
+import { FeatureDef, SelectedFeaturesForm, selectedFeaturesFormStore, getVariationLabel, tableDataStore } from '../screener-store';
 import { Button } from '@mantine/core';
-import { ScreenerDef } from '@/app/app.store';
+import { ScreenerDef, fetchStatusStore } from '@/app/app.store';
 
 function LabelColumn(text: string) {
   return <div className='text-sm font-semibold w-32'>{text}: </div>;
@@ -16,6 +16,7 @@ function SummaryRow({ label, children }: { label: string, children: React.ReactN
 
 function SummaryRow2({ name, label, valueFunc }: { name: string, label: string, valueFunc?: Function }) {
   const value = selectedFeaturesFormStore((state) => state[name])
+
   return <div className="flex flex-row">
     {LabelColumn(label)}
     <div>
@@ -23,12 +24,6 @@ function SummaryRow2({ name, label, valueFunc }: { name: string, label: string, 
     </div>
   </div>
 }
-
-
-// function sectorDesc(naicsDefs: NaicsDef[], code: string) {
-//   const def = naicsDefs.find(e => e.code == code);
-//   return def ? def.desc : "N/A";
-// }
 
 function Variables({ featureDefs, variationCodeMap }: { featureDefs: FeatureDef[], variationCodeMap: Map<string, string> }) {
   return (
@@ -41,34 +36,42 @@ function Variables({ featureDefs, variationCodeMap }: { featureDefs: FeatureDef[
 interface SelectedVariablesProps { featureDefs: FeatureDef[], fetch: Function, screenerDefs: ScreenerDef[], variationCodeMap: Map<string, string> }
 
 function sectorCodeToDesc(screenerDefs: ScreenerDef[]) {
-  return (code: string) => screenerDefs.find(e => e.value == code)?.desc;
+  
+  return (code: string) => {
+    const desc = screenerDefs.find(e => e.key == code)?.desc
+    return desc? desc : 'ALL';
+  };
 }
 
 function CallButton(fetch: Function) {
   const [disabled, setDisabled] = useState(false);
+  const removeResponse = tableDataStore((state) => state.removeResponse);
+  const setLoading = fetchStatusStore((state) => state.setLoading);
 
 
   const valueChanged = selectedFeaturesFormStore((state) =>  state.valueChanged);
   const setValueChanged = selectedFeaturesFormStore((state) =>  state.setValueChanged);
 
   function call() {
+    removeResponse();
     setValueChanged();
+    setLoading();
     fetch();
     setDisabled(true);
     setTimeout(() => {
       setDisabled(false);
     }, 2000)
   }
-
+//
   return(
-    <Button variant='filled' onClick={() => call()} disabled={disabled || !valueChanged}>Run</Button>
+    <Button className='call-button-color' variant='filled' onClick={() => call()} disabled={disabled || !valueChanged}>Run</Button>
   )
 }
 
 function ResetButton() {
   const reset = selectedFeaturesFormStore((state) =>  state.resetAll);
   return(
-    <Button variant='filled' color="orange" onClick={() => reset()}>Reset</Button>
+    <Button className='reset-button-color' color="orange" onClick={() => reset()}>Reset</Button>
   )
 }
 
@@ -80,21 +83,24 @@ export default function ScreenerPanel({ featureDefs, fetch, screenerDefs, variat
         
         <SummaryRow2 name={'cq'} label={'Calendar Quarter'}></SummaryRow2>
         
-        <SummaryRow2 name={'exchange'} label={'Exchange'}></SummaryRow2>
+        <SummaryRow2 name={'key'} label={'Exchange'} valueFunc={sectorCodeToDesc(screenerDefs.filter(e => e.keyType !== 'SIC'))}></SummaryRow2>
         
-        <SummaryRow2 name={'naics'} label={'Sector'} valueFunc={sectorCodeToDesc(screenerDefs)}></SummaryRow2>
+        <SummaryRow2 name={'key'} label={'Industry'} valueFunc={sectorCodeToDesc(screenerDefs.filter(e => e.keyType === 'SIC'))}></SummaryRow2>
         <SummaryRow label={'Variables'}>
           <div>
             <Variables featureDefs={featureDefs} variationCodeMap={variationCodeMap}></Variables>
           </div>
         </SummaryRow>
       </div>
-      <div className='align-right'>
-        {CallButton(fetch)}
-        
-      </div>
-      <div>
-        {ResetButton()}
+      <div className='flex flex-row'>
+        <div className='align-right pr-2'>
+          {CallButton(fetch)}
+          
+        </div>
+        <div className='align-right'>
+          {ResetButton()}
+        </div>
+      
       </div>
     </div>
   )

@@ -13,16 +13,15 @@ function DirectionChip(props: { code: string }) {
   const fieldsStore = selectedFeaturesFormStore((state) => state.features[props.code])
   const resetLessIsBetter = selectedFeaturesFormStore((state) => state.resetLessIsBetter)
 
-
   return (fieldsStore ? !fieldsStore.lowerIsBetter ?
-    <Chip defaultChecked size={'xs'} radius="xs" onClick={() => { resetLessIsBetter(props.code) }} variant='outline'
+    <Chip defaultChecked checked={true} size={'xs'} radius="xs" onClick={() => { resetLessIsBetter(props.code) }} variant='outline'
       icon={<IconArrowUp style={{ width: rem(16), height: rem(16) }} className='text-blue-500' />}>
       Ascending
     </Chip> :
     <Chip color="red" checked={true} defaultChecked size={'xs'} radius="xs" onClick={() => { resetLessIsBetter(props.code) }} variant='outline'
       icon={<IconArrowDown style={{ width: rem(16), height: rem(16) }} className='text-red-500' />}>
       Descending
-    </Chip> : <div></div>);
+    </Chip> : null);
 }
 
 
@@ -52,7 +51,7 @@ interface ScreenerOptionProp {
 export default function ScreenerOption(props: ScreenerOptionProp) {
 
   return (
-    <div className='flex flex-row ml-4 items-center hover:bg-slate-100 text-sm p-0.5' key={props.name}>
+    <div className='flex flex-row ml-4 items-center hover:bg-slate-100 dark:hover:bg-[--bg-dark-hover] text-sm p-0.5' key={props.name}>
 
       <svg xmlns="http://www.w3.org/2000/svg" className="icon icon-tabler icon-tabler-chevron-down-left" width="14" height="14" viewBox="0 0 24 24" strokeWidth="2" stroke="currentColor" fill="none" strokeLinecap="round" strokeLinejoin="round">
         <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
@@ -64,7 +63,7 @@ export default function ScreenerOption(props: ScreenerOptionProp) {
       <div className='pl-2'>
         <ScreenerSwitch code={props.code}></ScreenerSwitch>
       </div>
-      <div className='pl-2 '>
+      <div className='pl-2 pr-1'>
         <DirectionChip code={props.code}></DirectionChip>
       </div>
     </div>

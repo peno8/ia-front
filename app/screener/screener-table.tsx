@@ -1,13 +1,13 @@
 'use client'
 
-import React, { useRef, useCallback } from 'react';
+import React, { useRef, useCallback, useEffect } from 'react';
 import { AgGridReact } from 'ag-grid-react';
-import 'ag-grid-community/styles/ag-grid.css'; // Core grid CSS, always needed
-import 'ag-grid-community/styles/ag-theme-alpine.css'; // Optional theme CSS
+
 import { FeatureDef, getVariationLabel, SelectedFeaturesForm, tableDataStore, fetchScreenerData, getFeatureDefByVariationCode } from './screener-store';
 import { formatNumber } from '../utils';
 import Link from 'next/link';
 import { CompanyDef, companyDefMap } from '../app.store';
+import { Anchor, Box, Loader, LoadingOverlay } from '@mantine/core';
 
 interface ScreenerTableProp {
   // tableData: ScreenerApiResult[]
@@ -16,7 +16,7 @@ interface ScreenerTableProp {
 }
 
 const linkCellRenderer = ({ value }: { value: string }) => (
-  <Link href={`/analysis/${value}`} target="_blank">{value}</Link>
+  <Link href={`/analysis/${value}`} target="_blank" ><Anchor>{value}</Anchor></Link>
 );
 
 function getColDefs(requestObj: SelectedFeaturesForm, compDefMap: Map<string, CompanyDef>) {
@@ -33,7 +33,9 @@ function getColDefs(requestObj: SelectedFeaturesForm, compDefMap: Map<string, Co
       cellRenderer: linkCellRenderer,
       headerTooltip: 'Symbol',
       minWidth: 100,
-      tooltipValueGetter: (params: any) => params.data.percentile.symbol,
+      // tooltipValueGetter: (params: any) => params.data.percentile.symbol,
+      // suppressRowHoverHighlight: false
+
     },
     {
       field: 'name',
@@ -62,38 +64,37 @@ function getColDefs(requestObj: SelectedFeaturesForm, compDefMap: Map<string, Co
     function getPercentile(params: any) {
       const obj = params.data.percentile.percentiles[e.feature]
       const value = obj ? e.lowerIsBetter ? obj['p'] : 1 - obj['p'] : undefined;
-      return value === 0 || value ? formatNumber("", value) : undefined;
+      return value === 0 || value ? formatNumber("", value) : "";
     }
     
     return [{
       field: name,
       valueGetter: (params: any) => {
-        // const value = params.data.percentile.percentiles[e.feature] ? params.data.percentile.percentiles[e.feature]['v'] : 0;
-        // return formatNumber(featureDef!.category, value);
-        return getValue(params);
+        return `${getValue(params)} (${getPercentile(params)})`;
       },
-      headerTooltip: name,
-      tooltipValueGetter:  (params: any) => getValue(params)
-    }, {
-      field: 'Percentile',
-      valueGetter: (params: any) => {
-        // const obj = params.data.percentile.percentiles[e.feature]
-        // const value = obj ? e.lowerIsBetter ? obj['p'] : 1 - obj['p'] : undefined;
-        // return value === 0 || value ? formatNumber("", value) : undefined;
-        return getPercentile(params);
-      },
-      headerTooltip: 'Percentile',
-      tooltipValueGetter:  (params: any) => getPercentile(params)
-    }]
+      headerTooltip: name + ' and percentile',
+      tooltipValueGetter:  (params: any) => getValue(params),
+      sortable: false
+    }, 
+    // {
+    //   field: 'Percentile',
+    //   valueGetter: (params: any) => {
+    //     return getPercentile(params);
+    //   },
+    //   headerTooltip: 'Percentile',
+    //   tooltipValueGetter:  (params: any) => getPercentile(params)
+    // }
+  ]
   })
 
   const scoreColDef = [{
-    field: 'Score',
+    field: 'Percentile',
     valueGetter: (params: any) => formatNumber("", params.data.score),
     headerTooltip: 'Overall Percentile',
     tooltipValueGetter: (params: any) => formatNumber("", params.data.score),
   }]
 
+  // @ts-ignore
   const allColDefs = defaultColumnDefs.concat(valueColDefs, scoreColDef)
   return allColDefs;
 }
@@ -107,12 +108,17 @@ export default function ScreenerTable(props: ScreenerTableProp) {
     gridRef.current?.api.sizeColumnsToFit();
   }, []);
 
+  useEffect(() => {
+    fetchScreenerData();
+  }, [])
+
   const compDefMap = companyDefMap;
 
   return (
     <>
-      {
-        <div className="ag-theme-alpine w-full h-full">
+    {/* <Box pos="relative"> */}
+      { 
+        // <div className="ag-theme-alpine dark:ag-theme-alpine-dark dark:text-red-700 w-full h-full">
           <AgGridReact className=''
             ref={gridRef} // Ref for accessing Grid's API
             rowData={store?.response} // Row Data for Rows
@@ -122,19 +128,25 @@ export default function ScreenerTable(props: ScreenerTableProp) {
             defaultColDef={{
               sortable: true,
               resizable: true,
-              // minWidth: 100,
+              maxWidth: 300,
             }}
 
             animateRows={true} // Optional - set to 'true' to have rows animate when sorted
             onFirstDataRendered={onFirstDataRendered}
-            onGridReady={fetchScreenerData}
+            // onGridReady={fetchScreenerData}
             onModelUpdated={onFirstDataRendered}
             onGridSizeChanged={onFirstDataRendered}
             tooltipShowDelay={500}
+            suppressRowHoverHighlight={true}
           />
-        </div>
+          
+          // null 
+          // <LoadingOverlay visible={true} zIndex={1000} overlayProps={{ radius: "sm", blur: 2 }} />
+          // <Loader></Loader>
+        // </div>
 
       }
+      {/* </Box> */}
     </>
   )
 }

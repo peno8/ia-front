@@ -8,6 +8,7 @@ const screenerDefStr = readFileFromSharedDist(process.env.SCREENER_DEF_FILE);
 
 
 export default function SreenerPage() {
+
   return (
     <ScreenerContent featureDefsJson={featureDefsJson} screenerDefStr={screenerDefStr}></ScreenerContent>
   )

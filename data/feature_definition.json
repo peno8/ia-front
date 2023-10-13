@@ -1,0 +1,794 @@
+[
+  {
+    "code" : "CR_A_R",
+    "desc" : "CurrentAssets/Assets",
+    "category" : "STABILITY",
+    "variations" : [
+      {
+        "code" : "CA|A",
+        "displayRank" : 4,
+        "variations" : [
+          "MRQ"
+        ]
+      }
+    ],
+    "lowerIsBetter" : false,
+    "displayRank" : 3
+  },
+  {
+    "code" : "IN_A_R",
+    "desc" : "Inventories/Assets",
+    "category" : "STABILITY",
+    "variations" : [
+      {
+        "code" : "IN|A",
+        "displayRank" : 4,
+        "variations" : [
+          "MRQ"
+        ]
+      }
+    ],
+    "lowerIsBetter" : true,
+    "displayRank" : 7
+  },
+  {
+    "code" : "GW_A_R",
+    "desc" : "Goodwill/Assets",
+    "category" : "STABILITY",
+    "variations" : [
+      {
+        "code" : "GW|A",
+        "displayRank" : 4,
+        "variations" : [
+          "MRQ"
+        ]
+      }
+    ],
+    "lowerIsBetter" : true,
+    "displayRank" : 8
+  },
+  {
+    "code" : "RC_A_R",
+    "desc" : "Receivables/Assets",
+    "category" : "STABILITY",
+    "variations" : [
+      {
+        "code" : "RC|A",
+        "displayRank" : 4,
+        "variations" : [
+          "MRQ"
+        ]
+      }
+    ],
+    "lowerIsBetter" : true,
+    "displayRank" : 5
+  },
+  {
+    "code" : "RC_CA_R",
+    "desc" : "Receivables/CurrentAssets",
+    "category" : "STABILITY",
+    "variations" : [
+      {
+        "code" : "RC|CA",
+        "displayRank" : 4,
+        "variations" : [
+          "MRQ"
+        ]
+      }
+    ],
+    "lowerIsBetter" : true,
+    "displayRank" : 4
+  },
+  {
+    "code" : "L_A_R",
+    "desc" : "Debt Ratio",
+    "category" : "STABILITY",
+    "variations" : [
+      {
+        "code" : "L|A",
+        "displayRank" : 4,
+        "variations" : [
+          "MRQ"
+        ]
+      }
+    ],
+    "lowerIsBetter" : true,
+    "displayRank" : 1
+  },
+  {
+    "code" : "CA_CL_R",
+    "desc" : "Quick Ratio(CA/CL)",
+    "category" : "STABILITY",
+    "variations" : [
+      {
+        "code" : "CA|CL",
+        "displayRank" : 4,
+        "variations" : [
+          "MRQ"
+        ]
+      }
+    ],
+    "lowerIsBetter" : false,
+    "displayRank" : 2
+  },
+  {
+    "code" : "R_G",
+    "desc" : "Revenues Growth",
+    "category" : "GROWTH",
+    "variations" : [
+      {
+        "code" : "R_Q",
+        "displayRank" : 5,
+        "variations" : [
+          "MRQ",
+          "QOQ"
+        ]
+      },
+      {
+        "code" : "R_Y",
+        "displayRank" : 4,
+        "variations" : [
+          "MRQ",
+          "YOY"
+        ]
+      },
+      {
+        "code" : "R_T_Q",
+        "displayRank" : 1,
+        "variations" : [
+          "TTM",
+          "QOQ"
+        ]
+      },
+      {
+        "code" : "R_T_Y",
+        "displayRank" : 0,
+        "variations" : [
+          "TTM",
+          "YOY"
+        ]
+      },
+      {
+        "code" : "R_C_Y",
+        "displayRank" : 2,
+        "variations" : [
+          "YTD",
+          "YOY"
+        ]
+      }
+    ],
+    "lowerIsBetter" : false,
+    "displayRank" : 1
+  },
+  {
+    "code" : "R_A_R",
+    "desc" : "Revenues/Assets",
+    "category" : "EFFICIENCY",
+    "variations" : [
+      {
+        "code" : "R|A",
+        "displayRank" : 4,
+        "variations" : [
+          "MRQ"
+        ]
+      },
+      {
+        "code" : "R_T|A",
+        "displayRank" : 0,
+        "variations" : [
+          "TTM"
+        ]
+      },
+      {
+        "code" : "R_C|A",
+        "displayRank" : 2,
+        "variations" : [
+          "YTD"
+        ]
+      }
+    ],
+    "lowerIsBetter" : false,
+    "displayRank" : 3
+  },
+  {
+    "code" : "R_RC_R",
+    "desc" : "Revenues/Receivables",
+    "category" : "EFFICIENCY",
+    "variations" : [
+      {
+        "code" : "R|RC",
+        "displayRank" : 4,
+        "variations" : [
+          "MRQ"
+        ]
+      },
+      {
+        "code" : "R_T|RC",
+        "displayRank" : 0,
+        "variations" : [
+          "TTM"
+        ]
+      },
+      {
+        "code" : "R_C|RC",
+        "displayRank" : 2,
+        "variations" : [
+          "YTD"
+        ]
+      }
+    ],
+    "lowerIsBetter" : false,
+    "displayRank" : 1
+  },
+  {
+    "code" : "R_IN_R",
+    "desc" : "Revenues/Inventories",
+    "category" : "EFFICIENCY",
+    "variations" : [
+      {
+        "code" : "R|IN",
+        "displayRank" : 4,
+        "variations" : [
+          "MRQ"
+        ]
+      },
+      {
+        "code" : "R_T|IN",
+        "displayRank" : 0,
+        "variations" : [
+          "TTM"
+        ]
+      },
+      {
+        "code" : "R_C|IN",
+        "displayRank" : 2,
+        "variations" : [
+          "YTD"
+        ]
+      }
+    ],
+    "lowerIsBetter" : false,
+    "displayRank" : 2
+  },
+  {
+    "code" : "IN_CA_R",
+    "desc" : "Inventories/CurrentAssets",
+    "category" : "STABILITY",
+    "variations" : [
+      {
+        "code" : "IN|CA",
+        "displayRank" : 4,
+        "variations" : [
+          "MRQ"
+        ]
+      }
+    ],
+    "lowerIsBetter" : true,
+    "displayRank" : 6
+  },
+  {
+    "code" : "OI_G",
+    "desc" : "OperatingIncome Growth",
+    "category" : "GROWTH",
+    "variations" : [
+      {
+        "code" : "OI_Q",
+        "displayRank" : 5,
+        "variations" : [
+          "MRQ",
+          "QOQ"
+        ]
+      },
+      {
+        "code" : "OI_Y",
+        "displayRank" : 4,
+        "variations" : [
+          "MRQ",
+          "YOY"
+        ]
+      },
+      {
+        "code" : "OI_T_Q",
+        "displayRank" : 1,
+        "variations" : [
+          "TTM",
+          "QOQ"
+        ]
+      },
+      {
+        "code" : "OI_T_Y",
+        "displayRank" : 0,
+        "variations" : [
+          "TTM",
+          "YOY"
+        ]
+      },
+      {
+        "code" : "OI_C_Y",
+        "displayRank" : 2,
+        "variations" : [
+          "YTD",
+          "YOY"
+        ]
+      }
+    ],
+    "lowerIsBetter" : false,
+    "displayRank" : 2
+  },
+  {
+    "code" : "OI_R_R",
+    "desc" : "OperatingIncome/Revenues",
+    "category" : "PROFITABILITY",
+    "variations" : [
+      {
+        "code" : "OI|R",
+        "displayRank" : 4,
+        "variations" : [
+          "MRQ"
+        ]
+      },
+      {
+        "code" : "OI_T|R_T",
+        "displayRank" : 0,
+        "variations" : [
+          "TTM"
+        ]
+      },
+      {
+        "code" : "OI_C|R_C",
+        "displayRank" : 2,
+        "variations" : [
+          "YTD"
+        ]
+      }
+    ],
+    "lowerIsBetter" : false,
+    "displayRank" : 4
+  },
+  {
+    "code" : "OI_E_R",
+    "desc" : "OperatingIncome/Equity",
+    "category" : "PROFITABILITY",
+    "variations" : [
+      {
+        "code" : "OI|E",
+        "displayRank" : 4,
+        "variations" : [
+          "MRQ"
+        ]
+      },
+      {
+        "code" : "OI_T|E",
+        "displayRank" : 0,
+        "variations" : [
+          "TTM"
+        ]
+      },
+      {
+        "code" : "OI_C|E",
+        "displayRank" : 2,
+        "variations" : [
+          "YTD"
+        ]
+      }
+    ],
+    "lowerIsBetter" : false,
+    "displayRank" : 5
+  },
+  {
+    "code" : "OI_A_R",
+    "desc" : "OperatingIncome/Assets",
+    "category" : "PROFITABILITY",
+    "variations" : [
+      {
+        "code" : "OI|A",
+        "displayRank" : 4,
+        "variations" : [
+          "MRQ"
+        ]
+      },
+      {
+        "code" : "OI_T|A",
+        "displayRank" : 0,
+        "variations" : [
+          "TTM"
+        ]
+      },
+      {
+        "code" : "OI_C|A",
+        "displayRank" : 2,
+        "variations" : [
+          "YTD"
+        ]
+      }
+    ],
+    "lowerIsBetter" : false,
+    "displayRank" : 6
+  },
+  {
+    "code" : "NI_G",
+    "desc" : "NetIncome Growth",
+    "category" : "GROWTH",
+    "variations" : [
+      {
+        "code" : "NI_Q",
+        "displayRank" : 5,
+        "variations" : [
+          "MRQ",
+          "QOQ"
+        ]
+      },
+      {
+        "code" : "NI_Y",
+        "displayRank" : 4,
+        "variations" : [
+          "MRQ",
+          "YOY"
+        ]
+      },
+      {
+        "code" : "NI_T_Q",
+        "displayRank" : 1,
+        "variations" : [
+          "TTM",
+          "QOQ"
+        ]
+      },
+      {
+        "code" : "NI_T_Y",
+        "displayRank" : 0,
+        "variations" : [
+          "TTM",
+          "YOY"
+        ]
+      },
+      {
+        "code" : "NI_C_Y",
+        "displayRank" : 2,
+        "variations" : [
+          "YTD",
+          "YOY"
+        ]
+      }
+    ],
+    "lowerIsBetter" : false,
+    "displayRank" : 3
+  },
+  {
+    "code" : "NI_R_R",
+    "desc" : "NetIncome/Revenues",
+    "category" : "PROFITABILITY",
+    "variations" : [
+      {
+        "code" : "NI|R",
+        "displayRank" : 4,
+        "variations" : [
+          "MRQ"
+        ]
+      },
+      {
+        "code" : "NI_T|R_T",
+        "displayRank" : 0,
+        "variations" : [
+          "TTM"
+        ]
+      },
+      {
+        "code" : "NI_C|R_C",
+        "displayRank" : 2,
+        "variations" : [
+          "YTD"
+        ]
+      }
+    ],
+    "lowerIsBetter" : false,
+    "displayRank" : 1
+  },
+  {
+    "code" : "NI_E_R",
+    "desc" : "NetIncome/Equity",
+    "category" : "PROFITABILITY",
+    "variations" : [
+      {
+        "code" : "NI|E",
+        "displayRank" : 4,
+        "variations" : [
+          "MRQ"
+        ]
+      },
+      {
+        "code" : "NI_T|E",
+        "displayRank" : 0,
+        "variations" : [
+          "TTM"
+        ]
+      },
+      {
+        "code" : "NI_C|E",
+        "displayRank" : 2,
+        "variations" : [
+          "YTD"
+        ]
+      }
+    ],
+    "lowerIsBetter" : false,
+    "displayRank" : 2
+  },
+  {
+    "code" : "NI_A_R",
+    "desc" : "NetIncome/Assets",
+    "category" : "PROFITABILITY",
+    "variations" : [
+      {
+        "code" : "NI|A",
+        "displayRank" : 4,
+        "variations" : [
+          "MRQ"
+        ]
+      },
+      {
+        "code" : "NI_T|A",
+        "displayRank" : 0,
+        "variations" : [
+          "TTM"
+        ]
+      },
+      {
+        "code" : "NI_C|A",
+        "displayRank" : 2,
+        "variations" : [
+          "YTD"
+        ]
+      }
+    ],
+    "lowerIsBetter" : false,
+    "displayRank" : 3
+  },
+  {
+    "code" : "OC_G",
+    "desc" : "OperatingCash Growth",
+    "category" : "GROWTH",
+    "variations" : [
+      {
+        "code" : "OC_Q",
+        "displayRank" : 5,
+        "variations" : [
+          "MRQ",
+          "QOQ"
+        ]
+      },
+      {
+        "code" : "OC_Y",
+        "displayRank" : 4,
+        "variations" : [
+          "MRQ",
+          "YOY"
+        ]
+      },
+      {
+        "code" : "OC_T_Q",
+        "displayRank" : 1,
+        "variations" : [
+          "TTM",
+          "QOQ"
+        ]
+      },
+      {
+        "code" : "OC_T_Y",
+        "displayRank" : 0,
+        "variations" : [
+          "TTM",
+          "YOY"
+        ]
+      },
+      {
+        "code" : "OC_C_Y",
+        "displayRank" : 2,
+        "variations" : [
+          "YTD",
+          "YOY"
+        ]
+      }
+    ],
+    "lowerIsBetter" : false,
+    "displayRank" : 4
+  },
+  {
+    "code" : "OC_E_R",
+    "desc" : "OperatingCash/Equity",
+    "category" : "PROFITABILITY",
+    "variations" : [
+      {
+        "code" : "OC|E",
+        "displayRank" : 4,
+        "variations" : [
+          "MRQ"
+        ]
+      },
+      {
+        "code" : "OC_T|E",
+        "displayRank" : 0,
+        "variations" : [
+          "TTM"
+        ]
+      },
+      {
+        "code" : "OC_C|E",
+        "displayRank" : 2,
+        "variations" : [
+          "YTD"
+        ]
+      }
+    ],
+    "lowerIsBetter" : false,
+    "displayRank" : 8
+  },
+  {
+    "code" : "OC_A_R",
+    "desc" : "OperatingCash/Assets",
+    "category" : "PROFITABILITY",
+    "variations" : [
+      {
+        "code" : "OC|A",
+        "displayRank" : 4,
+        "variations" : [
+          "MRQ"
+        ]
+      },
+      {
+        "code" : "OC_T|A",
+        "displayRank" : 0,
+        "variations" : [
+          "TTM"
+        ]
+      },
+      {
+        "code" : "OC_C|A",
+        "displayRank" : 2,
+        "variations" : [
+          "YTD"
+        ]
+      }
+    ],
+    "lowerIsBetter" : false,
+    "displayRank" : 9
+  },
+  {
+    "code" : "OC_R_R",
+    "desc" : "OperatingCash/Revenues",
+    "category" : "PROFITABILITY",
+    "variations" : [
+      {
+        "code" : "OC|R",
+        "displayRank" : 4,
+        "variations" : [
+          "MRQ"
+        ]
+      },
+      {
+        "code" : "OC_T|R_T",
+        "displayRank" : 0,
+        "variations" : [
+          "TTM"
+        ]
+      },
+      {
+        "code" : "OC_C|R_C",
+        "displayRank" : 2,
+        "variations" : [
+          "YTD"
+        ]
+      }
+    ],
+    "lowerIsBetter" : false,
+    "displayRank" : 7
+  },
+  {
+    "code" : "A",
+    "desc" : "Assets",
+    "category" : "SIZE",
+    "variations" : [
+      {
+        "code" : "A",
+        "displayRank" : 4,
+        "variations" : [
+          "MRQ"
+        ]
+      }
+    ],
+    "lowerIsBetter" : false,
+    "displayRank" : 1
+  },
+  {
+    "code" : "L",
+    "desc" : "Liabilities",
+    "category" : "SIZE",
+    "variations" : [
+      {
+        "code" : "L",
+        "displayRank" : 4,
+        "variations" : [
+          "MRQ"
+        ]
+      }
+    ],
+    "lowerIsBetter" : false,
+    "displayRank" : 2
+  },
+  {
+    "code" : "E",
+    "desc" : "Equity",
+    "category" : "SIZE",
+    "variations" : [
+      {
+        "code" : "E",
+        "displayRank" : 4,
+        "variations" : [
+          "MRQ"
+        ]
+      }
+    ],
+    "lowerIsBetter" : false,
+    "displayRank" : 3
+  },
+  {
+    "code" : "R",
+    "desc" : "Revenues",
+    "category" : "SIZE",
+    "variations" : [
+      {
+        "code" : "R",
+        "displayRank" : 4,
+        "variations" : [
+          "MRQ"
+        ]
+      },
+      {
+        "code" : "R_T",
+        "displayRank" : 0,
+        "variations" : [
+          "TTM"
+        ]
+      },
+      {
+        "code" : "R_C",
+        "displayRank" : 2,
+        "variations" : [
+          "YTD"
+        ]
+      }
+    ],
+    "lowerIsBetter" : false,
+    "displayRank" : 4
+  },
+  {
+    "code" : "NI",
+    "desc" : "NetIncome",
+    "category" : "SIZE",
+    "variations" : [
+      {
+        "code" : "NI",
+        "displayRank" : 4,
+        "variations" : [
+          "MRQ"
+        ]
+      },
+      {
+        "code" : "NI_T",
+        "displayRank" : 0,
+        "variations" : [
+          "TTM"
+        ]
+      },
+      {
+        "code" : "NI_C",
+        "displayRank" : 2,
+        "variations" : [
+          "YTD"
+        ]
+      }
+    ],
+    "lowerIsBetter" : false,
+    "displayRank" : 5
+  }
+]
