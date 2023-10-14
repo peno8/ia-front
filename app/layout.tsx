@@ -4,7 +4,7 @@ import { Inter } from 'next/font/google'
 import Header from './component/header/header'
 import Footer from './footer'
 import localFont from 'next/font/local'
-import OptionBar from './component/option'
+import OptionBar from './component/option-bar'
 import Sidebar from './component/sidebar'
 import '@mantine/core/styles.css';
 import { MantineProvider, ColorSchemeScript } from '@mantine/core';
@@ -52,9 +52,9 @@ const localFonts = localFont({
 const inter = Inter({ subsets: ['latin'] })
 
 export const metadata: Metadata = {
-  title: 'Interactive-alpha',
+  title: 'interactive-alpha',
   description: 'Best financial statement visualization.',
-  viewport: 'width=device-width, initial-scale=0.1'
+  viewport: 'width=device-width, initial-scale=1.0'
 }
 
 const featureDefsStr = readFileFromSharedDist(process.env.FEATURE_DEFS_FILE);
@@ -84,7 +84,7 @@ export default function RootLayout({
         <ThemeProviders>
         <MantineProvider>
           <Header companyDefStr={companyDefStr} />
-          <OptionBar></OptionBar>
+          
           
           <main className="wrap flex-none text-black dark:text-slate-50">
             <Sidebar></Sidebar>

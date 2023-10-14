@@ -32,7 +32,7 @@ export default function DarkModeButton() {
   return (
 
     <div className='flex flex-row items-center mr-5'>
-      <ActionIcon variant="default" aria-label="Settings" className="!bg-transparent hover:!bg-white dark:hover:!bg-slate-500 dark:text-[--text-dark] !border-0"
+      <ActionIcon variant="default" aria-label="Settings" className="!bg-transparent hover:!bg-opacity-10 hover:!bg-black dark:hover:!bg-slate-500 dark:text-[--text-dark] !border-0"
         onClick={() => theme == "dark" ? setTheme('light') : setTheme("dark")}>
         {getDarkModeIcon(theme)}
       </ActionIcon>

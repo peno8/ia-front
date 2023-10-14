@@ -16,6 +16,11 @@
   --bg-gray: #e5e7eb;
   --text-dark: #f8fafc; /* text-slate-50 */
   --label-text-dark: #7dd3fc; /* text-sky-300 */
+  --break-point-sm: 640px;
+  --break-point-md: 769px;
+  --break-point-lg: 1024px;
+  --break-point-xl: 1280px;
+  --break-point-2xl: 1536px;
 }
 
 /* @media (prefers-color-scheme: dark) {
@@ -45,21 +50,13 @@
   /* column-gap: 30px; */
 }
 
-.sidebar {
-  /* background: none; */
-  overflow-y: unset;
-  position: static;
-  padding: 0;
-  flex: none;
-  /* max-width: var(--sidebar-width); */
-  /* width: 100%; */
-  /* border: 0; */
-  min-height: 0;
-  height: auto;
-  -webkit-backdrop-filter: none;
-  backdrop-filter: none;
-  /* border: 1px solid rgb(224,224,224) */
-}
+/* 
+max-sm	@media not all and (min-width: 640px) { ... }
+max-md	@media not all and (min-width: 768px) { ... }
+max-lg	@media not all and (min-width: 1024px) { ... }
+max-xl	@media not all and (min-width: 1280px) { ... }
+max-2xl	@media not all and (min-width: 1536px) { ... } */
+
 
 .call-button-color {
   /* background-color: '#228be6 !important' */
@@ -89,4 +86,58 @@
   backdrop-filter: blur(calc(0.125rem * var(--mantine-scale)));
   /* --overlay-radius: var(--mantine-radius-sm); */
   /* --overlay-z-index: 200; */
+}
+
+
+.ia-hover:hover {
+  background-color: rgb(0 0 0 / 0.1);
+}
+
+/* Menu Modal */
+.dark .mantine-Modal-content, .dark .mantine-Modal-header {
+  background-color: var(--bg-dark) !important;
+  color: var(--text-dark)
+}
+
+.dark .mantine-Modal-content, .dark .mantine-Modal-header {
+    background-color: var(--bg-dark) !important;
+    color: var(--text-dark)
+}
+
+/* Sidebar */
+
+.sidebar {
+  /* background: none; */
+  overflow-y: unset;
+  position: static;
+  padding: 0;
+  flex: none;
+  /* max-width: var(--sidebar-width); */
+  /* width: 100%; */
+  /* border: 0; */
+  min-height: 0;
+  height: auto;
+  -webkit-backdrop-filter: none;
+  backdrop-filter: none;
+  width: 12rem;
+  /* border: 1px solid rgb(224,224,224) */
+}
+
+.slider .slider-icon {
+  width: 2rem;
+  height: 2rem;
+}
+
+.sidebar-closed {
+  width: 4rem !important;
+}
+
+.sidebar .sidebar-contents-closed {
+  display: none;
+}
+
+@media (max-width: 1024px) { 
+  .sidebar {
+    display: none;
+  }
 }

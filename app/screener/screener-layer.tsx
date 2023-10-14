@@ -27,11 +27,11 @@ export default function ScreenerLayer({featureDefs, variationCodeMap, children} 
   return (
     <>
     {/* <div className="flex flex-col grow"> */}
-      <div className='flex flex-trow grow h-full'>
+      <div className='flex flex-row h-full'>
         <div className='flex-none w-[500px] p-1 overflow-y-scroll'>
           {children}
         </div>
-        <div className='flex-1 p-1 '>
+        <div className='flex-1 p-1 min-w-[500px]'>
           {theme === 'dark' ? <div className="ag-theme-alpine-dark w-full h-full">
           <ScreenerTable  featureDefs={featureDefs} variationCodeMap={variationCodeMap}></ScreenerTable>
           </div> :         <div className="ag-theme-alpine w-full h-full">
