@@ -12,17 +12,18 @@ import ScreenerPanel from '../summary/screener-panel';
 import { ScreenerDef } from '@/app/app.store';
 import { CalendarQuarterCheckboxes, SectorCheckboxes } from './sector-checkboxes'
 
-interface ScreenerTabProps {
+export interface ScreenerTabProps {
     featureDefs: Array<FeatureDef>
-    fetch: Function
+    // fetch: Function
     screenerDefs: ScreenerDef[]
     variationCodeMap: Map<string, string>
 }
 
-export default function ScreenerTab(props: ScreenerTabProps) {
+export default function ScreenerFeatureTab(props: ScreenerTabProps) {
     const iconStyle = { width: rem(12), height: rem(12) };
 
     const categories = ['PROFITABILITY', 'GROWTH', 'STABILITY', 'EFFICIENCY', 'SIZE'];
+    const accordionDefault = ['PROFITABILITY'];
     const featureDefMap = new Map();
     for (const featureType of categories) {
         const filtered = props.featureDefs.filter(e => e.category === featureType);
@@ -31,7 +32,8 @@ export default function ScreenerTab(props: ScreenerTabProps) {
 
     return (
         <div className=''>
-            <ScreenerPanel featureDefs={props.featureDefs} screenerDefs={props.screenerDefs} fetch={props.fetch} variationCodeMap={props.variationCodeMap}></ScreenerPanel>
+            
+
             <Tabs defaultValue="sorting">
                 <Tabs.List className='dark:text-sky-300'>
                     <Tabs.Tab value="sorting" className='dark:hover:bg-[--bg-dark-hover]'>
@@ -47,7 +49,9 @@ export default function ScreenerTab(props: ScreenerTabProps) {
 
                 <Tabs.Panel value="sorting">
                     <div className='flex flex-col'>
-                        <Accordion multiple defaultValue={categories}>
+                        <Accordion multiple defaultValue={accordionDefault} styles={{
+                            content: {paddingTop: 0}
+                        }}>
                             {categories.map((category) =>
                                 <ScreenerTypeItem name={category} key={category} featureDefs={featureDefMap.get(category)}></ScreenerTypeItem>)}
                         </Accordion>

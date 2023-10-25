@@ -80,7 +80,7 @@ export default function RootLayout({
         <ColorSchemeScript />
       </head>
       <GoogleAnalytics />
-      <body className={`${localFonts.className} font-medium text-sm flex w-full flex-col justify-stretch p-0 m-0 min-h-screen dark:bg-slate-800`}>
+      <body className={`${localFonts.className} font-medium text-sm flex w-full flex-col items-center justify-stretch p-0 m-0 min-h-screen dark:bg-slate-800`}>
         <ThemeProviders>
         <MantineProvider>
           <Header companyDefStr={companyDefStr} />
@@ -91,9 +91,10 @@ export default function RootLayout({
             <div className="flex flex-col w-full h-full">
               {children}
 
-              <Footer />
+              
             </div>
           </main>
+          <Footer />
         </MantineProvider>
         </ThemeProviders>
       </body>

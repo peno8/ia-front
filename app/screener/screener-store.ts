@@ -241,12 +241,18 @@ export const tableDataStore = create<{ response: ScreenerApiResult[] | null, req
 export function fetchScreenerData() {
     const get = async () => {
         fetchStatusStore.setState({ isLoading: true });
+
         const request = getSelectedScreenerParam();
         let data = await POST(getRequest(JSON.stringify(request), `${process.env.NEXT_PUBLIC_BACKEND_URL}/api/percentile/ranks`));
         tableDataStore.setState({ response: data, request: request });
         fetchStatusStore.setState({ isLoading: false });
     }
     get();
+    // fetchStatusStore.setState({ isLoading: true });
+    // setTimeout(() => {
+    //     get();
+    // }, 20000)
+
 }
 
 

@@ -2,6 +2,7 @@
 import { Accordion } from '@mantine/core';
 import ScreenerFeature from './screener-feature';
 import { FeatureDef } from '../screener-store';
+import { Content } from 'next/font/google';
 
 interface ScreenerTypeItemProp {
   featureDefs: Array<FeatureDef>
@@ -14,7 +15,7 @@ export default function ScreenerTypeItem(props: ScreenerTypeItemProp) {
   return (
     <Accordion.Item key={props.name} value={props.name} className='dark:!border-b-[--border-color-dark-rgb]'> 
       <Accordion.Control>
-        <div className='TypeName text-xl text dark:text-[--text-dark] mb-0'>
+        <div className='screener-tab-label dark:text-[--text-dark] mb-0'>
           {props.name}
         </div>
       </Accordion.Control>

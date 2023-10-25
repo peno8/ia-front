@@ -16,7 +16,7 @@ interface ScreenerTableProp {
 }
 
 const linkCellRenderer = ({ value }: { value: string }) => (
-  <Link href={`/analysis/${value}`} target="_blank" ><Anchor>{value}</Anchor></Link>
+  <Anchor target="_blank" href={`/analysis/${value}`}>{value}</Anchor>
 );
 
 function getColDefs(requestObj: SelectedFeaturesForm, compDefMap: Map<string, CompanyDef>) {
@@ -26,13 +26,23 @@ function getColDefs(requestObj: SelectedFeaturesForm, compDefMap: Map<string, Co
   }
 
   const defaultColumnDefs = [
-    
+    {
+      field: 'Rank',
+      valueGetter: (params: any) => params.node.rowIndex + 1,
+      headerTooltip: 'Rank',
+      width: 60,
+      suppressSizeToFit: true
+      // tooltipValueGetter: (params: any) => params.data.percentile.symbol,
+      // suppressRowHoverHighlight: false
+
+    },
     {
       field: 'symbol',
       valueGetter: (params: any) => params.data.percentile.symbol,
       cellRenderer: linkCellRenderer,
       headerTooltip: 'Symbol',
-      minWidth: 100,
+      width: 80,
+      suppressSizeToFit: true
       // tooltipValueGetter: (params: any) => params.data.percentile.symbol,
       // suppressRowHoverHighlight: false
 
@@ -41,7 +51,7 @@ function getColDefs(requestObj: SelectedFeaturesForm, compDefMap: Map<string, Co
       field: 'name',
       valueGetter: (params: any) => compDefMap.get(params.data.percentile.symbol)?.name,
       headerTooltip: 'Name',
-      minWidth: 200,
+      // minWidth: 200,
       tooltipValueGetter: (params: any) => compDefMap.get(params.data.percentile.symbol)?.name
     }
     // {
@@ -126,7 +136,7 @@ export default function ScreenerTable(props: ScreenerTableProp) {
             // @ts-ignore
             columnDefs={store?.request ? getColDefs(store.request, compDefMap) : []} // Column Defs for Columns
             defaultColDef={{
-              sortable: true,
+              // sortable: true,
               resizable: true,
               maxWidth: 300,
             }}

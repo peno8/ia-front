@@ -9,11 +9,9 @@ export default function LoadingOveray() {
 
     return (
         isLoading ? <div className="absolute inset-0 overlay">
-            <div className="absolute left-2/4 top-96">
-                <Loader></Loader> 
+            <div className="absolute left-2/4 top-[40vh]">
+                <Loader type="bars" color="gray"></Loader> 
             </div>
-            
-            
         </div> : null
     )
 }

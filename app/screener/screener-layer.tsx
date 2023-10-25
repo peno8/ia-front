@@ -9,10 +9,13 @@ import { FeatureDef, selectedFeaturesFormStore, getVariationLabel, SelectedFeatu
 import CornerDialog from '../component/util/dialog';
 import ScreenerTable from './screener-table';
 import { useTheme } from 'next-themes';
+import ScreenerPanel from './summary/screener-panel';
+import ScreenerButtonArea from './screener-button-area';
+import { ScreenerDef } from '../app.store';
 
 
-export default function ScreenerLayer({featureDefs, variationCodeMap, children} : 
-  { featureDefs: FeatureDef[], variationCodeMap: Map<string, string>, children: ReactNode }) {
+export default function ScreenerLayer({featureDefs, variationCodeMap, screenerDefs, fetch, children} : 
+  { featureDefs: FeatureDef[], variationCodeMap: Map<string, string>, screenerDefs: ScreenerDef[], fetch: Function, children: ReactNode }) {
     const { theme, setTheme } = useTheme();
     const [mounted, setMounted] = useState(false)
 
@@ -29,21 +32,21 @@ export default function ScreenerLayer({featureDefs, variationCodeMap, children} 
     {/* <div className="flex flex-col grow"> */}
       <div className='flex flex-row h-full'>
         <div className='flex-none w-[500px] p-1 overflow-y-scroll'>
+          <ScreenerPanel featureDefs={featureDefs} screenerDefs={screenerDefs} variationCodeMap={variationCodeMap}></ScreenerPanel>
+          <ScreenerButtonArea fetch={fetch}></ScreenerButtonArea>
           {children}
         </div>
+        
         <div className='flex-1 p-1 min-w-[500px]'>
           {theme === 'dark' ? <div className="ag-theme-alpine-dark w-full h-full">
           <ScreenerTable  featureDefs={featureDefs} variationCodeMap={variationCodeMap}></ScreenerTable>
           </div> :         <div className="ag-theme-alpine w-full h-full">
           <ScreenerTable  featureDefs={featureDefs} variationCodeMap={variationCodeMap}></ScreenerTable>
           </div>}
-        {/* <div className="ag-theme-alpine dark:ag-theme-alpine-dark dark:text-red-700 w-full h-full">
-          <ScreenerTable  featureDefs={featureDefs} variationCodeMap={variationCodeMap}></ScreenerTable>
-          </div> */}
+
           
         </div>
       </div>
-    {/* </div> */}
     </>
   )
 }

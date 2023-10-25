@@ -1,6 +1,6 @@
 import { ReactNode, useState } from 'react';
 import { FeatureDef, SelectedFeaturesForm, selectedFeaturesFormStore, getVariationLabel, tableDataStore } from '../screener-store';
-import { Button } from '@mantine/core';
+import { Button, List } from '@mantine/core';
 import { ScreenerDef, fetchStatusStore } from '@/app/app.store';
 
 function LabelColumn(text: string) {
@@ -28,12 +28,18 @@ function SummaryRow2({ name, label, valueFunc }: { name: string, label: string, 
 function Variables({ featureDefs, variationCodeMap }: { featureDefs: FeatureDef[], variationCodeMap: Map<string, string> }) {
   return (
     <>
-      {Object.entries(selectedFeaturesFormStore((state) => state.features)).map(e => <div key={e[0]}>{getVariationLabel(e[0])}</div>)}
+      {Object.entries(selectedFeaturesFormStore((state) => state.features)).map(e => 
+      <li key={e[0]}>{getVariationLabel(e[0])}</li>
+      // <List.Item key={e[0]}>{getVariationLabel(e[0])}</List.Item>
+      )}
     </>
   )
 }
 
-interface SelectedVariablesProps { featureDefs: FeatureDef[], fetch: Function, screenerDefs: ScreenerDef[], variationCodeMap: Map<string, string> }
+interface SelectedVariablesProps { featureDefs: FeatureDef[], 
+  // fetch: Function, 
+  screenerDefs: ScreenerDef[], 
+  variationCodeMap: Map<string, string> }
 
 function sectorCodeToDesc(screenerDefs: ScreenerDef[]) {
   
@@ -75,10 +81,10 @@ function ResetButton() {
   )
 }
 
-export default function ScreenerPanel({ featureDefs, fetch, screenerDefs, variationCodeMap }: SelectedVariablesProps) {
+export default function ScreenerPanel({ featureDefs, screenerDefs, variationCodeMap }: SelectedVariablesProps) {
 
   return (
-    <div className='flex flex-row justify-between m-2 h-[160px]'>
+    <div className='flex flex-row justify-between p-2 h-52'>
       <div className="flex flex-col text-sm">
         
         <SummaryRow2 name={'cq'} label={'Calendar Quarter'}></SummaryRow2>
@@ -87,12 +93,13 @@ export default function ScreenerPanel({ featureDefs, fetch, screenerDefs, variat
         
         <SummaryRow2 name={'key'} label={'Industry'} valueFunc={sectorCodeToDesc(screenerDefs.filter(e => e.keyType === 'SIC'))}></SummaryRow2>
         <SummaryRow label={'Variables'}>
-          <div>
-            <Variables featureDefs={featureDefs} variationCodeMap={variationCodeMap}></Variables>
-          </div>
+
         </SummaryRow>
+        <ul className='list-disc pl-5'>
+            <Variables featureDefs={featureDefs} variationCodeMap={variationCodeMap}></Variables>
+          </ul>
       </div>
-      <div className='flex flex-row'>
+      {/* <div className='flex flex-row'>
         <div className='align-right pr-2'>
           {CallButton(fetch)}
           
@@ -101,7 +108,7 @@ export default function ScreenerPanel({ featureDefs, fetch, screenerDefs, variat
           {ResetButton()}
         </div>
       
-      </div>
+      </div> */}
     </div>
   )
 }

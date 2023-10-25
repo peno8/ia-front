@@ -10,9 +10,9 @@ export default function ScreenerFeature(props: ScreenerFeatureProp) {
   const sorted = props.featureDef.variations.sort((a, b) => a.displayRank - b.displayRank)
 
   return (
-    <div className="flex flex-col items-start Feature text-xl ml-4" key={props.featureDef.code}>
+    <div className="flex flex-col items-start Feature pb-1" key={props.featureDef.code}>
       <div className='flex flex-row items-center'>
-        <div className='text-lg'>
+        <div className='screener-feature-label'>
           {props.featureDef.desc}
         </div>
       </div>

@@ -13,7 +13,7 @@ export default function Sidebar() {
       <div className='flex flex-row justify-end'>
         <button className='p-2 m-2 ia-hover' onClick={() => setClosed(!closed)}>
           {closed?  <IconLayoutSidebarRightCollapse size={'1.5rem'} className=' text-slate-500 dark:text-blue-500'/> :
-           <IconLayoutSidebarLeftCollapse size={'1.5rem'} className=' text-slate-500 dark:text-blue-500'/>}
+           <IconLayoutSidebarLeftCollapse size={24} className=' text-slate-500 dark:text-blue-500'/>}
           
         </button>
       </div>

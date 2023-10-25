@@ -50,6 +50,16 @@
   /* column-gap: 30px; */
 }
 
+@media (min-width: 1536px) { 
+  main {
+    width: 1536px;
+  }
+}
+
+.dark .mantine-Burger-burger, .dark .mantine-Burger-burger::before, .dark .mantine-Burger-burger::after{
+  background-color: var(--text-dark);
+}
+
 /* 
 max-sm	@media not all and (min-width: 640px) { ... }
 max-md	@media not all and (min-width: 768px) { ... }
@@ -84,6 +94,7 @@ max-2xl	@media not all and (min-width: 1536px) { ... } */
 .overlay {
   background: rgba(255, 255, 255, 0.75);
   backdrop-filter: blur(calc(0.125rem * var(--mantine-scale)));
+  z-index: 200;
   /* --overlay-radius: var(--mantine-radius-sm); */
   /* --overlay-z-index: 200; */
 }
@@ -141,3 +152,121 @@ max-2xl	@media not all and (min-width: 1536px) { ... } */
     display: none;
   }
 }
+
+/* Screener */
+.screener-main-tab-area {
+  display: none;
+}
+.screener-main-tab {
+  /* font-size: 0.75rem !important; */
+  width: 100vw;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+.screener-main-tab-contents-area {
+  height: 100%;
+  
+  
+}
+.screener-main-tab-title {
+  padding: 0.25rem;
+  margin: 0.25rem;
+  font-size: 1rem;
+  font-weight: 600;
+}
+.screener-main-tab-buttons {
+  display: flex;
+  flex-direction: row;
+  font-size: 0.875rem !important;
+  color: rgb(113, 113, 122);
+  
+}
+.screener-main-tab-button-item {
+  padding: 0.25rem;
+  margin: 0.25rem;
+  border-radius: 0.25rem; 
+}
+.screener-main-tab-buttons .selected {
+  font-weight: 700;
+}
+.dark .screener-main-tab-buttons {
+  color: var(--text-dark);
+}
+.screener-main-tab-content {
+  /* width: 100vw; */
+  width: 100vw;
+  overflow: scroll;
+  height: 100%;
+  display: block;
+  /* padding: 0.25rem; */
+  /* display: none; */
+}
+
+.screener-main-tab .content-none {
+  display: none;
+}
+
+@media (max-width: 1024px) { 
+  .screener-main-tab-area {
+    display: block;
+  }
+  /* .screener-main-tab {
+    display: block;
+  } */
+  .screener-contents {
+    display: none;
+    height: 100%;
+  }
+  .mantine-Tabs-tab {
+    font-size: 0.75rem !important;
+    padding: 4px !important;
+  }
+  .mantine-Tabs-tabLabel {
+    font-size: 0.75rem !important;
+  }
+  
+  .screener-tab-label {
+    font-size: 0.875rem;
+  }
+  .screener-feature-label {
+    font-size: 1rem;
+  }
+  .screener-variation-panel {
+    font-size: 0.75rem;
+  }
+  .screener-switch {
+    width: 8rem;
+  }
+}
+
+
+@media (max-width: 1024px) { 
+
+
+}
+
+.ag-theme-alpine, .ag-theme-alpine-dark {
+  --ag-grid-size: 3px !important;
+  --ag-row-height: 30px !important;
+  --ag-header-height: 30px !important;
+  /* --ag-list-item-height: 30px !important; */
+}
+
+
+
+/* Analysys */
+.analysis-area {
+  width: 100%;
+  overflow: scroll;
+  height: 100%;
+  display: block;
+}
+
+@media (max-width: 1024px) { 
+  .analysis-area { 
+    width: 100vw;
+  }
+}
+
+/* rgb(34, 139, 230) */

@@ -19,15 +19,17 @@ export default function AnalysisContent({ featureDefsJson, symbol }: { featureDe
     
     return (
         <div className="relative w-full">
-            {featureData ?
-                <div className="relative w-full">
-                    <StockDescription cd={companyDef} featureData={featureData}/>
-                    <div className="m-2">
-                        {featureData.feature ? <AnalysisAccordion featureData={featureData} /> : null}
-                    </div>
-                </div> : null
-            }
-            <LoadingOveray></LoadingOveray>
+            <div className="analysis-area">
+                {featureData ?
+                    <div className="w-[900px]">
+                        <StockDescription cd={companyDef} featureData={featureData}/>
+                        <div className="m-2">
+                            {featureData.feature ? <AnalysisAccordion featureData={featureData} /> : null}
+                        </div>
+                    </div> : null
+                }
+                <LoadingOveray></LoadingOveray>
+            </div>
         </div>
     )
 }
