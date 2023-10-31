@@ -5,8 +5,9 @@ import { Modal, Button, NavLink, Divider } from '@mantine/core';
 import Link from 'next/link';
 import { IconEyeSearch, IconSortDescending } from '@tabler/icons-react';
 import DarkModeButton from '../dark-mode-button';
+import { AppMetadata } from '@/app/app.store';
 
-export default function MenuDialog({ opened, close }: { opened: boolean, close: Function }) {
+export default function MenuDialog({ opened, close, metadata }: { opened: boolean, close: Function, metadata: AppMetadata }) {
 
   function closeMenu() {
     close();
@@ -34,8 +35,11 @@ export default function MenuDialog({ opened, close }: { opened: boolean, close: 
             <div className='ml-[10px]'>Financial Statement Charts</div>
           </Link>
           <Divider my="sm" />
-          <div className=''>
+          <div className='py-3'>
             <DarkModeButton></DarkModeButton>
+          </div>
+          <div className='py-3 dark:text-[--text-dark]'>
+            {`Last Update: ` + metadata.DATE}
           </div>
         </div>
       </Modal>

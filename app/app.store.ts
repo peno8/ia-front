@@ -57,6 +57,14 @@ export let companyDefMap: Map<string, CompanyDef> = new Map();
 
 export const getCompanyDef = (symbol: string) => companyDefList.find(e => e.sb == symbol);
 
+export type AppMetadata = {
+    DATE: string
+    CURRENT_QT: string
+    LAST_QT: string
+}
+
+export const appMetadataStore = create<AppMetadata | null>(() => (null));
+
 // export const companyDefStore = create<{ data: CompanyDef[] } | null>(() => ({ data: [] }));
 
 export function setCompanyDefs(str: string) {

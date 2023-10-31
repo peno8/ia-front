@@ -4,7 +4,7 @@ import { Inter } from 'next/font/google'
 import Header from './component/header/header'
 import Footer from './footer'
 import localFont from 'next/font/local'
-import OptionBar from './component/option-bar'
+import OptionBar from './component/header/option-bar'
 import Sidebar from './component/sidebar'
 import '@mantine/core/styles.css';
 import { MantineProvider, ColorSchemeScript } from '@mantine/core';
@@ -15,6 +15,7 @@ import { ThemeProviders } from './theme-provider'
 import 'ag-grid-community/styles/ag-grid.css'; // Core grid CSS, always needed
 import 'ag-grid-community/styles/ag-theme-alpine.css'; // Optional theme CSS
 import GoogleAnalytics from './component/util/ga'
+import { appMetadataStore } from './app.store'
 // import 'ag-grid-community/styles/ag-theme-aline-dark.css'; // Optional theme CSS
 
 export const dynamic = 'force-dynamic'
@@ -64,15 +65,30 @@ featureDefsStringStore.setState(featureDefsStr);
 // loadCompanyDef();
 const companyDefStr = readFileFromSharedDist(process.env.COMPANY_DEF_CODES_FILE);
 
+async function getMetadata() {
+  const res = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}/api/metadata/get`, {
+    method: 'GET',
+    cache: 'no-cache'
+  })
+  console.log(res)
+
+  if (!res.ok) {
+    throw new Error('Failed to fetch metadata')
+  }
+ 
+  return res.json()
+}
+
 
 // featureDefsStringStore.setState(featureDefsStr);
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: {
   children: React.ReactNode
 }) {
-
+  // const metadata = await getMetadata();
+  // console.log(metadata)
   return (
 
     <html lang="en" suppressHydrationWarning>

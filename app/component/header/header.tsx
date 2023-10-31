@@ -1,12 +1,32 @@
 import Image from "next/image"
 import AutocompleteSearch from "./autocompleteSearch"
 import Link from "next/link"
-import OptionBar from "../option-bar"
+import OptionBar from "./option-bar"
 import "./header.css"
 import MenuButton from "./menu-button"
+import { appMetadataStore } from "@/app/app.store"
+
+async function getMetadata() {
+  const res = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}/api/metadata/get`, {
+    method: 'GET',
+    cache: 'no-cache'
+  })
+  console.log(res)
+
+  if (!res.ok) {
+    throw new Error('Failed to fetch metadata')
+  }
+ 
+  return res.json()
+}
 
 
-export default function Header({companyDefStr}: {companyDefStr: string}) {
+export default async function Header({companyDefStr}: {companyDefStr: string}) {
+
+  const metadata = await getMetadata();
+  console.log(metadata)
+  appMetadataStore.setState(metadata);
+
   return (
     <header className="w-full">
       <div className="header-main flex items-center justify-between align-center flex-nowrap h-24">
@@ -18,20 +38,13 @@ export default function Header({companyDefStr}: {companyDefStr: string}) {
             <div className="logo-text text-[16px] font-semibold ml-[10px] dark:text-white">interactive-alpha</div>
           </div>
         </Link>
-        {/* <div className="flex flex-row"> */}
           <AutocompleteSearch companyDefStr={companyDefStr}></AutocompleteSearch>
-          {/* <HeaderSearchBox></HeaderSearchBox> */}
-          {/* <div><input type="search" className="border"></input></div>
-          <div>
-            <button>Search</button>
-          </div> */}
-        {/* </div> */}
         <div>
-          <MenuButton></MenuButton>
+          <MenuButton metadata={metadata}></MenuButton>
         </div>
         
       </div>
-      <OptionBar></OptionBar>
+      <OptionBar metadata={metadata}></OptionBar>
     </header>
   )
 }
