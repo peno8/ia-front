@@ -2,17 +2,20 @@ import { useState } from 'react';
 import { Checkbox } from '@mantine/core';
 import { ScreenerDef } from '@/app/app.store';
 import { selectedFeaturesFormStore } from '../screener-store'
+import { useContext } from 'react';
+import { ScreenerContext } from '../screener-context';
 
 function SortCheckbox(value: string, label: string) {
   return <Checkbox className='p-1' value={value} label={label} key={value} />
 }
 
 
-export function SectorCheckboxes({ screenerDefs }: { screenerDefs: ScreenerDef[] }) {
+export function SectorCheckboxes() {
+  const context = useContext(ScreenerContext);
   
   function sectorCheckboxes() {
-    screenerDefs.sort((a, b) => a.order - b.order);
-    return screenerDefs.map(e => SortCheckbox(e.key, e.desc));
+    context.screenerDefs.sort((a, b) => a.order - b.order);
+    return context.screenerDefs.map(e => SortCheckbox(e.key, e.desc));
   }
 
   const checked = selectedFeaturesFormStore((state) => state)
@@ -33,12 +36,13 @@ export function SectorCheckboxes({ screenerDefs }: { screenerDefs: ScreenerDef[]
 export function CalendarQuarterCheckboxes() {
   const cq = selectedFeaturesFormStore((state) => state.cq)
   const resetCq = selectedFeaturesFormStore((state) => state.resetCq)
+  const context = useContext(ScreenerContext);
 
   return (
     <>
       <Checkbox.Group value={[cq]} onChange={(arr) => resetCq(arr.slice(-1)[0])}>
-        {SortCheckbox('2023-Q2', '2023-Q2')}
-        {/* {checkbox('2023-Q1', '2023-Q1')} */}
+        {SortCheckbox(context.metadata.CURRENT_QT, context.metadata.CURRENT_QT)}
+        {SortCheckbox(context.metadata.LAST_QT, context.metadata.LAST_QT)}
       </Checkbox.Group>
     </>
   );

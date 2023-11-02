@@ -2,31 +2,34 @@ import { Button, Tabs, rem } from '@mantine/core';
 // import { IconPhoto, IconMessageCircle, IconSettings } from '@tabler/icons-react';
 import { Switch } from '@mantine/core';
 import { Chip } from '@mantine/core';
-import { useState } from 'react';
+import { useContext, useState } from 'react';
 import { Accordion } from '@mantine/core';
 import ScreenerOption from './screener-option';
 import ScreenerFeature from './screener-feature';
 import ScreenerTypeItem from './screener-type-item';
-import { FeatureDef } from '../screener-store';
+import { FeatureDef, featureDefs } from '../screener-store';
 import ScreenerPanel from '../summary/screener-panel';
 import { ScreenerDef } from '@/app/app.store';
 import { CalendarQuarterCheckboxes, SectorCheckboxes } from './sector-checkboxes'
+import ScreenerContent from '../screener-contents';
+import { ScreenerContext } from '../screener-context';
 
 export interface ScreenerTabProps {
-    featureDefs: Array<FeatureDef>
+    //featureDefs: Array<FeatureDef>
     // fetch: Function
-    screenerDefs: ScreenerDef[]
     variationCodeMap: Map<string, string>
 }
 
-export default function ScreenerFeatureTab(props: ScreenerTabProps) {
+export default function ScreenerFeatureTab() {
     const iconStyle = { width: rem(12), height: rem(12) };
+    const context = useContext(ScreenerContext);
 
     const categories = ['PROFITABILITY', 'GROWTH', 'STABILITY', 'EFFICIENCY', 'SIZE'];
     const accordionDefault = ['PROFITABILITY'];
     const featureDefMap = new Map();
+    
     for (const featureType of categories) {
-        const filtered = props.featureDefs.filter(e => e.category === featureType);
+        const filtered = context.featureDefs.filter(e => e.category === featureType);
         featureDefMap.set(featureType, filtered);
     }
 
@@ -59,7 +62,7 @@ export default function ScreenerFeatureTab(props: ScreenerTabProps) {
                 </Tabs.Panel>
 
                 <Tabs.Panel value="exchange">
-                    <SectorCheckboxes screenerDefs={props.screenerDefs}></SectorCheckboxes>
+                    <SectorCheckboxes></SectorCheckboxes>
                 </Tabs.Panel>
 
                 <Tabs.Panel value="cq">

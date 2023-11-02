@@ -66,22 +66,19 @@ export function setFeatureDefsStore(json: string) {
     }
 }
 
-// export function setVariationCodeMapStore(map: Map<string, string>) {
-//     variationCodeMapStore.setState(map);
-//     variationCodeMap = map;
-// }
-
 function getVariationSortingScheme(code: string) {
     const res = featureDefsMap!.get(variationCodeMap!.get(code)!)?.lowerIsBetter;
     return res === undefined ? true : res;
 }
 
+// TODO: remove 
 export function getFeatureDef(featureCode: string) {
     const featureDef = featureDefs!.find(e => e.code == featureCode);
     // const variationDef = featureDef?.variations.find(v => v.code == code);
     return featureDef;
 }
 
+// TODO: remove 
 export const getFeatureDefByVariationCode = (code: string) => getFeatureDef(variationCodeMap!.get(code)!);
 
 export function getVariationLabel(code: string) {
@@ -141,11 +138,10 @@ export interface SelectedFeaturesForm {
     resetScreenerKey: Function;
 }
 
-
 export const selectedFeaturesFormStore = create<SelectedFeaturesForm>((set, get) =>
 ({
     features: { 'NI_T|R_T': { lowerIsBetter: false } },
-    cq: '2023-Q2',
+    cq: '',
     key: 'ALL|X',
     // exchange: 'ALL',
     count: 1,

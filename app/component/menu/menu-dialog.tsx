@@ -39,7 +39,7 @@ export default function MenuDialog({ opened, close, metadata }: { opened: boolea
             <DarkModeButton></DarkModeButton>
           </div>
           <div className='py-3 dark:text-[--text-dark]'>
-            {`Last Update: ` + metadata.DATE}
+            {`Last Update: ` + metadata?.DATE}
           </div>
         </div>
       </Modal>

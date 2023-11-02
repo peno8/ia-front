@@ -9,12 +9,6 @@ import Link from 'next/link';
 import { CompanyDef, companyDefMap } from '../app.store';
 import { Anchor, Box, Loader, LoadingOverlay } from '@mantine/core';
 
-interface ScreenerTableProp {
-  // tableData: ScreenerApiResult[]
-  featureDefs: FeatureDef[]
-  variationCodeMap: Map<string, string>
-}
-
 const linkCellRenderer = ({ value }: { value: string }) => (
   <Anchor target="_blank" href={`/analysis/${value}`}>{value}</Anchor>
 );
@@ -109,7 +103,7 @@ function getColDefs(requestObj: SelectedFeaturesForm, compDefMap: Map<string, Co
   return allColDefs;
 }
 
-export default function ScreenerTable(props: ScreenerTableProp) {
+export default function ScreenerTable() {
 
   const gridRef = useRef(null);
   const store = tableDataStore((state) => state);

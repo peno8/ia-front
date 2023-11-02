@@ -31,10 +31,9 @@ function TabButton(value: string, opened: boolean, onClick: Function) {
 }
 
 export interface ScreenerMainTabProps {
-    featureDefs: Array<FeatureDef>
+    //featureDefs: Array<FeatureDef>
     fetch: Function
-    screenerDefs: ScreenerDef[]
-    variationCodeMap: Map<string, string>
+    //variationCodeMap: Map<string, string>
 }
 
 export default function ScreenerMainTab(props: ScreenerMainTabProps) {
@@ -58,45 +57,16 @@ export default function ScreenerMainTab(props: ScreenerMainTabProps) {
             <div className='screener-main-tab-contents-area'>
                 <ScreenerMainTabContent opened={tabValue === 'configure'}>
                     <ScreenerButtonArea fetch={fetchFromMobileTab}></ScreenerButtonArea>
-                    <ScreenerFeatureTab featureDefs={props.featureDefs!} screenerDefs={props.screenerDefs} variationCodeMap={props.variationCodeMap!}></ScreenerFeatureTab>
+                    <ScreenerFeatureTab></ScreenerFeatureTab>
                 </ScreenerMainTabContent>
-                {/* <div className='screener-main-tab-content '>
-            <ScreenerFeatureTab featureDefs={props.featureDefs!} screenerDefs={props.screenerDefs} variationCodeMap={props.variationCodeMap!} fetch={props.fetchScreenerData}></ScreenerFeatureTab>
-        </div> */}
                 <ScreenerMainTabContent opened={tabValue === 'selected'}>
-                    <ScreenerPanel featureDefs={props.featureDefs!} screenerDefs={props.screenerDefs} variationCodeMap={props.variationCodeMap!} ></ScreenerPanel>
+                    <ScreenerPanel ></ScreenerPanel>
                 </ScreenerMainTabContent>
 
                 <ScreenerMainTabContent opened={tabValue === 'table'}>
-                    {/* <div>xxx</div> */}
-                    <ScreenerTableBox featureDefs={props.featureDefs!} variationCodeMap={props.variationCodeMap!}></ScreenerTableBox>
+                    <ScreenerTableBox></ScreenerTableBox>
                 </ScreenerMainTabContent>
-                {/* <LoadingOveray></LoadingOveray> */}
             </div>
-            {/* <Tabs defaultValue="configure">
-        <Tabs.List>
-            <Tabs.Tab value="configure" size={12} >
-            Configure
-            </Tabs.Tab>
-            <Tabs.Tab value="Params" >
-            Params
-            </Tabs.Tab>
-            <Tabs.Tab value="Table" >
-            Table
-            </Tabs.Tab>
-        </Tabs.List>
-        <Tabs.Panel value="configure">
-        <ScreenerFeatureTab featureDefs={props.featureDefs!} screenerDefs={props.screenerDefs} variationCodeMap={props.variationCodeMap!} fetch={props.fetchScreenerData}></ScreenerFeatureTab>
-        </Tabs.Panel>
-
-        <Tabs.Panel value="Params">
-            Messages tab content
-        </Tabs.Panel>
-
-        <Tabs.Panel value="Table">
-            Settings tab content
-        </Tabs.Panel>
-        </Tabs> */}
         <LoadingOveray></LoadingOveray>
         </div>
     );

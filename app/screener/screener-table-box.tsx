@@ -8,8 +8,7 @@ import ScreenerTable from './screener-table';
 import { useTheme } from 'next-themes';
 
 
-export default function ScreenerTableBox({ featureDefs, variationCodeMap }:
-    { featureDefs: FeatureDef[], variationCodeMap: Map<string, string> }) {
+export default function ScreenerTableBox() {
     const { theme } = useTheme();
     const [mounted, setMounted] = useState(false)
 
@@ -23,14 +22,9 @@ export default function ScreenerTableBox({ featureDefs, variationCodeMap }:
 
     return (
         <>
-            {theme === 'dark' ? 
-            <div className="ag-theme-alpine-dark w-full h-full">
-                <ScreenerTable featureDefs={featureDefs} variationCodeMap={variationCodeMap}></ScreenerTable>
-            </div> : 
-            <div className="ag-theme-alpine min-w-[600px] h-full">
-                <ScreenerTable featureDefs={featureDefs} variationCodeMap={variationCodeMap}></ScreenerTable>
-            </div>}
-
+             <div className={`${theme === 'dark' ? 'ag-theme-alpine-dark' : 'ag-theme-alpine'}  w-full h-full`}>
+                <ScreenerTable></ScreenerTable>
+            </div>
         </>
     )
 }

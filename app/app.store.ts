@@ -63,9 +63,20 @@ export type AppMetadata = {
     LAST_QT: string
 }
 
-export const appMetadataStore = create<AppMetadata | null>(() => (null));
-
-// export const companyDefStore = create<{ data: CompanyDef[] } | null>(() => ({ data: [] }));
+export async function getMetadata() {
+    const res = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}/api/metadata/get`, {
+      method: 'GET',
+    //   cache: 'no-cache',
+      next: { revalidate: 600 }
+    })
+    // console.log(res)
+  
+    if (!res.ok) {
+      throw new Error('Failed to fetch metadata')
+    }
+   
+    return res.json()
+  }
 
 export function setCompanyDefs(str: string) {
     if (companyDefList.length === 0) {

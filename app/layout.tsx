@@ -15,7 +15,9 @@ import { ThemeProviders } from './theme-provider'
 import 'ag-grid-community/styles/ag-grid.css'; // Core grid CSS, always needed
 import 'ag-grid-community/styles/ag-theme-alpine.css'; // Optional theme CSS
 import GoogleAnalytics from './component/util/ga'
-import { appMetadataStore } from './app.store'
+import { useContext } from 'react'
+import { MetadataContext } from './MetadataContext'
+
 // import 'ag-grid-community/styles/ag-theme-aline-dark.css'; // Optional theme CSS
 
 export const dynamic = 'force-dynamic'
@@ -62,33 +64,13 @@ const featureDefsStr = readFileFromSharedDist(process.env.FEATURE_DEFS_FILE);
 
 featureDefsStringStore.setState(featureDefsStr);
 
-// loadCompanyDef();
 const companyDefStr = readFileFromSharedDist(process.env.COMPANY_DEF_CODES_FILE);
-
-async function getMetadata() {
-  const res = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}/api/metadata/get`, {
-    method: 'GET',
-    cache: 'no-cache'
-  })
-  console.log(res)
-
-  if (!res.ok) {
-    throw new Error('Failed to fetch metadata')
-  }
- 
-  return res.json()
-}
-
-
-// featureDefsStringStore.setState(featureDefsStr);
 
 export default async function RootLayout({
   children,
 }: {
   children: React.ReactNode
 }) {
-  // const metadata = await getMetadata();
-  // console.log(metadata)
   return (
 
     <html lang="en" suppressHydrationWarning>
@@ -97,6 +79,7 @@ export default async function RootLayout({
       </head>
       <GoogleAnalytics />
       <body className={`${localFonts.className} font-medium text-sm flex w-full flex-col items-center justify-stretch p-0 m-0 min-h-screen dark:bg-slate-800`}>
+        
         <ThemeProviders>
         <MantineProvider>
           <Header companyDefStr={companyDefStr} />
@@ -113,6 +96,7 @@ export default async function RootLayout({
           <Footer />
         </MantineProvider>
         </ThemeProviders>
+        
       </body>
       
     </html>

@@ -1,7 +1,8 @@
-import { ReactNode, useState } from 'react';
+import { ReactNode, useContext, useState } from 'react';
 import { FeatureDef, SelectedFeaturesForm, selectedFeaturesFormStore, getVariationLabel, tableDataStore } from '../screener-store';
 import { Button, List } from '@mantine/core';
 import { ScreenerDef, fetchStatusStore } from '@/app/app.store';
+import { ScreenerContext } from '../screener-context';
 
 function LabelColumn(text: string) {
   return <div className='text-sm font-semibold w-32'>{text}: </div>;
@@ -25,7 +26,7 @@ function SummaryRow2({ name, label, valueFunc }: { name: string, label: string, 
   </div>
 }
 
-function Variables({ featureDefs, variationCodeMap }: { featureDefs: FeatureDef[], variationCodeMap: Map<string, string> }) {
+function Variables() {
   return (
     <>
       {Object.entries(selectedFeaturesFormStore((state) => state.features)).map(e => 
@@ -36,10 +37,12 @@ function Variables({ featureDefs, variationCodeMap }: { featureDefs: FeatureDef[
   )
 }
 
-interface SelectedVariablesProps { featureDefs: FeatureDef[], 
+interface SelectedVariablesProps { 
+  // featureDefs: FeatureDef[], 
   // fetch: Function, 
-  screenerDefs: ScreenerDef[], 
-  variationCodeMap: Map<string, string> }
+  // screenerDefs: ScreenerDef[], 
+  // variationCodeMap: Map<string, string> 
+}
 
 function sectorCodeToDesc(screenerDefs: ScreenerDef[]) {
   
@@ -81,7 +84,8 @@ function ResetButton() {
   )
 }
 
-export default function ScreenerPanel({ featureDefs, screenerDefs, variationCodeMap }: SelectedVariablesProps) {
+export default function ScreenerPanel() {
+  const context = useContext(ScreenerContext);
 
   return (
     <div className='flex flex-row justify-between p-2 h-52'>
@@ -89,14 +93,14 @@ export default function ScreenerPanel({ featureDefs, screenerDefs, variationCode
         
         <SummaryRow2 name={'cq'} label={'Calendar Quarter'}></SummaryRow2>
         
-        <SummaryRow2 name={'key'} label={'Exchange'} valueFunc={sectorCodeToDesc(screenerDefs.filter(e => e.keyType !== 'SIC'))}></SummaryRow2>
+        <SummaryRow2 name={'key'} label={'Exchange'} valueFunc={sectorCodeToDesc(context.screenerDefs.filter(e => e.keyType !== 'SIC'))}></SummaryRow2>
         
-        <SummaryRow2 name={'key'} label={'Industry'} valueFunc={sectorCodeToDesc(screenerDefs.filter(e => e.keyType === 'SIC'))}></SummaryRow2>
+        <SummaryRow2 name={'key'} label={'Industry'} valueFunc={sectorCodeToDesc(context.screenerDefs.filter(e => e.keyType === 'SIC'))}></SummaryRow2>
         <SummaryRow label={'Variables'}>
 
         </SummaryRow>
         <ul className='list-disc pl-5'>
-            <Variables featureDefs={featureDefs} variationCodeMap={variationCodeMap}></Variables>
+            <Variables></Variables>
           </ul>
       </div>
       {/* <div className='flex flex-row'>

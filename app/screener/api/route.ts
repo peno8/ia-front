@@ -18,7 +18,6 @@ export interface ScreenerApiResult {
 }
 
 export async function POST(req: Request): Promise<Array<ScreenerApiResult>> {
-  // console.log(req);
   const res = await fetch(req)
   
   const data = await res.json()

@@ -7,7 +7,7 @@ export default function OptionBar({ metadata }: {metadata: AppMetadata}) {
       <div className="option-bar-content flex flex- items-center mr-12">
         <DarkModeButton></DarkModeButton>
         <div className='dark:text-[--text-dark]'>
-          {`Last Update: ` + metadata.DATE}
+          {`Last Update: ` + metadata?.DATE}
         </div>
       </div>
     </div>

@@ -4,29 +4,11 @@ import Link from "next/link"
 import OptionBar from "./option-bar"
 import "./header.css"
 import MenuButton from "./menu-button"
-import { appMetadataStore } from "@/app/app.store"
-
-async function getMetadata() {
-  const res = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}/api/metadata/get`, {
-    method: 'GET',
-    cache: 'no-cache'
-  })
-  console.log(res)
-
-  if (!res.ok) {
-    throw new Error('Failed to fetch metadata')
-  }
- 
-  return res.json()
-}
-
+import { getMetadata } from "@/app/app.store"
 
 export default async function Header({companyDefStr}: {companyDefStr: string}) {
 
   const metadata = await getMetadata();
-  console.log(metadata)
-  appMetadataStore.setState(metadata);
-
   return (
     <header className="w-full">
       <div className="header-main flex items-center justify-between align-center flex-nowrap h-24">
