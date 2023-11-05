@@ -25,9 +25,9 @@ export interface Fetchstatus {
 
 export const fetchStatusStore = create<Fetchstatus>((set) => ({
     isLoading: false,
-    setLoading: () => set(() => ({ isLoading: true})),
+    setLoading: () => set(() => ({ isLoading: true })),
     setFinished: () => set({ isLoading: false }),
-  }))
+}))
 
 export const dialogStore = create<{ opened: boolean, closeDialog: Function, openDialog: Function }>((set) => ({
     opened: false,
@@ -64,25 +64,21 @@ export type AppMetadata = {
 }
 
 export async function getMetadata() {
-    const res = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}/api/metadata/get`, {
-      method: 'GET',
-    //   cache: 'no-cache',
-      next: { revalidate: 600 }
+    const res = await fetch(`${process.env.NEXT_PUBLIC_INTERNAL_URL}/api/metadata/get`, {
+        method: 'GET',
+        next: { revalidate: 600 }
     })
-    // console.log(res)
-  
     if (!res.ok) {
-      throw new Error('Failed to fetch metadata')
+        throw new Error('Failed to fetch metadata')
     }
-   
+
     return res.json()
-  }
+}
 
 export function setCompanyDefs(str: string) {
     if (companyDefList.length === 0) {
         const list: CompanyDef[] = JSON.parse(str);
         const map = new Map(list.map(e => [e.sb, e]));
-        // companyDefStore.setState({ data: json });
         companyDefList = list;
         companyDefMap = map;
     }

@@ -248,7 +248,6 @@ export const tableDataStore = create<{ response: ScreenerApiResult[] | null, req
 
 export function fetchScreenerData() {
     const controller = new AbortController();
-    console.log('fetchScreenerData2')
     fetchStatusStore.setState({ isLoading: true });
 
     const request = getSelectedScreenerParam();

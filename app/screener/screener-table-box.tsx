@@ -22,6 +22,7 @@ export default function ScreenerTableBox() {
     return (
         <>
              <div className={`${theme === 'dark' ? 'ag-theme-alpine-dark' : 'ag-theme-alpine'}  w-full h-full`}>
+                {/* TODO: use 1 table component only */}
                 <ScreenerTable></ScreenerTable>
             </div>
         </>

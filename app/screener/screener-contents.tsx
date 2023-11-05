@@ -8,7 +8,6 @@ import CornerDialog from "../component/util/dialog";
 import LoadingOveray from "../component/util/loadingOveray";
 import ScreenerMainTab from "./screener-main-tab";
 import { ScreenerContext } from "./screener-context";
-import { useWindowWidth } from '@react-hook/window-size';
 
 function prepare(json: string, screenerDefStr: string, metadata: AppMetadata) {
 
