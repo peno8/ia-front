@@ -1,24 +1,18 @@
 import './globals.css'
-import type { Metadata } from 'next'
+import type { Metadata, Viewport } from 'next'
 import { Inter } from 'next/font/google'
 import Header from './component/header/header'
 import Footer from './footer'
 import localFont from 'next/font/local'
-import OptionBar from './component/header/option-bar'
 import Sidebar from './component/sidebar'
 import '@mantine/core/styles.css';
 import { MantineProvider, ColorSchemeScript } from '@mantine/core';
 import { featureDefsStringStore } from './screener/screener-store'
 import { readFileFromSharedDist } from './utils'
-import { Button } from '@mantine/core';
 import { ThemeProviders } from './theme-provider'
 import 'ag-grid-community/styles/ag-grid.css'; // Core grid CSS, always needed
 import 'ag-grid-community/styles/ag-theme-alpine.css'; // Optional theme CSS
 import GoogleAnalytics from './component/util/ga'
-import { useContext } from 'react'
-import { MetadataContext } from './MetadataContext'
-
-// import 'ag-grid-community/styles/ag-theme-aline-dark.css'; // Optional theme CSS
 
 export const dynamic = 'force-dynamic'
 
@@ -56,8 +50,12 @@ const inter = Inter({ subsets: ['latin'] })
 
 export const metadata: Metadata = {
   title: 'interactive-alpha',
-  description: 'Best financial statement visualization.',
-  viewport: 'width=device-width, initial-scale=1.0'
+  description: 'Best financial statement visualization.'
+}
+ 
+export const viewport: Viewport = {
+  width: 'device-width',
+  initialScale: 1
 }
 
 const featureDefsStr = readFileFromSharedDist(process.env.FEATURE_DEFS_FILE);

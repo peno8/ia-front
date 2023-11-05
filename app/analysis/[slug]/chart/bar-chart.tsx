@@ -11,8 +11,8 @@ export default function BarChartContainer({ featureDef, data, variationLabels, c
 
     const chartData = data.find(e => e.key === key)!.features;
 
-    function changeChartData(key: string) {
-        setKey(key);
+    function changeChartData(key: string | null) {
+        key && setKey(() => key);
     }
 
     return (

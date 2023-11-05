@@ -66,21 +66,13 @@ function CallButton(fetch: Function) {
     setValueChanged();
     setLoading();
     fetch();
-    setDisabled(true);
+    setDisabled(() => true);
     setTimeout(() => {
-      setDisabled(false);
+      setDisabled(() => false);
     }, 2000)
   }
-//
   return(
     <Button className='call-button-color' variant='filled' onClick={() => call()} disabled={disabled || !valueChanged}>Run</Button>
-  )
-}
-
-function ResetButton() {
-  const reset = selectedFeaturesFormStore((state) =>  state.resetAll);
-  return(
-    <Button className='reset-button-color' color="orange" onClick={() => reset()}>Reset</Button>
   )
 }
 
@@ -103,16 +95,6 @@ export default function ScreenerPanel() {
             <Variables></Variables>
           </ul>
       </div>
-      {/* <div className='flex flex-row'>
-        <div className='align-right pr-2'>
-          {CallButton(fetch)}
-          
-        </div>
-        <div className='align-right'>
-          {ResetButton()}
-        </div>
-      
-      </div> */}
     </div>
   )
 }

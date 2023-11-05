@@ -1,6 +1,6 @@
 'use client'
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect } from "react";
 import { featureDataStore, fetchFeatureData } from "./analysis-store";
 import { setFeatureDefsStore } from "../../screener/screener-store";
 import AnalysisAccordion from "./analysis-accordion";

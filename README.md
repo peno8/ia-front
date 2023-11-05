@@ -18,3 +18,15 @@ docker build -t xxxx/ia-front:0.0.x .
 
 docker push xxxx/ia-front:0.0.x 
 ```
+
+## Maintenance
+```
+npm audit
+# list vulnerabilities
+
+npm outdated
+# list outdated packages
+
+npm update
+# update 'wanted' packages
+```

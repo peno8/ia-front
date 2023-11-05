@@ -3,7 +3,7 @@
 import { CompanyDef, setCompanyDefs } from "@/app/app.store";
 import { Autocomplete } from "@mantine/core";
 import { useRouter } from "next/navigation";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
 function AutoCompleteComp({companyDefs}: {companyDefs: CompanyDef[]}) {
   const router = useRouter()

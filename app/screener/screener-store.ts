@@ -219,7 +219,7 @@ export const selectedFeaturesFormStore = create<SelectedFeaturesForm>((set, get)
     }
 }))
 
-function getSelectedScreenerParam() {
+export function getSelectedScreenerParam() {
     const from = selectedFeaturesFormStore.getState();
     const to: SelectedFeaturesForm = JSON.parse(JSON.stringify(from));
     const entries: [string, { lowerIsBetter: boolean }][] = Object.entries(to.features);
@@ -234,22 +234,36 @@ export const tableDataStore = create<{ response: ScreenerApiResult[] | null, req
     removeResponse: () => set({ response: null, request: null })
 }));
 
-export function fetchScreenerData() {
-    const get = async () => {
-        fetchStatusStore.setState({ isLoading: true });
+// export function fetchScreenerData() {
+//     const get = async () => {
+//         fetchStatusStore.setState({ isLoading: true });
 
-        const request = getSelectedScreenerParam();
-        let data = await POST(getRequest(JSON.stringify(request), `${process.env.NEXT_PUBLIC_BACKEND_URL}/api/percentile/ranks`));
-        tableDataStore.setState({ response: data, request: request });
-        fetchStatusStore.setState({ isLoading: false });
-    }
-    get();
+//         const request = getSelectedScreenerParam();
+//         let data = await POST(getRequest(JSON.stringify(request), `${process.env.NEXT_PUBLIC_BACKEND_URL}/api/percentile/ranks`));
+//         tableDataStore.setState({ response: data, request: request });
+//         fetchStatusStore.setState({ isLoading: false });
+//     }
+//     get();
+// }
+
+export function fetchScreenerData() {
+    const controller = new AbortController();
+    console.log('fetchScreenerData2')
+    fetchStatusStore.setState({ isLoading: true });
+
+    const request = getSelectedScreenerParam();
+    POST(getRequest(JSON.stringify(request), `${process.env.NEXT_PUBLIC_BACKEND_URL}/api/percentile/ranks`))
+        .then((data) => {
+            tableDataStore.setState({ response: data, request: request });
+        })
+        .finally(() => fetchStatusStore.setState({ isLoading: false }));
+    
+    return () => {
+        controller.abort();
+    } 
     // fetchStatusStore.setState({ isLoading: true });
     // setTimeout(() => {
     //     get();
     // }, 20000)
-
 }
-
-
 

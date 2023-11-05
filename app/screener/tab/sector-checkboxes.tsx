@@ -1,6 +1,4 @@
-import { useState } from 'react';
 import { Checkbox } from '@mantine/core';
-import { ScreenerDef } from '@/app/app.store';
 import { selectedFeaturesFormStore } from '../screener-store'
 import { useContext } from 'react';
 import { ScreenerContext } from '../screener-context';
@@ -13,10 +11,10 @@ function SortCheckbox(value: string, label: string) {
 export function SectorCheckboxes() {
   const context = useContext(ScreenerContext);
   
-  function sectorCheckboxes() {
-    context.screenerDefs.sort((a, b) => a.order - b.order);
-    return context.screenerDefs.map(e => SortCheckbox(e.key, e.desc));
-  }
+  // function sectorCheckboxes() {
+  //   context.screenerDefs.sort((a, b) => a.order - b.order);
+  //   return context.screenerDefs.map(e => SortCheckbox(e.key, e.desc));
+  // }
 
   const checked = selectedFeaturesFormStore((state) => state)
 
@@ -27,7 +25,7 @@ export function SectorCheckboxes() {
       <Checkbox.Group value={checked.key? [checked.key] : []} onChange={(arr) => {
         resetScreenerKey(arr.slice(-1)[0]);
         }}>
-        {sectorCheckboxes()}
+        {context.screenerDefs.map(e => SortCheckbox(e.key, e.desc))}
       </Checkbox.Group>
     </>
   );

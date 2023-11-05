@@ -3,7 +3,7 @@ const nextConfig = {
   experimental: {
     serverActions: true
   },
-  reactStrictMode: false,
+  reactStrictMode: true,
   webpack: (config) => {
     config.resolve.fallback = { fs: false };
 

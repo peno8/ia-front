@@ -1,7 +1,6 @@
 // import { dialogStore, selectedFeaturesFormStore } from '@/app/screener/screener-store';
 import { dialogStore } from '@/app/app.store';
 import { Dialog, Text } from '@mantine/core';
-import { useState } from 'react';
 
 export default function CornerDialog({ message }: { message: string }) {
   const dialog = dialogStore((state) => state);

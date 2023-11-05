@@ -2,19 +2,18 @@
 
 import React, { useRef, useCallback, useEffect } from 'react';
 import { AgGridReact } from 'ag-grid-react';
-
-import { FeatureDef, getVariationLabel, SelectedFeaturesForm, tableDataStore, fetchScreenerData, getFeatureDefByVariationCode } from './screener-store';
+import { getVariationLabel, SelectedFeaturesForm, tableDataStore, fetchScreenerData, getFeatureDefByVariationCode, getSelectedScreenerParam } from './screener-store';
 import { formatNumber } from '../utils';
-import Link from 'next/link';
 import { CompanyDef, companyDefMap } from '../app.store';
-import { Anchor, Box, Loader, LoadingOverlay } from '@mantine/core';
+import { Anchor } from '@mantine/core';
+import { useWindowWidth } from '@react-hook/window-size';
 
 const linkCellRenderer = ({ value }: { value: string }) => (
   <Anchor target="_blank" href={`/analysis/${value}`}>{value}</Anchor>
 );
 
 function getColDefs(requestObj: SelectedFeaturesForm, compDefMap: Map<string, CompanyDef>) {
-  
+
   if (!requestObj) {
     return [];
   }
@@ -28,7 +27,6 @@ function getColDefs(requestObj: SelectedFeaturesForm, compDefMap: Map<string, Co
       suppressSizeToFit: true
       // tooltipValueGetter: (params: any) => params.data.percentile.symbol,
       // suppressRowHoverHighlight: false
-
     },
     {
       field: 'symbol',
@@ -54,9 +52,9 @@ function getColDefs(requestObj: SelectedFeaturesForm, compDefMap: Map<string, Co
     //   headerTooltip: 'Quarter by calandar'
     // }
   ]
-    // @ts-ignore
+  // @ts-ignore
   const valueColDefs = requestObj.features.flatMap((e: { feature: string, lowerIsBetter: boolean }) => {
-    
+
     const name = getVariationLabel(e.feature);
     const featureDef = getFeatureDefByVariationCode(e.feature);
 
@@ -70,25 +68,17 @@ function getColDefs(requestObj: SelectedFeaturesForm, compDefMap: Map<string, Co
       const value = obj ? e.lowerIsBetter ? obj['p'] : 1 - obj['p'] : undefined;
       return value === 0 || value ? formatNumber("", value) : "";
     }
-    
+
     return [{
       field: name,
       valueGetter: (params: any) => {
         return `${getValue(params)} (${getPercentile(params)})`;
       },
       headerTooltip: name + ' and percentile',
-      tooltipValueGetter:  (params: any) => getValue(params),
+      tooltipValueGetter: (params: any) => getValue(params),
       sortable: false
-    }, 
-    // {
-    //   field: 'Percentile',
-    //   valueGetter: (params: any) => {
-    //     return getPercentile(params);
-    //   },
-    //   headerTooltip: 'Percentile',
-    //   tooltipValueGetter:  (params: any) => getPercentile(params)
-    // }
-  ]
+    }
+    ]
   })
 
   const scoreColDef = [{
@@ -107,10 +97,13 @@ export default function ScreenerTable() {
 
   const gridRef = useRef(null);
   const store = tableDataStore((state) => state);
-  const onFirstDataRendered = useCallback(() => {
-    // @ts-ignore
-    gridRef.current?.api.sizeColumnsToFit();
-  }, []);
+
+  function onFirstDataRendered() {
+    if (store.response && store.response.length > 0) {
+      // @ts-ignore
+      gridRef.current.api.sizeColumnsToFit();
+    }
+  }
 
   useEffect(() => {
     fetchScreenerData();
@@ -118,39 +111,34 @@ export default function ScreenerTable() {
 
   const compDefMap = companyDefMap;
 
+  if (!store?.response) return null;
+
   return (
     <>
-    {/* <Box pos="relative"> */}
-      { 
-        // <div className="ag-theme-alpine dark:ag-theme-alpine-dark dark:text-red-700 w-full h-full">
-          <AgGridReact className=''
-            ref={gridRef} // Ref for accessing Grid's API
-            rowData={store?.response} // Row Data for Rows
+      {
+        <AgGridReact
+          ref={gridRef}
+          rowData={store?.response}
 
-            // @ts-ignore
-            columnDefs={store?.request ? getColDefs(store.request, compDefMap) : []} // Column Defs for Columns
-            defaultColDef={{
-              // sortable: true,
-              resizable: true,
-              maxWidth: 300,
-            }}
+          // @ts-ignore
+          columnDefs={store?.request ? getColDefs(store.request, compDefMap) : []} // Column Defs for Columns
+          defaultColDef={{
+            // sortable: true,
+            resizable: true,
+            maxWidth: 300,
+          }}
 
-            animateRows={true} // Optional - set to 'true' to have rows animate when sorted
-            onFirstDataRendered={onFirstDataRendered}
-            // onGridReady={fetchScreenerData}
-            onModelUpdated={onFirstDataRendered}
-            onGridSizeChanged={onFirstDataRendered}
-            tooltipShowDelay={500}
-            suppressRowHoverHighlight={true}
-          />
-          
-          // null 
-          // <LoadingOverlay visible={true} zIndex={1000} overlayProps={{ radius: "sm", blur: 2 }} />
-          // <Loader></Loader>
-        // </div>
-
+          animateRows={true} // Optional - set to 'true' to have rows animate when sorted
+          // onFirstDataRendered={onFirstDataRendered}
+          // onGridReady={fetchScreenerData}
+          // onGridColumnsChanged={onFirstDataRendered}
+          // onModelUpdated={onFirstDataRendered}
+          // onGridSizeChanged={onFirstDataRendered}
+          // tooltipShowDelay={500}
+          onRowDataUpdated={onFirstDataRendered}
+          suppressRowHoverHighlight={true}
+        />
       }
-      {/* </Box> */}
     </>
   )
 }

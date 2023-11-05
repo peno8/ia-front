@@ -1,9 +1,8 @@
 'use client'
 
-import React, { useState, useEffect, ReactNode } from 'react';
+import React, { useState, useEffect } from 'react';
 import 'ag-grid-community/styles/ag-grid.css'; // Core grid CSS, always needed
 import 'ag-grid-community/styles/ag-theme-alpine.css'; // Optional theme CSS
-import { FeatureDef } from './screener-store';
 import ScreenerTable from './screener-table';
 import { useTheme } from 'next-themes';
 
@@ -13,7 +12,7 @@ export default function ScreenerTableBox() {
     const [mounted, setMounted] = useState(false)
 
     useEffect(() => {
-        setMounted(true);
+        setMounted(() => true);
     }, [])
 
     if (!mounted) {

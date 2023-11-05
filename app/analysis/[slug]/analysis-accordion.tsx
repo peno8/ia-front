@@ -10,7 +10,7 @@ export default function AnalysisAccordion({ featureData }: { featureData: Featur
     const [panelOpened, setPanelOpened] = useState<string[]>(['PROFITABILITY']);
 
     function updateAccordionValue(value: string[]) {
-        setValue(value);
+        setValue(() => value);
         if (value.length > 0 && !panelOpened.includes(value[value.length - 1])) {
             panelOpened.push(value[value.length - 1])
             setPanelOpened(panelOpened);
