@@ -252,10 +252,10 @@ export function fetchScreenerData() {
 
     const request = getSelectedScreenerParam();
     POST(getRequest(JSON.stringify(request), `${process.env.NEXT_PUBLIC_BACKEND_URL}/api/percentile/ranks`))
-        .then((data) => {
-            tableDataStore.setState({ response: data, request: request });
-        })
-        .finally(() => fetchStatusStore.setState({ isLoading: false }));
+    .then((data) => {
+        tableDataStore.setState({ response: data, request: request });
+    })
+    .finally(() => fetchStatusStore.setState({ isLoading: false }));
     
     return () => {
         controller.abort();

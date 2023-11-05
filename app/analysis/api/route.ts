@@ -34,10 +34,10 @@ export interface FeatureData {
 
 
 
-export async function POST(req: Request): Promise<FeatureData> {
+export async function POST(req: Request) {
   // console.log(req);
   const res = await fetch(req);
-  const data = await res.json()
+  const data = await res.json();
 
   const parsedFeature = JSON.parse(data.featureString);
   data.feature = parsedFeature;
@@ -45,3 +45,11 @@ export async function POST(req: Request): Promise<FeatureData> {
   delete data['featureString'];
   return data;
 }
+
+
+// export async function POST(req: Request): Promise<Response> {
+//   // console.log(req);
+//   const res = await fetch(req);
+//   const data = await res.json();
+//   return data;
+// }
