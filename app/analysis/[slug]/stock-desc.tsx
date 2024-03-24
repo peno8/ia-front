@@ -45,6 +45,56 @@ function MultipleCalculator({featureData} : {featureData: FeatureData}) {
     )
 }
 
+function ValudationDesc({featureData} : {featureData: FeatureData}) {
+    const perObj = featureData.feature.features.find(e => e.fName === 'CLOSE|NI_T|OSC')?.features[0]
+    const per = perObj?.value;
+    const perPercentile = featureData.stockPercentile.percentiles['CLOSE|NI_T|OSC']?.p
+
+    const psr = featureData.feature.features.find(e => e.fName === 'CLOSE|R_T|OSC')?.features[0].value;
+    const psrPercentile = featureData.stockPercentile.percentiles['CLOSE|R_T|OSC']?.p
+
+    const pcr = featureData.feature.features.find(e => e.fName === 'CLOSE|OC_T|OSC')?.features[0].value;
+    const pcrPercentile = featureData.stockPercentile.percentiles['CLOSE|OC_T|OSC']?.p
+
+    console.log(featureData)
+    console.log(psrPercentile)
+    const [mc, setMc] = useState("");
+
+    function changeMc(value: string) {
+        setMc(() => value);
+    }
+
+    return(
+        <div>
+            <Divider my="sm" label={"Valuation and Percentile (as of " + (perObj ? perObj!.end + ')': 'N/A)')} labelPosition="left" className="!dark:!text-[--text-dark]" />
+            <div className="flex flex-row gap-x-5 items-end">
+                <div className="flex flex-col">
+                    <div className="mb-3">
+                    <Input.Label className='w-32'>{'PER'}</Input.Label>
+                    <Input.Label className={'w-32'}>{per ? per!.toFixed(2) : 'N/A'}{perPercentile ? ' / ' + (perPercentile * 100).toFixed(1) + '%' : ''}</Input.Label>
+                    </div>
+                    <div>
+                    <Input.Label className='w-32'>{'PCR'}</Input.Label>
+                    <Input.Label className={'w-32'}>{pcr ? pcr!.toFixed(2) : 'N/A'}{pcrPercentile ? ' / ' + (pcrPercentile * 100).toFixed(1) + '%' : ''}</Input.Label>
+                    </div>
+                </div>
+                <div className="flex flex-col">
+                    <div className="mb-3">
+                    <Input.Label className='w-32'>{'PSR'}</Input.Label>
+                    <Input.Label className={'w-32'}>{psr ? psr!.toFixed(2) : 'N/A'}{psrPercentile ? ' / ' + (psrPercentile * 100).toFixed(1) + '%' : ''}</Input.Label>
+                    </div>
+                    <div>
+                    <Input.Label className='w-32'>{''}</Input.Label>
+                    <Input.Label className={'w-32'}>{}</Input.Label>
+                    </div>
+                </div>
+            </div>
+            
+        </div>
+        
+    )
+}
+
 export default function StockDescription({ cd, featureData }: { cd: CompanyDef, featureData: FeatureData }) {
     return (
         <div className="p-6 border-b-[1px]">
@@ -70,7 +120,7 @@ export default function StockDescription({ cd, featureData }: { cd: CompanyDef, 
                 <TextItem label='Exchange' value={cd.exg} />
                 <TextItem label='Business' value={cd.desc} width={96} grow/>
             </div>
-            {/* <MultipleCalculator featureData={featureData}/> */}
+            <ValudationDesc featureData={featureData}/>
         </div>
     )
 }
