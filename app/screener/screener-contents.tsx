@@ -10,7 +10,7 @@ import ScreenerMainTab from "./screener-main-tab";
 import { ScreenerContext } from "./screener-context";
 
 function prepare(json: string, screenerDefStr: string, metadata: AppMetadata) {
-
+    console.log(metadata)
     const featureDefs: FeatureDef[] = JSON.parse(json);
     //const map = new Map(featureDefs.flatMap(e => e.variations.map(v => [v.code, e.code])));
     // featureDefsStore.setState(featureDefs);

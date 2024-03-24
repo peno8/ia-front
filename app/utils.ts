@@ -2,7 +2,7 @@ import { readFileSync } from "fs";
 import { CompanyDef } from "./app.store";
 
 export function readFileFromSharedDist(filename: string | undefined) {
-  // console.log(process.env.DATA_ROOT);
+  console.log(process.env.DATA_ROOT);
   const buffer = readFileSync(process.env.DATA_ROOT +  '/' + filename);
   const jsonStr = buffer.toString();
   return jsonStr;
@@ -25,6 +25,10 @@ export function formatPercent(v: number) {
 export function formatNumber(category: string, v: number) {
   if(category === 'SIZE') return `${(v / 10000).toFixed(0)}`
   else return `${formatPercent(v)}%`
+}
+
+export function formatNumber2(v: number, denom: number, decimal: number = 0) {
+  return `${(v / denom).toFixed(decimal)}`
 }
 
 export const maxScreenerVariableNum = getMaxScreenerVariableNum();

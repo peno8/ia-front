@@ -20,6 +20,8 @@ export interface FeatureDef {
     variations: FeatureVariation[]
     lowerIsBetter: boolean
     displayRank: number
+    featureType: string
+    coreFeatureRank: number | null
 }
 
 export const toggleDialog = create<{ opened: boolean, openDialog: () => void, closeDialog: () => void }>((set) => ({
@@ -45,7 +47,7 @@ export let variationCodeMap: Map<string, string> | null = null;
 
 // const categories = ['STABILITY', 'EFFICIENTY', 'GROWTH', 'PROFITABILITY', 'SIZE'];
 // export const categories = ['SIZE', 'PROFITABILITY', 'GROWTH', 'STABILITY', 'EFFICIENCY'];
-export const categories = ['PROFITABILITY', 'GROWTH', 'STABILITY', 'EFFICIENCY', 'SIZE'];
+export const categories = ['PROFITABILITY', 'GROWTH', 'STABILITY', 'EFFICIENCY', 'SIZE', 'VALUE', 'DIVIDEND'];
 
 export function setFeatureDefsStore(json: string) {
     if (!featureDefs && featureDefs == null) {
@@ -210,7 +212,7 @@ export const selectedFeaturesFormStore = create<SelectedFeaturesForm>((set, get)
     resetAll: () => {
         set(produce((state) => {
             state.features = { 'NI_T|R_T': { lowerIsBetter: false } };
-            state.cq = '2023-Q2';
+            state.cq = '2023-Q2'; // TODO
             state.key = 'ALL|X';
             state.count = 1;
             state.reachedMax = false;

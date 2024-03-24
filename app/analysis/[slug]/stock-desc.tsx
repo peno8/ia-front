@@ -14,8 +14,8 @@ const TextItem = ({ label, value, width, grow}: { label: string, value: string, 
 const getMultiple = (num: number, denom: string) => (parseFloat(denom) / (num! / 1000)).toFixed(1)
 
 function MultipleCalculator({featureData} : {featureData: FeatureData}) {
-    const revenues = featureData.feature.features.find(e => e.key === 'R_T')?.features[0].value;
-    const netIncome = featureData.feature.features.find(e => e.key === 'NI_T')?.features[0].value;
+    const revenues = featureData.feature.features.find(e => e.fName === 'R_T')?.features[0].value;
+    const netIncome = featureData.feature.features.find(e => e.fName === 'NI_T')?.features[0].value;
 
     const [mc, setMc] = useState("");
 
@@ -48,7 +48,20 @@ function MultipleCalculator({featureData} : {featureData: FeatureData}) {
 export default function StockDescription({ cd, featureData }: { cd: CompanyDef, featureData: FeatureData }) {
     return (
         <div className="p-6 border-b-[1px]">
-            <div className="text-2xl">{`${cd.name}`}</div>
+            <div className="mt-2 flex flex-row gap-x-8 items-end">
+                <div className="text-2xl">{`${cd.name}`}</div>
+                <a href={`https://www.google.com/search?q=${cd.name.replace(' ', '+')}`} target="_blank" className="text-blue-600 visited:text-purple-600">
+                    Search
+                </a>
+                <a href={`https://www.sec.gov/edgar/browse/?CIK=${cd.cik}`} target="_blank" className="text-blue-600 visited:text-purple-600">
+                    EDGAR
+                </a>
+                <a href={`https://www.tradingview.com/chart/?symbol=${cd.exg}:${cd.sb.includes('-') ? cd.sb.replace('-', '.') : cd.sb}`} target="_blank" className="text-blue-600 visited:text-purple-600">
+                    Chart
+                </a>
+                
+            </div>
+            {/* <div className="text-2xl">{`${cd.name}`}</div> */}
             <div className="mt-2 flex flex-row gap-x-8">
                 <TextItem label='Symbol' value={cd.sb} />
                 <TextItem label='CIK' value={cd.cik} />
@@ -57,7 +70,7 @@ export default function StockDescription({ cd, featureData }: { cd: CompanyDef, 
                 <TextItem label='Exchange' value={cd.exg} />
                 <TextItem label='Business' value={cd.desc} width={96} grow/>
             </div>
-            <MultipleCalculator featureData={featureData}/>
+            {/* <MultipleCalculator featureData={featureData}/> */}
         </div>
     )
 }

@@ -2,14 +2,14 @@ import { useEffect, useRef, useState } from "react";
 import * as d3 from "d3";
 import { Select } from "@mantine/core";
 import { FeatureDef, getFeatureDef } from "@/app/screener/screener-store";
-import { formatNumber, formatPercent } from "@/app/utils";
+import { formatNumber, formatPercent, formatNumber2 } from "@/app/utils";
 import { FeatureObj } from "../../api/route";
 
 export default function BarChartContainer({ featureDef, data, variationLabels, category }:
     { featureDef: FeatureDef, data: FeatureObj[], variationLabels: { value: string, label: string }[], category: string }) {
     const [key, setKey] = useState(variationLabels[0].value);
 
-    const chartData = data.find(e => e.key === key)!.features;
+    const chartData = data.find(e => e.fName === key)!.features;
 
     function changeChartData(key: string | null) {
         key && setKey(() => key);
@@ -30,19 +30,31 @@ export default function BarChartContainer({ featureDef, data, variationLabels, c
                     className="w-[150px]"
                 />
             </div>
-            <BarChart chartData={chartData} category={category} />
+            <BarChart chartData={chartData} category={category} featureDef={featureDef} />
         </div>
     )
 
 
 }
 
-export function BarChart({ chartData, category }: {
+function getLabelNumString(featureType: string, value: number) {
+    if (featureType === 'MILLION') {
+        
+        return `${formatNumber2(value, 1000, 2)}B`
+    } else if (featureType === 'NOMINAL') {
+        
+        return `${formatNumber2(value, 1, 2)}$`
+    } else {
+       return `${formatNumber2(value, 1, 2)}`
+    }
+}
+
+export function BarChart({ chartData, category, featureDef }: {
     chartData: {
         value: number;
         cq: string;
         end: string;
-    }[], category: string
+    }[], category: string, featureDef: FeatureDef
 }) {
 
     const width = 300;
@@ -70,7 +82,7 @@ export function BarChart({ chartData, category }: {
 
     // Declare the y (vertical position) scale.
     const y = d3.scaleLinear()
-        .domain([minYaxisValue!, d3.max(chartData, (d) => d.value)!])
+        .domain([minYaxisValue!, (d3.max(chartData, (d) => d.value)!)])
         .range([height - marginBottom, marginTop]);
 
     // Create the SVG container.
@@ -93,10 +105,16 @@ export function BarChart({ chartData, category }: {
     }, [gx, x, chartData]);
 
     useEffect(() => {
-        if (category === 'SIZE') {
+        if (featureDef.featureType === 'MILLION') {
             // @ts-ignore
-            d3.select(gy.current).call(d3.axisLeft(y).ticks(5).tickFormat((v,) => `${formatNumber(category, v)}B`))
-        } else {
+            d3.select(gy.current).call(d3.axisLeft(y).ticks(5).tickFormat((v,) => `${formatNumber2(v, 1000)}B`))
+        } else if (featureDef.featureType === 'NOMINAL') {
+            // @ts-ignore
+            d3.select(gy.current).call(d3.axisLeft(y).ticks(5).tickFormat((v,) => `${formatNumber2(v, 1)}$`))
+        } else if (featureDef.featureType === 'RATIO') {
+            // @ts-ignore
+            d3.select(gy.current).call(d3.axisLeft(y).ticks(5))
+        }else {
             // @ts-ignore
             d3.select(gy.current).call(d3.axisLeft(y).ticks(5, '%'))
         }
@@ -127,7 +145,7 @@ export function BarChart({ chartData, category }: {
                     .append("text")
                     .datum(d)
                     .attr("text-anchor", "middle")
-                    .text(d => { { return `CQ: ${d.cq}, ${formatNumber(category, d.value)}` } })
+                    .text(d => { { return `CQ: ${d.cq}, ${getLabelNumString(featureDef.featureType, d.value)}` } })
                     .attr("fill", "currentColor")
             })
             .on("pointerleave", (e) => {

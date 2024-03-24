@@ -1,7 +1,7 @@
 
 
 export interface FeatureObj {
-  key: string
+  fName: string
   features: { value: number, cq: string, end: string }[]
 }
 
