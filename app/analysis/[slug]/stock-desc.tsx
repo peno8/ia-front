@@ -46,15 +46,15 @@ function MultipleCalculator({featureData} : {featureData: FeatureData}) {
 }
 
 function ValudationDesc({featureData} : {featureData: FeatureData}) {
-    const perObj = featureData.feature.features.find(e => e.fName === 'CLOSE|NI_T|OSC')?.features[0]
+    const perObj = featureData.feature.features.find(e => e.fName === 'MC|NI_T|OSC')?.features[0]
     const per = perObj?.value;
-    const perPercentile = featureData.stockPercentile.percentiles['CLOSE|NI_T|OSC']?.p
+    const perPercentile = featureData.stockPercentile.percentiles['MC|NI_T|OSC']?.p
 
-    const psr = featureData.feature.features.find(e => e.fName === 'CLOSE|R_T|OSC')?.features[0].value;
-    const psrPercentile = featureData.stockPercentile.percentiles['CLOSE|R_T|OSC']?.p
+    const psr = featureData.feature.features.find(e => e.fName === 'MC|R_T|OSC')?.features[0].value;
+    const psrPercentile = featureData.stockPercentile.percentiles['MC|R_T|OSC']?.p
 
-    const pcr = featureData.feature.features.find(e => e.fName === 'CLOSE|OC_T|OSC')?.features[0].value;
-    const pcrPercentile = featureData.stockPercentile.percentiles['CLOSE|OC_T|OSC']?.p
+    const pcr = featureData.feature.features.find(e => e.fName === 'MC|OC_T|OSC')?.features[0].value;
+    const pcrPercentile = featureData.stockPercentile.percentiles['MC|OC_T|OSC']?.p
 
     console.log(featureData)
     console.log(psrPercentile)
@@ -103,22 +103,39 @@ export default function StockDescription({ cd, featureData }: { cd: CompanyDef, 
                 <a href={`https://www.google.com/search?q=${cd.name.replace(' ', '+')}`} target="_blank" className="text-blue-600 visited:text-purple-600">
                     Search
                 </a>
-                <a href={`https://www.sec.gov/edgar/browse/?CIK=${cd.cik}`} target="_blank" className="text-blue-600 visited:text-purple-600">
+                {cd.cc === 'US' ? <a href={`https://www.sec.gov/edgar/browse/?CIK=${cd.cik}`} target="_blank" className="text-blue-600 visited:text-purple-600">
                     EDGAR
+                </a> : <></>}
+                {/* <a href={`https://www.tradingview.com/chart/?symbol=${cd.exg}:${cd.sb.includes('-') ? cd.sb.replace('-', '.') : cd.sb}`} target="_blank" className="text-blue-600 visited:text-purple-600">
+                    TradinvView
+                </a> */}
+                <a href={`https://finance.yahoo.com/quote/${cd.sb}`} target="_blank" className="text-blue-600 visited:text-purple-600">
+                    Yahoo
                 </a>
-                <a href={`https://www.tradingview.com/chart/?symbol=${cd.exg}:${cd.sb.includes('-') ? cd.sb.replace('-', '.') : cd.sb}`} target="_blank" className="text-blue-600 visited:text-purple-600">
-                    Chart
-                </a>
-                
+                {cd.cc === 'KR' ? <a href={`https://finance.naver.com/item/main.naver?code=${cd.sb}`} target="_blank" className="text-blue-600 visited:text-purple-600">
+                    Naver
+                </a> : <></>}
+                {cd.cc === 'KR' ? <a href={`https://kind.krx.co.kr/disclosureSimpleSearch.do?method=disclosureSimpleSearchMain&repIsuSrtCd=A${cd.sb}`} target="_blank" className="text-blue-600 visited:text-purple-600">
+                    Kind
+                </a> : <></>}
             </div>
             {/* <div className="text-2xl">{`${cd.name}`}</div> */}
             <div className="mt-2 flex flex-row gap-x-8">
                 <TextItem label='Symbol' value={cd.sb} />
-                <TextItem label='CIK' value={cd.cik} />
+                <TextItem label='Exchange' value={cd.exg}  width={96} grow/>
+                
             </div>
             <div className="mt-2 flex flex-row gap-x-8">
-                <TextItem label='Exchange' value={cd.exg} />
-                <TextItem label='Business' value={cd.desc} width={96} grow/>
+                <TextItem label='Country' value={cd.cc}/>
+                <TextItem label='Industry' value={cd.div2} width={96} grow/>
+            </div>
+            <div className="mt-2 flex flex-row gap-x-8">
+                {cd.cik ? <TextItem label='CIK' value={cd.cik} /> : <></>}
+                {cd.desc ? <TextItem label='Desc' value={cd.desc}  width={96} grow/> : <></>}
+            </div>
+            <div className="mt-2 flex flex-row gap-x-8">
+                {cd.nameLocal ? <TextItem label='Local Name' value={cd.nameLocal} /> : <></>}
+                {cd.descLocal ? <TextItem label='Local Industry' value={cd.descLocal}  width={96} grow/> : <></>}
             </div>
             <ValudationDesc featureData={featureData}/>
         </div>

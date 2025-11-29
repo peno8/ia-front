@@ -142,9 +142,9 @@ export interface SelectedFeaturesForm {
 
 export const selectedFeaturesFormStore = create<SelectedFeaturesForm>((set, get) =>
 ({
-    features: { 'NI_T|R_T': { lowerIsBetter: false } },
+    features: { 'DY_CON_T': { lowerIsBetter: false } }, // NI_T|R_T MC|DP_T|OSC
     cq: '',
-    key: 'ALL|X',
+    key: 'ALL|ALL|ALL',
     // exchange: 'ALL',
     count: 1,
     reachedMax: false,

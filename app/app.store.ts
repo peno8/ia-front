@@ -47,8 +47,12 @@ export interface CompanyDef {
     sic: string
     desc: string
     div: string
+    div2: string
     nai: number
     nd: string
+    cc: string
+    nameLocal: string | undefined
+    descLocal: string | undefined
 }
 
 export let companyDefList: CompanyDef[] = [];

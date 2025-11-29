@@ -8,14 +8,15 @@
         "code" : "CA|A",
         "displayRank" : 4,
         "variations" : [
-          "MRQ"
+          "Current Qt"
         ]
       }
     ],
     "lowerIsBetter" : false,
     "displayRank" : 3,
     "featureType" : "PERCENT",
-    "coreFeatureRank" : null
+    "coreFeatureRank" : null,
+    "needPercentile" : true
   },
   {
     "code" : "IN_A_R",
@@ -26,14 +27,15 @@
         "code" : "IN|A",
         "displayRank" : 4,
         "variations" : [
-          "MRQ"
+          "Current Qt"
         ]
       }
     ],
     "lowerIsBetter" : true,
     "displayRank" : 7,
     "featureType" : "PERCENT",
-    "coreFeatureRank" : null
+    "coreFeatureRank" : null,
+    "needPercentile" : true
   },
   {
     "code" : "GW_A_R",
@@ -44,14 +46,15 @@
         "code" : "GW|A",
         "displayRank" : 4,
         "variations" : [
-          "MRQ"
+          "Current Qt"
         ]
       }
     ],
     "lowerIsBetter" : true,
     "displayRank" : 8,
     "featureType" : "PERCENT",
-    "coreFeatureRank" : null
+    "coreFeatureRank" : null,
+    "needPercentile" : true
   },
   {
     "code" : "RC_A_R",
@@ -62,14 +65,15 @@
         "code" : "RC|A",
         "displayRank" : 4,
         "variations" : [
-          "MRQ"
+          "Current Qt"
         ]
       }
     ],
     "lowerIsBetter" : true,
     "displayRank" : 5,
     "featureType" : "PERCENT",
-    "coreFeatureRank" : null
+    "coreFeatureRank" : null,
+    "needPercentile" : true
   },
   {
     "code" : "RC_CA_R",
@@ -80,14 +84,15 @@
         "code" : "RC|CA",
         "displayRank" : 4,
         "variations" : [
-          "MRQ"
+          "Current Qt"
         ]
       }
     ],
     "lowerIsBetter" : true,
     "displayRank" : 4,
     "featureType" : "PERCENT",
-    "coreFeatureRank" : null
+    "coreFeatureRank" : null,
+    "needPercentile" : true
   },
   {
     "code" : "L_A_R",
@@ -98,14 +103,15 @@
         "code" : "L|A",
         "displayRank" : 4,
         "variations" : [
-          "MRQ"
+          "Current Qt"
         ]
       }
     ],
     "lowerIsBetter" : true,
     "displayRank" : 1,
     "featureType" : "PERCENT",
-    "coreFeatureRank" : null
+    "coreFeatureRank" : null,
+    "needPercentile" : true
   },
   {
     "code" : "CA_CL_R",
@@ -116,14 +122,15 @@
         "code" : "CA|CL",
         "displayRank" : 4,
         "variations" : [
-          "MRQ"
+          "Current Qt"
         ]
       }
     ],
     "lowerIsBetter" : false,
     "displayRank" : 2,
     "featureType" : "PERCENT",
-    "coreFeatureRank" : 4
+    "coreFeatureRank" : 12,
+    "needPercentile" : true
   },
   {
     "code" : "R_G",
@@ -134,7 +141,7 @@
         "code" : "R_Q",
         "displayRank" : 5,
         "variations" : [
-          "MRQ",
+          "Current Qt",
           "QOQ"
         ]
       },
@@ -142,7 +149,7 @@
         "code" : "R_Y",
         "displayRank" : 4,
         "variations" : [
-          "MRQ",
+          "Current Qt",
           "YOY"
         ]
       },
@@ -150,7 +157,7 @@
         "code" : "R_T_Q",
         "displayRank" : 1,
         "variations" : [
-          "TTM",
+          "Trailing Yr",
           "QOQ"
         ]
       },
@@ -158,7 +165,7 @@
         "code" : "R_T_Y",
         "displayRank" : 0,
         "variations" : [
-          "TTM",
+          "Trailing Yr",
           "YOY"
         ]
       },
@@ -166,7 +173,7 @@
         "code" : "R_C_Y",
         "displayRank" : 2,
         "variations" : [
-          "YTD",
+          "Current Yr",
           "YOY"
         ]
       }
@@ -174,7 +181,8 @@
     "lowerIsBetter" : false,
     "displayRank" : 1,
     "featureType" : "PERCENT",
-    "coreFeatureRank" : null
+    "coreFeatureRank" : null,
+    "needPercentile" : true
   },
   {
     "code" : "R_A_R",
@@ -185,28 +193,29 @@
         "code" : "R|A",
         "displayRank" : 4,
         "variations" : [
-          "MRQ"
+          "Current Qt"
         ]
       },
       {
         "code" : "R_T|A",
         "displayRank" : 0,
         "variations" : [
-          "TTM"
+          "Trailing Yr"
         ]
       },
       {
         "code" : "R_C|A",
         "displayRank" : 2,
         "variations" : [
-          "YTD"
+          "Current Yr"
         ]
       }
     ],
     "lowerIsBetter" : false,
     "displayRank" : 3,
-    "featureType" : "PERCENT",
-    "coreFeatureRank" : null
+    "featureType" : "RATIO",
+    "coreFeatureRank" : null,
+    "needPercentile" : true
   },
   {
     "code" : "R_RC_R",
@@ -217,28 +226,29 @@
         "code" : "R|RC",
         "displayRank" : 4,
         "variations" : [
-          "MRQ"
+          "Current Qt"
         ]
       },
       {
         "code" : "R_T|RC",
         "displayRank" : 0,
         "variations" : [
-          "TTM"
+          "Trailing Yr"
         ]
       },
       {
         "code" : "R_C|RC",
         "displayRank" : 2,
         "variations" : [
-          "YTD"
+          "Current Yr"
         ]
       }
     ],
     "lowerIsBetter" : false,
     "displayRank" : 1,
-    "featureType" : "PERCENT",
-    "coreFeatureRank" : null
+    "featureType" : "RATIO",
+    "coreFeatureRank" : null,
+    "needPercentile" : true
   },
   {
     "code" : "R_IN_R",
@@ -249,28 +259,29 @@
         "code" : "R|IN",
         "displayRank" : 4,
         "variations" : [
-          "MRQ"
+          "Current Qt"
         ]
       },
       {
         "code" : "R_T|IN",
         "displayRank" : 0,
         "variations" : [
-          "TTM"
+          "Trailing Yr"
         ]
       },
       {
         "code" : "R_C|IN",
         "displayRank" : 2,
         "variations" : [
-          "YTD"
+          "Current Yr"
         ]
       }
     ],
     "lowerIsBetter" : false,
     "displayRank" : 2,
-    "featureType" : "PERCENT",
-    "coreFeatureRank" : null
+    "featureType" : "RATIO",
+    "coreFeatureRank" : null,
+    "needPercentile" : true
   },
   {
     "code" : "IN_CA_R",
@@ -281,14 +292,15 @@
         "code" : "IN|CA",
         "displayRank" : 4,
         "variations" : [
-          "MRQ"
+          "Current Qt"
         ]
       }
     ],
     "lowerIsBetter" : true,
     "displayRank" : 6,
     "featureType" : "PERCENT",
-    "coreFeatureRank" : null
+    "coreFeatureRank" : null,
+    "needPercentile" : true
   },
   {
     "code" : "OI_G",
@@ -299,7 +311,7 @@
         "code" : "OI_Q",
         "displayRank" : 5,
         "variations" : [
-          "MRQ",
+          "Current Qt",
           "QOQ"
         ]
       },
@@ -307,7 +319,7 @@
         "code" : "OI_Y",
         "displayRank" : 4,
         "variations" : [
-          "MRQ",
+          "Current Qt",
           "YOY"
         ]
       },
@@ -315,7 +327,7 @@
         "code" : "OI_T_Q",
         "displayRank" : 1,
         "variations" : [
-          "TTM",
+          "Trailing Yr",
           "QOQ"
         ]
       },
@@ -323,7 +335,7 @@
         "code" : "OI_T_Y",
         "displayRank" : 0,
         "variations" : [
-          "TTM",
+          "Trailing Yr",
           "YOY"
         ]
       },
@@ -331,7 +343,7 @@
         "code" : "OI_C_Y",
         "displayRank" : 2,
         "variations" : [
-          "YTD",
+          "Current Yr",
           "YOY"
         ]
       }
@@ -339,7 +351,8 @@
     "lowerIsBetter" : false,
     "displayRank" : 2,
     "featureType" : "PERCENT",
-    "coreFeatureRank" : null
+    "coreFeatureRank" : null,
+    "needPercentile" : true
   },
   {
     "code" : "OI_R_R",
@@ -350,28 +363,29 @@
         "code" : "OI|R",
         "displayRank" : 4,
         "variations" : [
-          "MRQ"
+          "Current Qt"
         ]
       },
       {
         "code" : "OI_T|R_T",
         "displayRank" : 0,
         "variations" : [
-          "TTM"
+          "Trailing Yr"
         ]
       },
       {
         "code" : "OI_C|R_C",
         "displayRank" : 2,
         "variations" : [
-          "YTD"
+          "Current Yr"
         ]
       }
     ],
     "lowerIsBetter" : false,
     "displayRank" : 4,
     "featureType" : "PERCENT",
-    "coreFeatureRank" : null
+    "coreFeatureRank" : null,
+    "needPercentile" : true
   },
   {
     "code" : "OI_E_R",
@@ -382,28 +396,29 @@
         "code" : "OI|E",
         "displayRank" : 4,
         "variations" : [
-          "MRQ"
+          "Current Qt"
         ]
       },
       {
         "code" : "OI_T|E",
         "displayRank" : 0,
         "variations" : [
-          "TTM"
+          "Trailing Yr"
         ]
       },
       {
         "code" : "OI_C|E",
         "displayRank" : 2,
         "variations" : [
-          "YTD"
+          "Current Yr"
         ]
       }
     ],
     "lowerIsBetter" : false,
     "displayRank" : 5,
     "featureType" : "PERCENT",
-    "coreFeatureRank" : null
+    "coreFeatureRank" : null,
+    "needPercentile" : true
   },
   {
     "code" : "OI_A_R",
@@ -414,28 +429,29 @@
         "code" : "OI|A",
         "displayRank" : 4,
         "variations" : [
-          "MRQ"
+          "Current Qt"
         ]
       },
       {
         "code" : "OI_T|A",
         "displayRank" : 0,
         "variations" : [
-          "TTM"
+          "Trailing Yr"
         ]
       },
       {
         "code" : "OI_C|A",
         "displayRank" : 2,
         "variations" : [
-          "YTD"
+          "Current Yr"
         ]
       }
     ],
     "lowerIsBetter" : false,
     "displayRank" : 6,
     "featureType" : "PERCENT",
-    "coreFeatureRank" : null
+    "coreFeatureRank" : null,
+    "needPercentile" : true
   },
   {
     "code" : "NI_G",
@@ -446,7 +462,7 @@
         "code" : "NI_Q",
         "displayRank" : 5,
         "variations" : [
-          "MRQ",
+          "Current Qt",
           "QOQ"
         ]
       },
@@ -454,7 +470,7 @@
         "code" : "NI_Y",
         "displayRank" : 4,
         "variations" : [
-          "MRQ",
+          "Current Qt",
           "YOY"
         ]
       },
@@ -462,7 +478,7 @@
         "code" : "NI_T_Q",
         "displayRank" : 1,
         "variations" : [
-          "TTM",
+          "Trailing Yr",
           "QOQ"
         ]
       },
@@ -470,7 +486,7 @@
         "code" : "NI_T_Y",
         "displayRank" : 0,
         "variations" : [
-          "TTM",
+          "Trailing Yr",
           "YOY"
         ]
       },
@@ -478,7 +494,7 @@
         "code" : "NI_C_Y",
         "displayRank" : 2,
         "variations" : [
-          "YTD",
+          "Current Yr",
           "YOY"
         ]
       }
@@ -486,7 +502,8 @@
     "lowerIsBetter" : false,
     "displayRank" : 3,
     "featureType" : "PERCENT",
-    "coreFeatureRank" : null
+    "coreFeatureRank" : null,
+    "needPercentile" : true
   },
   {
     "code" : "NI_R_R",
@@ -497,28 +514,29 @@
         "code" : "NI|R",
         "displayRank" : 4,
         "variations" : [
-          "MRQ"
+          "Current Qt"
         ]
       },
       {
         "code" : "NI_T|R_T",
         "displayRank" : 0,
         "variations" : [
-          "TTM"
+          "Trailing Yr"
         ]
       },
       {
         "code" : "NI_C|R_C",
         "displayRank" : 2,
         "variations" : [
-          "YTD"
+          "Current Yr"
         ]
       }
     ],
     "lowerIsBetter" : false,
     "displayRank" : 1,
     "featureType" : "PERCENT",
-    "coreFeatureRank" : 1
+    "coreFeatureRank" : 11,
+    "needPercentile" : true
   },
   {
     "code" : "NI_E_R",
@@ -529,28 +547,29 @@
         "code" : "NI|E",
         "displayRank" : 4,
         "variations" : [
-          "MRQ"
+          "Current Qt"
         ]
       },
       {
         "code" : "NI_T|E",
         "displayRank" : 0,
         "variations" : [
-          "TTM"
+          "Trailing Yr"
         ]
       },
       {
         "code" : "NI_C|E",
         "displayRank" : 2,
         "variations" : [
-          "YTD"
+          "Current Yr"
         ]
       }
     ],
     "lowerIsBetter" : false,
     "displayRank" : 2,
     "featureType" : "PERCENT",
-    "coreFeatureRank" : null
+    "coreFeatureRank" : null,
+    "needPercentile" : true
   },
   {
     "code" : "NI_A_R",
@@ -561,28 +580,29 @@
         "code" : "NI|A",
         "displayRank" : 4,
         "variations" : [
-          "MRQ"
+          "Current Qt"
         ]
       },
       {
         "code" : "NI_T|A",
         "displayRank" : 0,
         "variations" : [
-          "TTM"
+          "Trailing Yr"
         ]
       },
       {
         "code" : "NI_C|A",
         "displayRank" : 2,
         "variations" : [
-          "YTD"
+          "Current Yr"
         ]
       }
     ],
     "lowerIsBetter" : false,
     "displayRank" : 3,
     "featureType" : "PERCENT",
-    "coreFeatureRank" : null
+    "coreFeatureRank" : null,
+    "needPercentile" : true
   },
   {
     "code" : "OC_G",
@@ -593,7 +613,7 @@
         "code" : "OC_Q",
         "displayRank" : 5,
         "variations" : [
-          "MRQ",
+          "Current Qt",
           "QOQ"
         ]
       },
@@ -601,7 +621,7 @@
         "code" : "OC_Y",
         "displayRank" : 4,
         "variations" : [
-          "MRQ",
+          "Current Qt",
           "YOY"
         ]
       },
@@ -609,7 +629,7 @@
         "code" : "OC_T_Q",
         "displayRank" : 1,
         "variations" : [
-          "TTM",
+          "Trailing Yr",
           "QOQ"
         ]
       },
@@ -617,7 +637,7 @@
         "code" : "OC_T_Y",
         "displayRank" : 0,
         "variations" : [
-          "TTM",
+          "Trailing Yr",
           "YOY"
         ]
       },
@@ -625,7 +645,7 @@
         "code" : "OC_C_Y",
         "displayRank" : 2,
         "variations" : [
-          "YTD",
+          "Current Yr",
           "YOY"
         ]
       }
@@ -633,7 +653,8 @@
     "lowerIsBetter" : false,
     "displayRank" : 4,
     "featureType" : "PERCENT",
-    "coreFeatureRank" : null
+    "coreFeatureRank" : null,
+    "needPercentile" : true
   },
   {
     "code" : "OC_E_R",
@@ -644,28 +665,29 @@
         "code" : "OC|E",
         "displayRank" : 4,
         "variations" : [
-          "MRQ"
+          "Current Qt"
         ]
       },
       {
         "code" : "OC_T|E",
         "displayRank" : 0,
         "variations" : [
-          "TTM"
+          "Trailing Yr"
         ]
       },
       {
         "code" : "OC_C|E",
         "displayRank" : 2,
         "variations" : [
-          "YTD"
+          "Current Yr"
         ]
       }
     ],
     "lowerIsBetter" : false,
     "displayRank" : 8,
     "featureType" : "PERCENT",
-    "coreFeatureRank" : null
+    "coreFeatureRank" : null,
+    "needPercentile" : true
   },
   {
     "code" : "OC_A_R",
@@ -676,28 +698,29 @@
         "code" : "OC|A",
         "displayRank" : 4,
         "variations" : [
-          "MRQ"
+          "Current Qt"
         ]
       },
       {
         "code" : "OC_T|A",
         "displayRank" : 0,
         "variations" : [
-          "TTM"
+          "Trailing Yr"
         ]
       },
       {
         "code" : "OC_C|A",
         "displayRank" : 2,
         "variations" : [
-          "YTD"
+          "Current Yr"
         ]
       }
     ],
     "lowerIsBetter" : false,
     "displayRank" : 9,
     "featureType" : "PERCENT",
-    "coreFeatureRank" : null
+    "coreFeatureRank" : null,
+    "needPercentile" : true
   },
   {
     "code" : "OC_R_R",
@@ -708,28 +731,29 @@
         "code" : "OC|R",
         "displayRank" : 4,
         "variations" : [
-          "MRQ"
+          "Current Qt"
         ]
       },
       {
         "code" : "OC_T|R_T",
         "displayRank" : 0,
         "variations" : [
-          "TTM"
+          "Trailing Yr"
         ]
       },
       {
         "code" : "OC_C|R_C",
         "displayRank" : 2,
         "variations" : [
-          "YTD"
+          "Current Yr"
         ]
       }
     ],
     "lowerIsBetter" : false,
     "displayRank" : 7,
     "featureType" : "PERCENT",
-    "coreFeatureRank" : null
+    "coreFeatureRank" : null,
+    "needPercentile" : true
   },
   {
     "code" : "A",
@@ -740,14 +764,15 @@
         "code" : "A",
         "displayRank" : 4,
         "variations" : [
-          "MRQ"
+          "Current Qt"
         ]
       }
     ],
     "lowerIsBetter" : false,
     "displayRank" : 1,
     "featureType" : "MILLION",
-    "coreFeatureRank" : null
+    "coreFeatureRank" : null,
+    "needPercentile" : true
   },
   {
     "code" : "L",
@@ -758,14 +783,15 @@
         "code" : "L",
         "displayRank" : 4,
         "variations" : [
-          "MRQ"
+          "Current Qt"
         ]
       }
     ],
     "lowerIsBetter" : false,
     "displayRank" : 2,
     "featureType" : "MILLION",
-    "coreFeatureRank" : null
+    "coreFeatureRank" : null,
+    "needPercentile" : true
   },
   {
     "code" : "E",
@@ -776,14 +802,15 @@
         "code" : "E",
         "displayRank" : 4,
         "variations" : [
-          "MRQ"
+          "Current Qt"
         ]
       }
     ],
     "lowerIsBetter" : false,
     "displayRank" : 3,
     "featureType" : "MILLION",
-    "coreFeatureRank" : null
+    "coreFeatureRank" : 2,
+    "needPercentile" : true
   },
   {
     "code" : "R",
@@ -794,28 +821,29 @@
         "code" : "R",
         "displayRank" : 4,
         "variations" : [
-          "MRQ"
+          "Current Qt"
         ]
       },
       {
         "code" : "R_T",
         "displayRank" : 0,
         "variations" : [
-          "TTM"
+          "Trailing Yr"
         ]
       },
       {
         "code" : "R_C",
         "displayRank" : 2,
         "variations" : [
-          "YTD"
+          "Current Yr"
         ]
       }
     ],
     "lowerIsBetter" : false,
     "displayRank" : 4,
     "featureType" : "MILLION",
-    "coreFeatureRank" : 2
+    "coreFeatureRank" : 1,
+    "needPercentile" : true
   },
   {
     "code" : "NI",
@@ -826,238 +854,622 @@
         "code" : "NI",
         "displayRank" : 4,
         "variations" : [
-          "MRQ"
+          "Current Qt"
         ]
       },
       {
         "code" : "NI_T",
         "displayRank" : 0,
         "variations" : [
-          "TTM"
+          "Trailing Yr"
         ]
       },
       {
         "code" : "NI_C",
         "displayRank" : 2,
         "variations" : [
-          "YTD"
+          "Current Yr"
         ]
       }
     ],
     "lowerIsBetter" : false,
     "displayRank" : 5,
     "featureType" : "MILLION",
-    "coreFeatureRank" : 3
+    "coreFeatureRank" : 3,
+    "needPercentile" : true
+  },
+  {
+    "code" : "OPC",
+    "desc" : "OperatingCash",
+    "category" : "SIZE",
+    "variations" : [
+      {
+        "code" : "OC",
+        "displayRank" : 4,
+        "variations" : [
+          "Current Qt"
+        ]
+      },
+      {
+        "code" : "OC_T",
+        "displayRank" : 0,
+        "variations" : [
+          "Trailing Yr"
+        ]
+      },
+      {
+        "code" : "OC_C",
+        "displayRank" : 2,
+        "variations" : [
+          "Current Yr"
+        ]
+      }
+    ],
+    "lowerIsBetter" : false,
+    "displayRank" : 6,
+    "featureType" : "MILLION",
+    "coreFeatureRank" : 4,
+    "needPercentile" : true
   },
   {
     "code" : "DP",
-    "desc" : "DividendsPayments",
+    "desc" : "DividendsPayments - Equity",
     "category" : "DIVIDEND",
     "variations" : [
       {
         "code" : "DP",
         "displayRank" : 4,
         "variations" : [
-          "MRQ"
+          "Current Qt"
         ]
       },
       {
         "code" : "DP_T",
         "displayRank" : 0,
         "variations" : [
-          "TTM"
+          "Trailing Yr"
         ]
       },
       {
         "code" : "DP_C",
         "displayRank" : 2,
         "variations" : [
-          "YTD"
+          "Current Yr"
         ]
       }
     ],
     "lowerIsBetter" : false,
     "displayRank" : 1,
     "featureType" : "MILLION",
-    "coreFeatureRank" : 6
-  },
-  {
-    "code" : "DP_G",
-    "desc" : "DividendsPaymentsGrowth",
-    "category" : "DIVIDEND",
-    "variations" : [
-      {
-        "code" : "DP_Q",
-        "displayRank" : 5,
-        "variations" : [
-          "MRQ",
-          "QOQ"
-        ]
-      },
-      {
-        "code" : "DP_Y",
-        "displayRank" : 4,
-        "variations" : [
-          "MRQ",
-          "YOY"
-        ]
-      },
-      {
-        "code" : "DP_T_Q",
-        "displayRank" : 1,
-        "variations" : [
-          "TTM",
-          "QOQ"
-        ]
-      },
-      {
-        "code" : "DP_T_Y",
-        "displayRank" : 0,
-        "variations" : [
-          "TTM",
-          "YOY"
-        ]
-      },
-      {
-        "code" : "DP_C_Y",
-        "displayRank" : 2,
-        "variations" : [
-          "YTD",
-          "YOY"
-        ]
-      }
-    ],
-    "lowerIsBetter" : false,
-    "displayRank" : 2,
-    "featureType" : "PERCENT",
-    "coreFeatureRank" : null
+    "coreFeatureRank" : null,
+    "needPercentile" : false
   },
   {
     "code" : "DP_OSC_R",
-    "desc" : "DividendsPerShare",
+    "desc" : "DividendsPerShare - Equity",
     "category" : "DIVIDEND",
     "variations" : [
       {
         "code" : "DP|OSC",
         "displayRank" : 4,
         "variations" : [
-          "MRQ"
+          "Current Qt"
         ]
       },
       {
         "code" : "DP_T|OSC",
         "displayRank" : 0,
         "variations" : [
-          "TTM"
+          "Trailing Yr"
         ]
       },
       {
         "code" : "DP_C|OSC",
         "displayRank" : 2,
         "variations" : [
-          "YTD"
+          "Current Yr"
         ]
       }
     ],
     "lowerIsBetter" : false,
     "displayRank" : 3,
     "featureType" : "NOMINAL",
-    "coreFeatureRank" : null
+    "coreFeatureRank" : null,
+    "needPercentile" : false
+  },
+  {
+    "code" : "DP_M_R",
+    "desc" : "Dividends/MktCap - Equity",
+    "category" : "DIVIDEND",
+    "variations" : [
+      {
+        "code" : "DP|M",
+        "displayRank" : 4,
+        "variations" : [
+          "Current Qt"
+        ]
+      },
+      {
+        "code" : "DP_T|M",
+        "displayRank" : 0,
+        "variations" : [
+          "Trailing Yr"
+        ]
+      },
+      {
+        "code" : "DP_C|M",
+        "displayRank" : 2,
+        "variations" : [
+          "Current Yr"
+        ]
+      }
+    ],
+    "lowerIsBetter" : false,
+    "displayRank" : 4,
+    "featureType" : "PERCENT",
+    "coreFeatureRank" : null,
+    "needPercentile" : true
+  },
+  {
+    "code" : "DPS_MKT_R",
+    "desc" : "DividendsYield - Declared",
+    "category" : "DIVIDEND",
+    "variations" : [
+      {
+        "code" : "DPS|MC",
+        "displayRank" : 4,
+        "variations" : [
+          "Current Qt"
+        ]
+      },
+      {
+        "code" : "DPS_T|MC",
+        "displayRank" : 0,
+        "variations" : [
+          "Trailing Yr"
+        ]
+      },
+      {
+        "code" : "DPS_C|MC",
+        "displayRank" : 2,
+        "variations" : [
+          "Current Yr"
+        ]
+      }
+    ],
+    "lowerIsBetter" : false,
+    "displayRank" : 11,
+    "featureType" : "PERCENT",
+    "coreFeatureRank" : null,
+    "needPercentile" : true
   },
   {
     "code" : "M_NI_R",
-    "desc" : "PER",
+    "desc" : "NetIncome / MrkCap",
     "category" : "VALUE",
     "variations" : [
       {
         "code" : "M|NI",
         "displayRank" : 4,
         "variations" : [
-          "MRQ"
+          "Current Qt"
         ]
       },
       {
         "code" : "M|NI_T",
         "displayRank" : 0,
         "variations" : [
-          "TTM"
+          "Trailing Yr"
         ]
       },
       {
         "code" : "M|NI_C",
         "displayRank" : 2,
         "variations" : [
-          "YTD"
+          "Current Yr"
         ]
       }
     ],
-    "lowerIsBetter" : false,
+    "lowerIsBetter" : true,
     "displayRank" : 1,
     "featureType" : "RATIO",
-    "coreFeatureRank" : 5
+    "coreFeatureRank" : null,
+    "needPercentile" : true
   },
   {
     "code" : "M_R_R",
-    "desc" : "PSR",
+    "desc" : "Revenues / MrkCap",
     "category" : "VALUE",
     "variations" : [
       {
         "code" : "M|R",
         "displayRank" : 4,
         "variations" : [
-          "MRQ"
+          "Current Qt"
         ]
       },
       {
         "code" : "M|R_T",
         "displayRank" : 0,
         "variations" : [
-          "TTM"
+          "Trailing Yr"
         ]
       },
       {
         "code" : "M|R_C",
         "displayRank" : 2,
         "variations" : [
-          "YTD"
+          "Current Yr"
         ]
       }
     ],
-    "lowerIsBetter" : false,
+    "lowerIsBetter" : true,
     "displayRank" : 3,
     "featureType" : "RATIO",
-    "coreFeatureRank" : null
+    "coreFeatureRank" : null,
+    "needPercentile" : true
   },
   {
     "code" : "M_OC_R",
-    "desc" : "PCR",
+    "desc" : "OperatingCash / MrkCap",
     "category" : "VALUE",
     "variations" : [
       {
         "code" : "M|OC",
         "displayRank" : 4,
         "variations" : [
-          "MRQ"
+          "Current Qt"
         ]
       },
       {
         "code" : "M|OC_T",
         "displayRank" : 0,
         "variations" : [
-          "TTM"
+          "Trailing Yr"
         ]
       },
       {
         "code" : "M|OC_C",
         "displayRank" : 2,
         "variations" : [
-          "YTD"
+          "Current Yr"
+        ]
+      }
+    ],
+    "lowerIsBetter" : true,
+    "displayRank" : 2,
+    "featureType" : "RATIO",
+    "coreFeatureRank" : null,
+    "needPercentile" : true
+  },
+  {
+    "code" : "DP_MKT_R",
+    "desc" : "DividendsYield - Equity",
+    "category" : "DIVIDEND",
+    "variations" : [
+      {
+        "code" : "DP|OSC|MC",
+        "displayRank" : 4,
+        "variations" : [
+          "Current Qt"
+        ]
+      },
+      {
+        "code" : "DP_T|OSC|MC",
+        "displayRank" : 0,
+        "variations" : [
+          "Trailing Yr"
+        ]
+      },
+      {
+        "code" : "DP_C|OSC|MC",
+        "displayRank" : 2,
+        "variations" : [
+          "Current Yr"
         ]
       }
     ],
     "lowerIsBetter" : false,
+    "displayRank" : 5,
+    "featureType" : "PERCENT",
+    "coreFeatureRank" : 31,
+    "needPercentile" : true
+  },
+  {
+    "code" : "DPC",
+    "desc" : "DividendsPayments - Cash",
+    "category" : "DIVIDEND",
+    "variations" : [
+      {
+        "code" : "DPC",
+        "displayRank" : 4,
+        "variations" : [
+          "Current Qt"
+        ]
+      },
+      {
+        "code" : "DPC_T",
+        "displayRank" : 0,
+        "variations" : [
+          "Trailing Yr"
+        ]
+      },
+      {
+        "code" : "DPC_C",
+        "displayRank" : 2,
+        "variations" : [
+          "Current Yr"
+        ]
+      }
+    ],
+    "lowerIsBetter" : false,
+    "displayRank" : 6,
+    "featureType" : "MILLION",
+    "coreFeatureRank" : null,
+    "needPercentile" : false
+  },
+  {
+    "code" : "DPC_OSC_R",
+    "desc" : "DividendsPerShare - Cash",
+    "category" : "DIVIDEND",
+    "variations" : [
+      {
+        "code" : "DPC|OSC",
+        "displayRank" : 4,
+        "variations" : [
+          "Current Qt"
+        ]
+      },
+      {
+        "code" : "DPC_T|OSC",
+        "displayRank" : 0,
+        "variations" : [
+          "Trailing Yr"
+        ]
+      },
+      {
+        "code" : "DPC_C|OSC",
+        "displayRank" : 2,
+        "variations" : [
+          "Current Yr"
+        ]
+      }
+    ],
+    "lowerIsBetter" : false,
+    "displayRank" : 7,
+    "featureType" : "NOMINAL",
+    "coreFeatureRank" : null,
+    "needPercentile" : false
+  },
+  {
+    "code" : "DPC_M_R",
+    "desc" : "Dividends/MktCap - Cash",
+    "category" : "DIVIDEND",
+    "variations" : [
+      {
+        "code" : "DPC|M",
+        "displayRank" : 4,
+        "variations" : [
+          "Current Qt"
+        ]
+      },
+      {
+        "code" : "DPC_T|M",
+        "displayRank" : 0,
+        "variations" : [
+          "Trailing Yr"
+        ]
+      },
+      {
+        "code" : "DPC_C|M",
+        "displayRank" : 2,
+        "variations" : [
+          "Current Yr"
+        ]
+      }
+    ],
+    "lowerIsBetter" : false,
+    "displayRank" : 8,
+    "featureType" : "PERCENT",
+    "coreFeatureRank" : null,
+    "needPercentile" : true
+  },
+  {
+    "code" : "DPC_MKT_R",
+    "desc" : "DividendsYield - Cash",
+    "category" : "DIVIDEND",
+    "variations" : [
+      {
+        "code" : "DPC|OSC|MC",
+        "displayRank" : 4,
+        "variations" : [
+          "Current Qt"
+        ]
+      },
+      {
+        "code" : "DPC_T|OSC|MC",
+        "displayRank" : 0,
+        "variations" : [
+          "Trailing Yr"
+        ]
+      },
+      {
+        "code" : "DPC_C|OSC|MC",
+        "displayRank" : 2,
+        "variations" : [
+          "Current Yr"
+        ]
+      }
+    ],
+    "lowerIsBetter" : false,
+    "displayRank" : 9,
+    "featureType" : "PERCENT",
+    "coreFeatureRank" : 32,
+    "needPercentile" : true
+  },
+  {
+    "code" : "DPS",
+    "desc" : "DividendsPerShare - Declared",
+    "category" : "DIVIDEND",
+    "variations" : [
+      {
+        "code" : "DPS",
+        "displayRank" : 4,
+        "variations" : [
+          "Current Qt"
+        ]
+      },
+      {
+        "code" : "DPS_T",
+        "displayRank" : 0,
+        "variations" : [
+          "Trailing Yr"
+        ]
+      },
+      {
+        "code" : "DPS_C",
+        "displayRank" : 2,
+        "variations" : [
+          "Current Yr"
+        ]
+      }
+    ],
+    "lowerIsBetter" : false,
+    "displayRank" : 10,
+    "featureType" : "NOMINAL",
+    "coreFeatureRank" : null,
+    "needPercentile" : false
+  },
+  {
+    "code" : "DP_CON_R",
+    "desc" : "DividendsYield - Conservative",
+    "category" : "DIVIDEND",
+    "variations" : [
+      {
+        "code" : "DY_CON_T",
+        "displayRank" : 1,
+        "variations" : [
+          "Trailing Yr"
+        ]
+      },
+      {
+        "code" : "DY_CON_C",
+        "displayRank" : 2,
+        "variations" : [
+          "Current Yr"
+        ]
+      },
+      {
+        "code" : "DY_CON",
+        "displayRank" : 3,
+        "variations" : [
+          "Current Qt"
+        ]
+      }
+    ],
+    "lowerIsBetter" : false,
+    "displayRank" : 12,
+    "featureType" : "PERCENT",
+    "coreFeatureRank" : null,
+    "needPercentile" : true
+  },
+  {
+    "code" : "MKT_PER",
+    "desc" : "Price / EPS",
+    "category" : "VALUE",
+    "variations" : [
+      {
+        "code" : "MC|NI|OSC",
+        "displayRank" : 4,
+        "variations" : [
+          "Current Qt"
+        ]
+      },
+      {
+        "code" : "MC|NI_T|OSC",
+        "displayRank" : 0,
+        "variations" : [
+          "Trailing Yr"
+        ]
+      },
+      {
+        "code" : "MC|NI_C|OSC",
+        "displayRank" : 2,
+        "variations" : [
+          "Current Yr"
+        ]
+      }
+    ],
+    "lowerIsBetter" : true,
+    "displayRank" : 1,
+    "featureType" : "RATIO",
+    "coreFeatureRank" : 21,
+    "needPercentile" : true
+  },
+  {
+    "code" : "MKT_PSR",
+    "desc" : "Price / SPS",
+    "category" : "VALUE",
+    "variations" : [
+      {
+        "code" : "MC|R|OSC",
+        "displayRank" : 4,
+        "variations" : [
+          "Current Qt"
+        ]
+      },
+      {
+        "code" : "MC|R_T|OSC",
+        "displayRank" : 0,
+        "variations" : [
+          "Trailing Yr"
+        ]
+      },
+      {
+        "code" : "MC|R_C|OSC",
+        "displayRank" : 2,
+        "variations" : [
+          "Current Yr"
+        ]
+      }
+    ],
+    "lowerIsBetter" : true,
+    "displayRank" : 3,
+    "featureType" : "RATIO",
+    "coreFeatureRank" : null,
+    "needPercentile" : true
+  },
+  {
+    "code" : "MKT_PCR",
+    "desc" : "Price / CPS",
+    "category" : "VALUE",
+    "variations" : [
+      {
+        "code" : "OC|MC|OSC",
+        "displayRank" : 4,
+        "variations" : [
+          "Current Qt"
+        ]
+      },
+      {
+        "code" : "OC_T|MC|OSC",
+        "displayRank" : 0,
+        "variations" : [
+          "Trailing Yr"
+        ]
+      },
+      {
+        "code" : "OC_C|MC|OSC",
+        "displayRank" : 2,
+        "variations" : [
+          "Current Yr"
+        ]
+      }
+    ],
+    "lowerIsBetter" : true,
     "displayRank" : 2,
     "featureType" : "RATIO",
-    "coreFeatureRank" : null
+    "coreFeatureRank" : null,
+    "needPercentile" : true
   }
 ]

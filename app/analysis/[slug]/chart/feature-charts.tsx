@@ -53,7 +53,8 @@ export function CategoryCharts({category, featureData}: {category: string, featu
 
                     const features = featureData.feature ? 
                     featureData.feature.features.filter(e => variationCodes.includes(e.fName)) : [];
-
+                    console.log(featureDef)
+                    console.log(featureData)
                     const stockPercentile = featureData.stockPercentile ? 
                     Object.entries(featureData.stockPercentile.percentiles).filter(e => variationCodes.includes(e[0])) : [];
                   

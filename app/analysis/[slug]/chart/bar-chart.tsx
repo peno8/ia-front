@@ -8,8 +8,12 @@ import { FeatureObj } from "../../api/route";
 export default function BarChartContainer({ featureDef, data, variationLabels, category }:
     { featureDef: FeatureDef, data: FeatureObj[], variationLabels: { value: string, label: string }[], category: string }) {
     const [key, setKey] = useState(variationLabels[0].value);
-
-    const chartData = data.find(e => e.fName === key)!.features;
+    
+    console.log(featureDef)
+    console.log(data)
+    console.log(variationLabels)
+    const maybeChartData = data.find(e => e.fName === key)?.features;
+    const chartData = maybeChartData ? maybeChartData : [];
 
     function changeChartData(key: string | null) {
         key && setKey(() => key);
@@ -38,14 +42,34 @@ export default function BarChartContainer({ featureDef, data, variationLabels, c
 }
 
 function getLabelNumString(featureType: string, value: number) {
+    let prec = 1
+    let unit = "M"
+
     if (featureType === 'MILLION') {
-        
-        return `${formatNumber2(value, 1000, 2)}B`
+        if(value >= 10000000) {
+            prec = 1000000
+            unit = "T"
+        } else if(value >= 10000) {
+            prec = 1000
+            unit = "B"
+        } else {
+          unit = "M"
+        }
+        return `${formatNumber2(value, prec)}${unit}`
     } else if (featureType === 'NOMINAL') {
-        
-        return `${formatNumber2(value, 1, 2)}$`
+        let prec = 1
+        let unit = ""
+        if(value >= 10000) {
+            prec = 1000
+            unit = "K"
+        }
+        return `${formatNumber2(value, prec, 1)}${unit}`
+    } else if (featureType === 'RATIO') { 
+        prec = 1
+        unit = ""
+        return `${formatNumber2(value, prec, 1)}${unit}`
     } else {
-       return `${formatNumber2(value, 1, 2)}`
+       return `${formatNumber2(value * 100, 1, 1)}%`
     }
 }
 
@@ -69,6 +93,9 @@ export function BarChart({ chartData, category, featureDef }: {
     const gy = useRef(null);
     const tooltip = useRef(null);
     const rects = useRef(null);
+
+    let maybeMaxYaxisValue = d3.max(chartData, (d) => d.value);
+    let maxYaxisValue = maybeMaxYaxisValue ? maybeMaxYaxisValue : 0;
 
     let maybeMinYaxisValue = d3.min(chartData, (d) => d.value);
     let minYaxisValue = maybeMinYaxisValue ? maybeMinYaxisValue : 0;
@@ -106,11 +133,29 @@ export function BarChart({ chartData, category, featureDef }: {
 
     useEffect(() => {
         if (featureDef.featureType === 'MILLION') {
+            let prec = 1
+            let unit = "M"
+            if(maxYaxisValue >= 10000000) {
+                prec = 1000000
+                unit = "T"
+            } else if(maxYaxisValue >= 10000) {
+                prec = 1000
+                unit = "B"
+            }
+
             // @ts-ignore
-            d3.select(gy.current).call(d3.axisLeft(y).ticks(5).tickFormat((v,) => `${formatNumber2(v, 1000)}B`))
+            d3.select(gy.current).call(d3.axisLeft(y).ticks(5).tickFormat((v,) => `${formatNumber2(v, prec)}${unit}`))
         } else if (featureDef.featureType === 'NOMINAL') {
+            let prec = 1
+            let unit = ""
+            // console.log(featureDef)
+            // console.log(chartData)
+            if(maxYaxisValue >= 10000) {
+                prec = 1000
+                unit = "K"
+            }
             // @ts-ignore
-            d3.select(gy.current).call(d3.axisLeft(y).ticks(5).tickFormat((v,) => `${formatNumber2(v, 1)}$`))
+            d3.select(gy.current).call(d3.axisLeft(y).ticks(5).tickFormat((v,) => `${formatNumber2(v, 1)}${unit}`))
         } else if (featureDef.featureType === 'RATIO') {
             // @ts-ignore
             d3.select(gy.current).call(d3.axisLeft(y).ticks(5))
@@ -145,7 +190,8 @@ export function BarChart({ chartData, category, featureDef }: {
                     .append("text")
                     .datum(d)
                     .attr("text-anchor", "middle")
-                    .text(d => { { return `CQ: ${d.cq}, ${getLabelNumString(featureDef.featureType, d.value)}` } })
+                    .text(d => {{ 
+                        return `CQ: ${d.cq}, ${getLabelNumString(featureDef.featureType, d.value)}` } })
                     .attr("fill", "currentColor")
             })
             .on("pointerleave", (e) => {

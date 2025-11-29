@@ -2,8 +2,6 @@ import { create } from "zustand";
 import { FeatureData, POST } from "../api/route";
 import { getRequest } from "../../utils";
 import { fetchStatusStore } from "@/app/app.store";
-import { useContext } from "react";
-import { MetadataContext } from "../metadata-context";
 
 export const featureDataStore = create<{ data: FeatureData | null }>(() => ({ data: null }));
 
@@ -13,7 +11,7 @@ export function fetchFeatureData(symbol: string, cq: string) {
 
   const request = {
     cq: cq,
-    sector: 'ALL|X',
+    sector: 'ALL|ALL|ALL',  // TODO
     symbol: symbol
   }
 

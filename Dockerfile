@@ -5,6 +5,11 @@ FROM node:18-alpine AS base
 # RUN mkdir -p /data
 COPY ./data /data
 
+# COPY /Users/phlee/Data/output/US_company_definition.json /data
+# COPY /Users/phlee/Data/output/KR_company_definition.json /data
+# COPY /Users/phlee/Data/output/feature_definition.json /data
+# COPY /Users/phlee/Data/output/screener_definition.json /data
+
 ENV DATA_ROOT=/data
 # ENV NEXT_PUBLIC_BACKEND_URL='http://127.0.0.1:53778'
 

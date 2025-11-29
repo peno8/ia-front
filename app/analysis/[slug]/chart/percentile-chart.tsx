@@ -2,7 +2,7 @@
 
 import { useEffect, useRef } from "react";
 import * as d3 from "d3";
-import { formatNumber } from "@/app/utils";
+import { formatNumber, formatNumber2, formatPercent } from "@/app/utils";
 import { FeatureDef } from "@/app/screener/screener-store";
 import { PercentileEntry } from "./feature-charts";
 
@@ -29,10 +29,10 @@ export default function PercentileChart({ symbol, featureDef, category, stockPer
   const compareArea = useRef(null);
 
   const lowerIsBetter = featureDef.lowerIsBetter;
-
+  console.log(featureDef)
   // X scale
   const x = d3.scaleLinear()
-    .domain([1, 0])
+    .domain([0, 1])
     .range([width - marginRight, marginLeft]);
 
   // Y scale
@@ -54,6 +54,46 @@ export default function PercentileChart({ symbol, featureDef, category, stockPer
     if(getPercentile(value) < 0.5) return 'steelblue'
     else return '#F78C6C';
   }
+
+  function getLabelStr(value: number, percentile: number, name: string){ 
+    let prec = 1
+    let unit = "%"
+    
+    if (featureDef.featureType === 'MILLION') {
+
+      if(value >= 10000000) {
+          prec = 1000000
+          unit = "T"
+      } else if(value >= 10000) {
+          prec = 1000
+          unit = "B"
+      } else {
+        unit = "M"
+      }
+    } else if (featureDef.featureType === 'NOMINAL') {
+      if(value >= 10000000) {
+        prec = 1000000
+        unit = "M"
+      } else if(value >= 10000) {
+          prec = 1000
+          unit = "K"
+      } else {
+        unit = ""
+      }
+    } else if(featureDef.featureType === 'RATIO') {
+      unit = ""  
+    }
+
+    let formattedValue = ''
+    if (featureDef.featureType === 'MILLION' || featureDef.featureType === 'NOMINAL') {
+      formattedValue = formatNumber2(value, prec)
+    } else if (featureDef.featureType === 'RATIO') {
+      formattedValue = formatNumber2(value, 1, 1)
+    } else {
+      formattedValue = formatPercent(value)
+    }
+    
+    return `${name}, Value: ${formattedValue}${unit}, Percentile: ${formatNumber("", getPercentile(percentile))}` }
   
   useEffect(() => {
     void
@@ -83,7 +123,7 @@ export default function PercentileChart({ symbol, featureDef, category, stockPer
           .append("text")
           .datum(d)
           .attr("text-anchor", "left")
-          .text(d => { { return `${'ALL'}, Value: ${formatNumber(category, d[1].v)}, Percentile: ${formatNumber("", getPercentile(d[1].p))}` } })
+          .text(d => { return getLabelStr(d[1].v, d[1].p, 'All') })
           .attr("fill", "currentColor")
       })
       .on("pointerleave", (e) => {
@@ -103,6 +143,7 @@ export default function PercentileChart({ symbol, featureDef, category, stockPer
     d3.select(area.current)
     .selectAll()
     .data([0.2, 0.4, 0.6, 0.8])
+    // .data([0.8, 0.6, 0.4, 0.2])
     // .data((d) => { return [d[1]] })
     .join("line")
     .attr('x1', v => x(v))
@@ -128,7 +169,48 @@ export default function PercentileChart({ symbol, featureDef, category, stockPer
           .append("text")
           .datum(d)
           .attr("text-anchor", "left")
-          .text((d) => { { return `${symbol}, Value: ${formatNumber(category, d[1].v)}, Percentile: ${formatNumber("", getPercentile(d[1].p))}` } })
+          .text((d) => { 
+            // { 
+            // let prec = 1
+            // let unit = "%"
+            
+            // if (featureDef.featureType === 'MILLION') {
+
+            //   if(d[1].v >= 10000000) {
+            //       prec = 1000000
+            //       unit = "T"
+            //   } else if(d[1].v >= 10000) {
+            //       prec = 1000
+            //       unit = "B"
+            //   } else {
+            //     unit = "M"
+            //   }
+            // } else if (featureDef.featureType === 'NOMINAL') {
+            //   if(d[1].v >= 10000000) {
+            //     prec = 1000000
+            //     unit = "M"
+            //   } else if(d[1].v >= 10000) {
+            //       prec = 1000
+            //       unit = "K"
+            //   } else {
+            //     unit = ""
+            //   }
+            // } else if(featureDef.featureType === 'RATIO') {
+            //   unit = ""  
+            // }
+
+            // let formattedValue = ''
+            // if (featureDef.featureType === 'MILLION' || featureDef.featureType === 'NOMINAL') {
+            //   formattedValue = formatNumber2(d[1].v, prec)
+            // } else if (featureDef.featureType === 'RATIO') {
+            //   formattedValue = formatNumber2(d[1].v, 1, 1)
+            // } else {
+            //   formattedValue = formatPercent(d[1].v)
+            // }
+            
+            // return `${symbol}, Value: ${formattedValue}${unit}, Percentile: ${formatNumber("", getPercentile(d[1].p))}` } 
+            return getLabelStr(d[1].v, d[1].p, symbol)
+          })
           .attr("fill", "currentColor")
       })
       .on("pointerleave", (e) => {

@@ -1,5 +1,6 @@
 import { readFileSync } from "fs";
 import { CompanyDef } from "./app.store";
+import { FeatureDef } from "./screener/screener-store";
 
 export function readFileFromSharedDist(filename: string | undefined) {
   console.log(process.env.DATA_ROOT);
@@ -25,6 +26,42 @@ export function formatPercent(v: number) {
 export function formatNumber(category: string, v: number) {
   if(category === 'SIZE') return `${(v / 10000).toFixed(0)}`
   else return `${formatPercent(v)}%`
+}
+
+export function formatNumberWithDef(featureDef: FeatureDef, value: number) {
+  let prec = 1
+  let unit = "%"
+  if (featureDef.featureType === 'MILLION') {
+    if(value >= 10000000) {
+        prec = 1000000
+        unit = "T"
+    } else if(value >= 10000) {
+        prec = 1000
+        unit = "B"
+    } else {
+      unit = "M"
+    }
+  } else if (featureDef.featureType === 'NOMINAL') {
+    if(value >= 10000000) {
+      prec = 1000000
+      unit = "M"
+    } else if(value >= 10000) {
+        prec = 1000
+        unit = "K"
+    } else {
+      unit = ""
+    }
+  } else if(featureDef.featureType === 'RATIO') {
+    unit = ""  
+  }
+  if (featureDef.featureType === 'RATIO') {
+    return `${value.toFixed(1)}${unit}`  
+  } else if (featureDef.featureType === 'PERCENT') {
+    return `${(value * 100).toFixed(1)}${unit}`  
+  } else {
+    return `${(value / prec).toFixed(0)}${unit}`
+  }
+  
 }
 
 export function formatNumber2(v: number, denom: number, decimal: number = 0) {

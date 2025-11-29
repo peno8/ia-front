@@ -11,9 +11,7 @@ import { MetadataContext } from "../metadata-context";
 
 export default function AnalysisContent({ featureDefsJson, symbol, metadata }: { featureDefsJson: string, symbol: string, metadata: AppMetadata }) {
     
-    const context = {
-        metadata: metadata
-    }
+
       
     useEffect(() => {
         fetchFeatureData(symbol, metadata.CURRENT_QT)
@@ -22,7 +20,13 @@ export default function AnalysisContent({ featureDefsJson, symbol, metadata }: {
     setFeatureDefsStore(featureDefsJson);
     const companyDef = getCompanyDef(symbol)!;
     const featureData = featureDataStore((state) => state.data);
-    // console.log(featureData)
+
+    const context = {
+        metadata: metadata,
+        compDef: companyDef
+    }
+
+    console.log(context)
     return (
         <MetadataContext.Provider value={context}>
             <div className="relative w-full">
@@ -31,7 +35,7 @@ export default function AnalysisContent({ featureDefsJson, symbol, metadata }: {
                         <div className="w-[900px]">
                             <StockDescription cd={companyDef} featureData={featureData}/>
                             <div className="m-2">
-                                {featureData.feature ? <AnalysisAccordion featureData={featureData} /> : null}
+                                {featureData.feature ? <AnalysisAccordion featureData={featureData} compDef={companyDef} /> : null}
                             </div>
                         </div> : null
                     }

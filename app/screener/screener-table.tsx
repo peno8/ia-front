@@ -2,11 +2,14 @@
 
 import React, { useRef, useCallback, useEffect } from 'react';
 import { AgGridReact } from 'ag-grid-react';
+import { ModuleRegistry, AllCommunityModule } from 'ag-grid-community';
 import { getVariationLabel, SelectedFeaturesForm, tableDataStore, fetchScreenerData, getFeatureDefByVariationCode, getSelectedScreenerParam } from './screener-store';
-import { formatNumber } from '../utils';
+import { formatNumber, formatNumberWithDef } from '../utils';
 import { CompanyDef, companyDefMap } from '../app.store';
 import { Anchor } from '@mantine/core';
 import { useWindowWidth } from '@react-hook/window-size';
+
+ModuleRegistry.registerModules([AllCommunityModule]);
 
 const linkCellRenderer = ({ value }: { value: string }) => (
   <Anchor target="_blank" href={`/analysis/${value}`}>{value}</Anchor>
@@ -54,13 +57,15 @@ function getColDefs(requestObj: SelectedFeaturesForm, compDefMap: Map<string, Co
   ]
   // @ts-ignore
   const valueColDefs = requestObj.features.flatMap((e: { feature: string, lowerIsBetter: boolean }) => {
-
+    console.log(requestObj);
     const name = getVariationLabel(e.feature);
+    console.log(name);
     const featureDef = getFeatureDefByVariationCode(e.feature);
 
     function getValue(params: any) {
       const value = params.data.percentile.percentiles[e.feature] ? params.data.percentile.percentiles[e.feature]['v'] : 0;
-      return formatNumber(featureDef!.category, value);
+      console.log(featureDef);
+      return formatNumberWithDef(featureDef!, value);
     }
 
     function getPercentile(params: any) {

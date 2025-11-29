@@ -3,9 +3,10 @@ import { CategoryCharts } from "./chart/feature-charts";
 import { categories } from "../../screener/screener-store";
 import { useState } from "react";
 import { FeatureData } from "../api/route";
+import { CompanyDef } from "@/app/app.store";
 
 
-export default function AnalysisAccordion({ featureData }: { featureData: FeatureData }) {
+export default function AnalysisAccordion({ featureData, compDef }: { featureData: FeatureData, compDef: CompanyDef }) {
     const [value, setValue] = useState<string[]>(['SUMMARY']);
     const [panelOpened, setPanelOpened] = useState<string[]>(['SUMMARY']);
 

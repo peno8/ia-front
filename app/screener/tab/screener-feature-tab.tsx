@@ -15,7 +15,7 @@ export default function ScreenerFeatureTab() {
     const iconStyle = { width: rem(12), height: rem(12) };
     const context = useContext(ScreenerContext);
 
-    const categories = ['PROFITABILITY', 'GROWTH', 'STABILITY', 'EFFICIENCY', 'SIZE'];
+    const categories = ['PROFITABILITY', 'GROWTH', 'STABILITY', 'EFFICIENCY', 'VALUE', 'DIVIDEND'];
     const accordionDefault = ['PROFITABILITY'];
     const featureDefMap = new Map();
     
@@ -32,7 +32,7 @@ export default function ScreenerFeatureTab() {
                         Sorting Variables
                     </Tabs.Tab>
                     <Tabs.Tab value="exchange" className='dark:hover:bg-[--bg-dark-hover]'>
-                        Exchange & Industry
+                        Country, Exg & Ind
                     </Tabs.Tab>
                     <Tabs.Tab value="cq" className='dark:hover:bg-[--bg-dark-hover]'>
                         Quarter
@@ -48,6 +48,9 @@ export default function ScreenerFeatureTab() {
                         </Accordion>
                     </div>
                 </Tabs.Panel>
+                {/* <Tabs.Panel value="country">
+                    <CalendarQuarterCheckboxes />
+                </Tabs.Panel> */}
                 <Tabs.Panel value="exchange">
                     <SectorCheckboxes />
                 </Tabs.Panel>

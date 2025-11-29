@@ -62,7 +62,9 @@ const featureDefsStr = readFileFromSharedDist(process.env.FEATURE_DEFS_FILE);
 
 featureDefsStringStore.setState(featureDefsStr);
 
-const companyDefStr = readFileFromSharedDist(process.env.COMPANY_DEF_CODES_FILE);
+const companyDefStr = readFileFromSharedDist('US_' + process.env.COMPANY_DEF_CODES_FILE);
+const krCompanyDefStr = readFileFromSharedDist('KR_' + process.env.COMPANY_DEF_CODES_FILE);
+const aggCompanyDefStr = companyDefStr.substring(0, companyDefStr.length - 1) + ',' + krCompanyDefStr.substring(1, krCompanyDefStr.length)
 
 export default async function RootLayout({
   children,
@@ -80,7 +82,7 @@ export default async function RootLayout({
         
         <ThemeProviders>
         <MantineProvider>
-          <Header companyDefStr={companyDefStr} />
+          <Header companyDefStr={aggCompanyDefStr} />
           
           
           <main className="wrap flex-none text-black dark:text-slate-50">

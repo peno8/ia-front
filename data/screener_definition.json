@@ -1,86 +1,245 @@
 [
   {
-    "key" : "SIC|E",
-    "keyType" : "SIC",
-    "value" : "E",
-    "desc" : "Transportation, Communications, Electric, Gas, Sanitary Services",
-    "order" : 4
+    "key" : "US|ALL|E",
+    "keyType" : "CC|ALL|SIC",
+    "cc" : "US",
+    "exg" : "ALL",
+    "sic" : "E",
+    "desc" : "US - Transportation, Communications, Electric, Gas, Sanitary Services",
+    "order" : 200
   },
   {
-    "key" : "SIC|F",
-    "keyType" : "SIC",
-    "value" : "F",
-    "desc" : "Wholesale Trade",
-    "order" : 4
+    "key" : "US|ALL|F",
+    "keyType" : "CC|ALL|SIC",
+    "cc" : "US",
+    "exg" : "ALL",
+    "sic" : "F",
+    "desc" : "US - Wholesale Trade",
+    "order" : 200
   },
   {
-    "key" : "SIC|A",
-    "keyType" : "SIC",
-    "value" : "A",
-    "desc" : "Agriculture, Forestry, and Fishing",
-    "order" : 4
+    "key" : "US|ALL|A",
+    "keyType" : "CC|ALL|SIC",
+    "cc" : "US",
+    "exg" : "ALL",
+    "sic" : "A",
+    "desc" : "US - Agriculture, Forestry, and Fishing",
+    "order" : 200
   },
   {
-    "key" : "SIC|I",
-    "keyType" : "SIC",
-    "value" : "I",
-    "desc" : "Services",
-    "order" : 4
+    "key" : "US|ALL|XF",
+    "keyType" : "CC|ALL|SIC",
+    "cc" : "US",
+    "exg" : "ALL",
+    "sic" : "XF",
+    "desc" : "US - Non Financials",
+    "order" : 200
   },
   {
-    "key" : "SIC|G",
-    "keyType" : "SIC",
-    "value" : "G",
-    "desc" : "Retail Trade",
-    "order" : 4
+    "key" : "US|ALL|I",
+    "keyType" : "CC|ALL|SIC",
+    "cc" : "US",
+    "exg" : "ALL",
+    "sic" : "I",
+    "desc" : "US - Services",
+    "order" : 200
   },
   {
-    "key" : "SIC|B",
-    "keyType" : "SIC",
-    "value" : "B",
-    "desc" : "Mining",
-    "order" : 4
+    "key" : "US|ALL|G",
+    "keyType" : "CC|ALL|SIC",
+    "cc" : "US",
+    "exg" : "ALL",
+    "sic" : "G",
+    "desc" : "US - Retail Trade",
+    "order" : 200
   },
   {
-    "key" : "SIC|C",
-    "keyType" : "SIC",
-    "value" : "C",
-    "desc" : "Construction",
-    "order" : 4
+    "key" : "US|ALL|B",
+    "keyType" : "CC|ALL|SIC",
+    "cc" : "US",
+    "exg" : "ALL",
+    "sic" : "B",
+    "desc" : "US - Mining",
+    "order" : 200
   },
   {
-    "key" : "SIC|H",
-    "keyType" : "SIC",
-    "value" : "H",
-    "desc" : "Finance, Insurance, Real Estate",
-    "order" : 4
+    "key" : "US|ALL|C",
+    "keyType" : "CC|ALL|SIC",
+    "cc" : "US",
+    "exg" : "ALL",
+    "sic" : "C",
+    "desc" : "US - Construction",
+    "order" : 200
   },
   {
-    "key" : "SIC|D",
-    "keyType" : "SIC",
-    "value" : "D",
-    "desc" : "Manufacturing",
-    "order" : 4
+    "key" : "US|ALL|H",
+    "keyType" : "CC|ALL|SIC",
+    "cc" : "US",
+    "exg" : "ALL",
+    "sic" : "H",
+    "desc" : "US - Finance, Insurance, Real Estate",
+    "order" : 200
   },
   {
-    "key" : "EXG|N",
-    "keyType" : "EXG",
-    "value" : "N",
-    "desc" : "Nasdaq",
-    "order" : 1
+    "key" : "US|ALL|D",
+    "keyType" : "CC|ALL|SIC",
+    "cc" : "US",
+    "exg" : "ALL",
+    "sic" : "D",
+    "desc" : "US - Manufacturing",
+    "order" : 200
   },
   {
-    "key" : "EXG|Y",
-    "keyType" : "EXG",
-    "value" : "Y",
-    "desc" : "NYSE",
+    "key" : "KR|ALL|E",
+    "keyType" : "CC|ALL|SIC",
+    "cc" : "KR",
+    "exg" : "ALL",
+    "sic" : "E",
+    "desc" : "KR - Transportation, Communications, Electric, Gas, Sanitary Services",
+    "order" : 300
+  },
+  {
+    "key" : "KR|ALL|F",
+    "keyType" : "CC|ALL|SIC",
+    "cc" : "KR",
+    "exg" : "ALL",
+    "sic" : "F",
+    "desc" : "KR - Wholesale Trade",
+    "order" : 300
+  },
+  {
+    "key" : "KR|ALL|A",
+    "keyType" : "CC|ALL|SIC",
+    "cc" : "KR",
+    "exg" : "ALL",
+    "sic" : "A",
+    "desc" : "KR - Agriculture, Forestry, and Fishing",
+    "order" : 300
+  },
+  {
+    "key" : "KR|ALL|XF",
+    "keyType" : "CC|ALL|SIC",
+    "cc" : "KR",
+    "exg" : "ALL",
+    "sic" : "XF",
+    "desc" : "KR - Non Financials",
+    "order" : 300
+  },
+  {
+    "key" : "KR|ALL|I",
+    "keyType" : "CC|ALL|SIC",
+    "cc" : "KR",
+    "exg" : "ALL",
+    "sic" : "I",
+    "desc" : "KR - Services",
+    "order" : 300
+  },
+  {
+    "key" : "KR|ALL|G",
+    "keyType" : "CC|ALL|SIC",
+    "cc" : "KR",
+    "exg" : "ALL",
+    "sic" : "G",
+    "desc" : "KR - Retail Trade",
+    "order" : 300
+  },
+  {
+    "key" : "KR|ALL|B",
+    "keyType" : "CC|ALL|SIC",
+    "cc" : "KR",
+    "exg" : "ALL",
+    "sic" : "B",
+    "desc" : "KR - Mining",
+    "order" : 300
+  },
+  {
+    "key" : "KR|ALL|C",
+    "keyType" : "CC|ALL|SIC",
+    "cc" : "KR",
+    "exg" : "ALL",
+    "sic" : "C",
+    "desc" : "KR - Construction",
+    "order" : 300
+  },
+  {
+    "key" : "KR|ALL|H",
+    "keyType" : "CC|ALL|SIC",
+    "cc" : "KR",
+    "exg" : "ALL",
+    "sic" : "H",
+    "desc" : "KR - Finance, Insurance, Real Estate",
+    "order" : 300
+  },
+  {
+    "key" : "KR|ALL|D",
+    "keyType" : "CC|ALL|SIC",
+    "cc" : "KR",
+    "exg" : "ALL",
+    "sic" : "D",
+    "desc" : "KR - Manufacturing",
+    "order" : 300
+  },
+  {
+    "key" : "US|N|ALL",
+    "keyType" : "CC|EXG|ALL",
+    "cc" : "US",
+    "exg" : "N",
+    "sic" : "ALL",
+    "desc" : "US - Nasdaq",
+    "order" : 10
+  },
+  {
+    "key" : "US|Y|ALL",
+    "keyType" : "CC|EXG|ALL",
+    "cc" : "US",
+    "exg" : "Y",
+    "sic" : "ALL",
+    "desc" : "US - NYSE",
+    "order" : 20
+  },
+  {
+    "key" : "KR|KS|ALL",
+    "keyType" : "CC|EXG|ALL",
+    "cc" : "KR",
+    "exg" : "KS",
+    "sic" : "ALL",
+    "desc" : "KR - KOSPI",
+    "order" : 30
+  },
+  {
+    "key" : "KR|KD|ALL",
+    "keyType" : "CC|EXG|ALL",
+    "cc" : "KR",
+    "exg" : "KD",
+    "sic" : "ALL",
+    "desc" : "KR - KOSDAQ",
+    "order" : 40
+  },
+  {
+    "key" : "US|ALL|ALL",
+    "keyType" : "CC|ALL|ALL",
+    "cc" : "US",
+    "exg" : "ALL",
+    "sic" : "ALL",
+    "desc" : "US",
     "order" : 2
   },
   {
-    "key" : "ALL|X",
-    "keyType" : "ALL",
-    "value" : "X",
-    "desc" : "ALL",
-    "order" : 0
+    "key" : "KR|ALL|ALL",
+    "keyType" : "CC|ALL|ALL",
+    "cc" : "KR",
+    "exg" : "ALL",
+    "sic" : "ALL",
+    "desc" : "KR",
+    "order" : 3
+  },
+  {
+    "key" : "ALL|ALL|ALL",
+    "keyType" : "ALL|ALL|ALL",
+    "cc" : "ALL",
+    "exg" : "ALL",
+    "sic" : "ALL",
+    "desc" : "All",
+    "order" : 1
   }
 ]
