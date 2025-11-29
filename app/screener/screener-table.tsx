@@ -122,6 +122,7 @@ export default function ScreenerTable() {
     <>
       {
         <AgGridReact
+          theme="legacy"
           ref={gridRef}
           rowData={store?.response}
 

@@ -1,6 +1,6 @@
 import ScreenerContent from "./screener-contents";
 import { featureDefsStringStore } from "./screener-store";
-import { readFileFromSharedDist } from "../utils";
+import { readFileFromSharedDist } from "../server_utils";
 import { getMetadata } from "../app.store";
 
 const featureDefsJson = featureDefsStringStore.getState();

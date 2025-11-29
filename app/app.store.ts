@@ -1,5 +1,5 @@
 import { create } from "zustand";
-import { readFileFromSharedDist } from "./utils";
+import { readFileFromSharedDist } from "./server_utils";
 
 // export interface NaicsDef {
 //   code: string

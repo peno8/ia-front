@@ -1,13 +1,5 @@
-import { readFileSync } from "fs";
 import { CompanyDef } from "./app.store";
 import { FeatureDef } from "./screener/screener-store";
-
-export function readFileFromSharedDist(filename: string | undefined) {
-  console.log(process.env.DATA_ROOT);
-  const buffer = readFileSync(process.env.DATA_ROOT +  '/' + filename);
-  const jsonStr = buffer.toString();
-  return jsonStr;
-}
 
 function getMaxScreenerVariableNum(): number {
   // const str = process.env.MAX_SCREENER_VARIABLES ? process.env.MAX_SCREENER_VARIABLES : throw new Error('Parameter is not a number!');;

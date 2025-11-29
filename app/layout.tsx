@@ -1,20 +1,20 @@
-import './globals.css'
-import type { Metadata, Viewport } from 'next'
-import { Inter } from 'next/font/google'
-import Header from './component/header/header'
-import Footer from './footer'
-import localFont from 'next/font/local'
-import Sidebar from './component/sidebar'
+import './tailwind.css';
+import './globals.css';
+import type { Metadata, Viewport } from 'next';
+import { Inter } from 'next/font/google';
+import Header from './component/header/header';
+import Footer from './footer';
+import localFont from 'next/font/local';
+import Sidebar from './component/sidebar';
 import '@mantine/core/styles.css';
 import { MantineProvider, ColorSchemeScript } from '@mantine/core';
-import { featureDefsStringStore } from './screener/screener-store'
-import { readFileFromSharedDist } from './utils'
-import { ThemeProviders } from './theme-provider'
-import 'ag-grid-community/styles/ag-grid.css'; // Core grid CSS, always needed
-import 'ag-grid-community/styles/ag-theme-alpine.css'; // Optional theme CSS
-import GoogleAnalytics from './component/util/ga'
-
-export const dynamic = 'force-dynamic'
+import { featureDefsStringStore } from './screener/screener-store';
+import { readFileFromSharedDist } from "./server_utils";
+import { ThemeProviders } from './theme-provider';
+// import 'ag-grid-community/styles/ag-grid.css'; // Core grid CSS, always needed
+// import 'ag-grid-community/styles/ag-theme-alpine.css'; // Optional theme CSS
+import GoogleAnalytics from './component/util/ga';
+export const dynamic = 'force-dynamic';
 
 const localFonts = localFont({
   src: [
