@@ -1,0 +1,42 @@
+.header {
+  grid-area: header;
+  display: flex;
+  // flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+
+  height: 4rem;
+  //  items-center justify-between align-center flex-nowrap h-24
+}
+
+.menuButton {
+  display: none;
+}
+
+.headerMain {
+  height: 6rem;
+  padding: 0 2rem;
+}
+
+@media (max-width: 1024px) {
+  .logoText {
+    display: none;
+  }
+  .autocomplete {
+    width: 50vw;
+    justify-self: center;
+  }
+  .headerMain {
+    height: 3rem;
+    padding: 0 1rem;
+  }
+  .menuButton {
+    display: block;
+  }
+  .optionBar {
+    height: 0.5rem;
+  }
+  .optionBar .optionBarContent {
+    display: none;
+  }
+}

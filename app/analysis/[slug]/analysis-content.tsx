@@ -1,4 +1,4 @@
-'use client'
+"use client";
 
 import { useContext, useEffect } from "react";
 import { featureDataStore, fetchFeatureData } from "./analysis-store";
@@ -8,41 +8,51 @@ import { AppMetadata, getCompanyDef } from "@/app/app.store";
 import StockDescription from "./stock-desc";
 import LoadingOveray from "@/app/component/util/loadingOveray";
 import { MetadataContext } from "../metadata-context";
+import styles from "./analysis-content.module.scss";
 
-export default function AnalysisContent({ featureDefsJson, symbol, metadata }: { featureDefsJson: string, symbol: string, metadata: AppMetadata }) {
-    
+export default function AnalysisContent({
+  featureDefsJson,
+  symbol,
+  metadata,
+}: {
+  featureDefsJson: string;
+  symbol: string;
+  metadata: AppMetadata;
+}) {
+  useEffect(() => {
+    fetchFeatureData(symbol, metadata.CURRENT_QT);
+  }, []);
 
-      
-    useEffect(() => {
-        fetchFeatureData(symbol, metadata.CURRENT_QT)
-    }, [])
+  setFeatureDefsStore(featureDefsJson);
+  const companyDef = getCompanyDef(symbol)!;
+  const featureData = featureDataStore((state) => state.data);
 
-    setFeatureDefsStore(featureDefsJson);
-    const companyDef = getCompanyDef(symbol)!;
-    const featureData = featureDataStore((state) => state.data);
+  const context = {
+    metadata: metadata,
+    compDef: companyDef,
+  };
 
-    const context = {
-        metadata: metadata,
-        compDef: companyDef
-    }
-
-    console.log(context)
-    return (
-        <MetadataContext.Provider value={context}>
-            <div className="relative w-full">
-                <div className="analysis-area">
-                    {featureData ?
-                        <div className="w-[900px]">
-                            <StockDescription cd={companyDef} featureData={featureData}/>
-                            <div className="m-2">
-                                {featureData.feature ? <AnalysisAccordion featureData={featureData} compDef={companyDef} /> : null}
-                            </div>
-                        </div> : null
-                    }
-                    <LoadingOveray></LoadingOveray>
-                </div>
+  console.log(context);
+  return (
+    <MetadataContext.Provider value={context}>
+      {/* <div className=""> */}
+      <div className={styles.analysisArea}>
+        {featureData ? (
+          <div className="">
+            <StockDescription cd={companyDef} featureData={featureData} />
+            <div className="m-2 ml-0">
+              {featureData.feature ? (
+                <AnalysisAccordion
+                  featureData={featureData}
+                  compDef={companyDef}
+                />
+              ) : null}
             </div>
-        </MetadataContext.Provider>
-    )
+          </div>
+        ) : null}
+        <LoadingOveray></LoadingOveray>
+      </div>
+      {/* </div> */}
+    </MetadataContext.Provider>
+  );
 }
-
